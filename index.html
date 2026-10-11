@@ -403,8 +403,8 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
   .reader .txt h2{font-size:28px;line-height:1.12;margin:0;text-shadow:0 2px 14px rgba(0,0,0,.6)}
   .reader .kicker{margin-bottom:8px;text-shadow:0 1px 8px rgba(0,0,0,.7)}
   .m-line{display:block;margin:8px 0 0;font-size:15.5px;line-height:1.45;color:var(--ink-2);text-shadow:0 1px 10px rgba(0,0,0,.7)}
-  /* the "i": small and quiet; the 44px tap area is invisible around a 28px mark */
-  .info{display:grid;place-items:center;position:absolute;right:-8px;bottom:-6px;width:44px;height:44px;padding:0;border:0;background:none;cursor:pointer;color:var(--ink)}
+  /* the "i": small and quiet; the 44px tap area is invisible around a 28px mark (kept inside the reader, which clips) */
+  .info{display:grid;place-items:center;position:absolute;right:0;bottom:-6px;width:44px;height:44px;padding:0;border:0;background:none;cursor:pointer;color:var(--ink)}
   .info::before{content:"";position:absolute;width:28px;height:28px;border-radius:50%;border:1px solid rgba(255,255,255,.4);background:rgba(11,18,32,.35)}
   .info b{position:relative;font:italic 600 14px Georgia,serif;line-height:1;opacity:.9}
   /* the altitude gauge: a slim rail on the right edge */
@@ -606,7 +606,7 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
     {f:[.5,.38], t:[.5,.32], z:[1.02,1.1]},                                  // 1 liftoff (aimed high: headroom for the nose in the 16:9 frame)
     {f:[.5,.5],  t:[.5,.5],  z:[1,1]},                                       // 2 fairing open (last video frame): held still, so the video lands on it exactly
     {f:[.5,.5],  t:[.5,.5],  z:[1,1.03],  m:{f:[.263,.47],t:[.263,.47],z:[1,1]}},  // 3 beams: on phones, framed on the satellite
-    {f:[.5,.5],  t:[.5,.5],  z:[1.25,1],  m:{f:[.496,.48],t:[.496,.48],z:[1,1]}} // 4 mission view (finale)
+    {f:[.5,.5],  t:[.5,.5],  z:[1.25,1],  m:{f:[.634,.5],t:[.634,.5],z:[1,1]}}   // 4 mission view (finale; phones: Earth and a OneSat)
   ];
   // Transitions INTO these frames use "the world falls away": the old view sinks while the new one wipes in from above.
   var RISE = {2:1};
@@ -684,8 +684,9 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
     }
     ends.forEach(function(e, k){
       var p = e[0] + ' ' + e[1];
-      packet('M' + SAT + ' L' + p, 'url(#glow)', 9, 1.6 + (k % 4) * .25, -k * .37);              // downlink
-      if (k % 2 === 0) packet('M' + p + ' L' + SAT, 'url(#glowUp)', 7, 2.1 + (k % 3) * .3, -k * .53 - .9);   // uplink
+      var SLOW = 2;                                                                              // calm: half the original speed
+      packet('M' + SAT + ' L' + p, 'url(#glow)', 9, (1.6 + (k % 4) * .25) * SLOW, -k * .37 * SLOW);              // downlink
+      if (k % 2 === 0) packet('M' + p + ' L' + SAT, 'url(#glowUp)', 7, (2.1 + (k % 3) * .3) * SLOW, (-k * .53 - .9) * SLOW);   // uplink
     });
   })();
   // ---------- Frame 9: real constellations, to scale, in the Earth-fixed frame ----------
@@ -1003,7 +1004,7 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
           if (i){                                   // finale: zoom out so the whole GEO ring stays in view
             if (desk) z = lerp(z, Math.min(1, Dw * .97 / (1590 * base[i])), m);
             else {                                    // phones: the Earth in the upper third, pulling back as the finale arrives
-              var sF = Math.max(.88, .6 * Dh / 489);   // tall enough that the Earth (image y 452 of 941) can sit at 40% of the screen
+              var sF = (Dw - 24) / 690;                 // the Earth's left limb (x 721) to the near OneSat (x ~1400) across the screen width
               z = lerp(z, sF / base[i] * lerp(2, 1, ss(f - (N - 2))), m); ay = lerp(ay, .4, m);
             }   // phones: pull back from the Earth as it arrives
           }
@@ -1312,7 +1313,10 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
     if (fm > .98 && typeof finaleHint === 'function') finaleHint();
     finLayer.classList.toggle('lit', fm > .9);
     if (fm < .9 && tipKey) showTip(null);
-    if (!desk){ var sv = (1 - Math.max(hm, fm)).toFixed(3); mscrim.style.opacity = sv; spineEl.style.opacity = sv; }   // phones: scrim and gauge only on the steps
+    if (!desk){                                    // phones: scrim and gauge only on the steps; the gauge leaves early for the finale
+      mscrim.style.opacity = (1 - Math.max(hm, fm)).toFixed(3);
+      spineEl.style.opacity = (1 - Math.max(hm, ss((lastF - (N - 2)) * 4))).toFixed(3);
+    }
   }
   // ---------- moving between steps ----------
   // Inside a long step you read freely. At a step's edge, scrolling on launches the move to the next step and the page
@@ -1558,7 +1562,7 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
     return now - pendT > 120 ? key : tipKey;
   }
   document.addEventListener('pointermove', function(e){
-    if (e.pointerType === 'touch' || hinting) return;
+    if (!desk || e.pointerType === 'touch' || hinting) return;   // phones: a simpler finale, no tips
     var raw = overText(e.target) ? null : pickAt(e.clientX, e.clientY, 16);
     if (overText(e.target)){ lostT = 0; clearTimeout(lostTimer); showTip(null); finLayer.style.cursor = ''; return; }
     var key = steady(raw);
@@ -1566,7 +1570,7 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
     finLayer.style.cursor = key ? TIPS[key].cursor : '';
   });
   document.addEventListener('pointerdown', function(e){
-    if (e.pointerType !== 'touch' || hinting || overText(e.target)) return;
+    if (!desk || e.pointerType !== 'touch' || hinting || overText(e.target)) return;
     var key = pickAt(e.clientX, e.clientY, 30);
     showTip(key, e.clientX, e.clientY);
     clearTimeout(tipHide); if (key) tipHide = setTimeout(function(){ showTip(null); }, 4000);
@@ -1574,7 +1578,7 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
   // the first time the finale settles, the three constellations light up in turn with a hint
   var hinted = false, hintEl = document.getElementById('orbHint');
   function finaleHint(){
-    if (hinted || reduce) return; hinted = true; hinting = true;
+    if (hinted || reduce || !desk) return; hinted = true; hinting = true;
     hintEl.textContent = matchMedia('(hover: hover)').matches ? 'Hover the orbits' : 'Tap the orbits';
     hintEl.classList.add('on');
     ['oneweb', 'galileo', 'geo', 'gateway', null].forEach(function(k, i){
