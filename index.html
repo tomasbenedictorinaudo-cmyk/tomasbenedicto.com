@@ -38,6 +38,7 @@
   --topH:60px;
 }
 *{box-sizing:border-box}
+html.vscroll,html.vscroll body{overflow:hidden;height:100%;overscroll-behavior:none}   /* touch: the ride moves, the page stays */
 html{overflow-anchor:none;-webkit-text-size-adjust:100%;overflow-x:clip}
 body{margin:0;touch-action:pan-y;background:var(--sky);color:var(--ink);font:16px/1.6 Inter,system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:clip}
 body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:var(--stars,0);
@@ -627,6 +628,15 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
 
 <script>
 (function(){
+  // Touch devices: the page itself never scrolls. The ride keeps its own position (vY), so iPhone Safari never
+  // collapses or re-expands its toolbars, and the screen stays still. Desktop keeps real scrolling (wheel, scrollbar).
+  var VSCROLL = matchMedia('(hover: none) and (pointer: coarse)').matches, vY = 0;
+  if (VSCROLL) document.documentElement.classList.add('vscroll');
+  function pageY(){ return VSCROLL ? vY : window.scrollY; }
+  function setY(y){
+    if (!VSCROLL){ window.scrollTo(0, y); return; }
+    vY = Math.max(0, Math.min(REST.length ? REST[REST.length - 1].b : 0, y));   // the track ends at the finale
+  }
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   document.getElementById('yr').textContent = new Date().getFullYear();
 
@@ -636,7 +646,7 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
   var hero = document.getElementById('top'), finale = document.getElementById('finale'), winHome = document.getElementById('winHome');
   // the landing and the finale are steps 0 and N-1: the frame window grows to full screen there
   var chapters = [hero].concat([].slice.call(document.querySelectorAll('.ch')), [finale]);
-  var N = layers.length, NC = chapters.length, gNow = 0, sy = scrollY, sunStart = null, vennStart = null, sunRelayout = null, thru = false;
+  var N = layers.length, NC = chapters.length, gNow = 0, sy = pageY(), sunStart = null, vennStart = null, sunRelayout = null, thru = false;
   var FR = [0, 1, 2, 3, 4];                         // frame shown by each chapter: one transition between consecutive steps
 
   // Camera inside the frame: focus point (fraction of image) and zoom, start -> end of each frame's life.
@@ -675,7 +685,7 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
   // 1 = window fills the screen (landing / finale), 0 = window sits in its frame
   function morph(){
     if (!desk) return 1;                                           // phones: every step is a full-screen scene
-    var fin = finale.getBoundingClientRect().top + scrollY - sy;    // where the finale is, seen from the smoothed position
+    var fin = finale.getBoundingClientRect().top + window.scrollY - sy;    // where the finale is, seen from the smoothed position
     if (reduce) return sy < hero.offsetHeight * .5 || fin < H * .45 ? 1 : 0;
     return Math.max(1 - ss(sy / hero.offsetHeight), ss((H * .9 - fin) / (H * .9)));
   }
@@ -691,7 +701,7 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
     // Frame 0 holds until the window has shrunk into its frame; the last frame is in before it grows again.
     HOLD = REST.map(function(r){ return {a: r.a, b: r.b}; });
     HOLD[0].b = Math.max(HOLD[0].b, hero.offsetHeight * .2);    // the pad shows only at the start of the shrink
-    HOLD[NC - 1].a = Math.max(HOLD[NC - 2].b + 1, finale.getBoundingClientRect().top + scrollY - H * .9);
+    HOLD[NC - 1].a = Math.max(HOLD[NC - 2].b + 1, finale.getBoundingClientRect().top + window.scrollY - H * .9);
     if (mv && mv.k != null && REST[mv.k]) mv.target = mv.dir > 0 ? REST[mv.k].a : REST[mv.k].b;   // re-measured mid-move: re-aim
     buildRail(); dirty = true;
   }
@@ -976,12 +986,14 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
       avatarImgs.forEach(function(img){ img.classList.toggle('on', img.dataset.ch === chapters[cur].id); });
     }
   }
+  var themeMeta = document.querySelector('meta[name="theme-color"]'), lastSky = '';
   function sky(f){
     var k = 0; while (k < SKY.length - 2 && f > SKY[k + 1][0]) k++;
     var a = SKY[k], b = SKY[k + 1], t = ss((f - a[0]) / (b[0] - a[0]));
     var c = a[1].map(function(v, j){ return Math.round(lerp(v, b[1][j], t)); });
     var col = 'rgb(' + c.join(',') + ')', root = document.documentElement.style;
     root.setProperty('--sky', col); root.setProperty('--stars', ss((f - 1.3) / .6).toFixed(3));
+    if (col !== lastSky){ lastSky = col; if (themeMeta) themeMeta.setAttribute('content', col); }   // the strip around the notch matches the scene
   }
 
   // camera progress through a frame's life; a frame shared by several chapters moves across all of them
@@ -1020,11 +1032,11 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
 
   // ---------- render loop ----------
   var lastF = -1, zNow = [], topBar = document.querySelector('.top');
-  var lastY = scrollY, thrust = 0, lastG = -1;
+  var lastY = pageY(), thrust = 0, lastG = -1;
   function render(time){
-    sy = reduce ? scrollY : sy + (scrollY - sy) * .25;            // the film eases after the page, like a wheel with inertia
-    if (Math.abs(scrollY - sy) < .4) sy = scrollY;
-    var f = filmPos(), v = scrollY - lastY; lastY = scrollY;
+    sy = reduce ? pageY() : sy + (pageY() - sy) * .25;            // the film eases after the page, like a wheel with inertia
+    if (Math.abs(pageY() - sy) < .4) sy = pageY();
+    var f = filmPos(), v = pageY() - lastY; lastY = pageY();
     var a = frameAR(f);
     if (Math.abs(a - ar) > .0005) sizeFrame(a);
     // aim at where the frame sits once pinned, so the window lands exactly as the frame locks in place
@@ -1327,7 +1339,7 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
       y += read + Math.round(G * Math.max(1, .8 * (FR[j + 2] - FR[j + 1])));   // flying through several frames takes a longer gap
     });
     var finTop = y + H * .9;                           // the beams frame is in before the finale grows
-    story.style.height = Math.max(0, finTop - (sr.top + scrollY)) + 'px';
+    story.style.height = Math.max(0, finTop - (sr.top + window.scrollY)) + 'px';
     var readFin = Math.max(0, finLayer.scrollHeight - H);   // phones: the finale can be taller than the screen
     finale.style.height = (H + readFin) + 'px';
     out.push({a: finTop, b: finTop + readFin});
@@ -1385,9 +1397,9 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
   function stopGlide(){ if (anim){ cancelAnimationFrame(anim); anim = null; } mv = null; }
   function hushFor(ms){ hush = true; clearTimeout(hushT); hushT = setTimeout(function(){ hush = false; }, ms || 160); }
   function go(target, rate, k){
-    var y = scrollY, d = target - y;
+    var y = pageY(), d = target - y;
     if (Math.abs(d) < 1) return;
-    if (reduce){ scrollTo(0, target); return; }
+    if (reduce){ setY(target); return; }
     var dirn = d > 0 ? 1 : -1;
     if (mv && mv.dir === dirn){ mv.target = target; mv.k = k; mv.cruise = Math.max(mv.cruise, cruiseFor(rate)); return; }
     stopGlide();
@@ -1402,13 +1414,13 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
     var want = Math.min(m.cruise, Math.sqrt(2 * A * Math.max(0, rem)));
     m.v = want > m.v ? Math.min(want, m.v + m.cruise / RAMP * dt) : want;
     m.y += m.dir * m.v * dt;
-    if ((m.target - m.y) * m.dir <= .5){ scrollTo(0, m.target); anim = null; mv = null; hushFor(450); return; }   // settle before the next step
-    scrollTo(0, m.y);
+    if ((m.target - m.y) * m.dir <= .5){ setY(m.target); anim = null; mv = null; hushFor(450); return; }   // settle before the next step
+    setY(m.y);
     anim = requestAnimationFrame(tick);
   }
   function stepAt(y){ for (var k = 0; k < REST.length; k++) if (y >= REST[k].a - 2 && y <= REST[k].b + 2) return k; return -1; }
   function launch(dirn, rate){                        // on to the next step in that direction
-    var y = scrollY, k = stepAt(y), n;
+    var y = pageY(), k = stepAt(y), n;
     if (k >= 0) n = k + dirn;
     else { var i = 0; while (i < REST.length - 2 && y > REST[i + 1].a) i++; n = dirn > 0 ? i + 1 : i; }
     var t = REST[n]; if (t) go(dirn > 0 ? t.a : t.b, rate, n);
@@ -1472,11 +1484,11 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
       return;
     }
     if (hush){ e.preventDefault(); hushFor(); return; }   // one step per gesture: the rest of a flick (and its momentum) is absorbed
-    var y = scrollY, k = stepAt(y);
+    var y = pageY(), k = stepAt(y);
     if (k < 0){ e.preventDefault(); launch(dirn, inputRate(dirn)); if (mv) mv.wheel = true; return; }
     var r = REST[k], edge = dirn > 0 ? r.b : r.a;
     if (Math.abs(y - edge) <= 2){ e.preventDefault(); launch(dirn, inputRate(dirn)); if (mv) mv.wheel = true; return; }
-    if (dirn > 0 ? y + dy > r.b : y + dy < r.a){ e.preventDefault(); scrollTo(0, edge); } // stop on the edge first
+    if (dirn > 0 ? y + dy > r.b : y + dy < r.a){ e.preventDefault(); setY(edge); } // stop on the edge first
   }, {passive: false});
   // touch: drag to read a long step (with momentum); pull past its edge to move on, swipe again to keep going
   var tLast = 0, tVel = 0, tTime = 0, tMode = '', pull = 0, coastF = null;
@@ -1495,21 +1507,21 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
     e.preventDefault();
     if (!dy) return;
     if (tMode !== 'read') return;
-    var y = scrollY, k = stepAt(y);
+    var y = pageY(), k = stepAt(y);
     if (k < 0){ tMode = 'done'; launch(dy > 0 ? 1 : -1, Math.abs(tVel)); return; }
     var r = REST[k], ny = y + dy;
     if (ny > r.b || ny < r.a){
-      scrollTo(0, ny > r.b ? r.b : r.a); pull += Math.abs(dy);
+      setY(ny > r.b ? r.b : r.a); pull += Math.abs(dy);
       if (pull > 36){ tMode = 'done'; launch(dy > 0 ? 1 : -1, Math.abs(tVel)); }
-    } else { pull = 0; scrollTo(0, ny); }
+    } else { pull = 0; setY(ny); }
   }, {passive: false});
   addEventListener('touchend', function(){
     if (tMode === 'read' && Math.abs(tVel) > .15 && performance.now() - tTime < 80){
       (function coast(){                               // momentum while reading, stopping at the step's edges
         tVel *= .95;
-        var y = scrollY, k = stepAt(y); if (k < 0) return;
+        var y = pageY(), k = stepAt(y); if (k < 0) return;
         var r = REST[k], ny = Math.max(r.a, Math.min(r.b, y + tVel * 16));
-        scrollTo(0, ny);
+        setY(ny);
         if (Math.abs(tVel) > .02 && ny > r.a && ny < r.b) coastF = requestAnimationFrame(coast);
       })();
     }
@@ -1523,7 +1535,7 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
     if (!dirn) return;
     e.preventDefault();
     if (mv || e.repeat) return;                       // holding the key does not run through several steps
-    var y = scrollY, k = stepAt(y);
+    var y = pageY(), k = stepAt(y);
     if (k >= 0){
       var r = REST[k], edge = dirn > 0 ? r.b : r.a;
       if (Math.abs(y - edge) > 2){ go(dirn > 0 ? Math.min(edge, y + H * .8) : Math.max(edge, y - H * .8), 1, null); return; }
@@ -1531,10 +1543,10 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
     launch(dirn, 1);
   });
   // anything else that leaves the page between steps (dragging the scrollbar): finish the move in that direction
-  var idle = null, dir = 1, prevY = scrollY;
+  var idle = null, dir = 1, prevY = pageY();
   addEventListener('scroll', function(){
-    var d = scrollY - prevY; if (d) dir = d > 0 ? 1 : -1; prevY = scrollY;
-    clearTimeout(idle); idle = setTimeout(function(){ if (!mv && !tMode && stepAt(scrollY) < 0) launch(dir, 1); }, 160);
+    var d = pageY() - prevY; if (d) dir = d > 0 ? 1 : -1; prevY = pageY();
+    clearTimeout(idle); idle = setTimeout(function(){ if (!mv && !tMode && stepAt(pageY()) < 0) launch(dir, 1); }, 160);
   }, {passive: true});
 
   // ---------- finale datatips: hover (or tap) an orbit or a satellite ----------
@@ -1631,9 +1643,9 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
   // the track and puts you back on the step you were reading, instead of leaving you mid-transition.
   addEventListener('resize', function(){
     if (window.visualViewport && visualViewport.scale > 1.01) return;
-    var k = Math.round(gNow); if (Math.abs(gNow - k) > .02 || mv) k = -1;   // the step being read (the ride's own record: the browser may already have shifted scrollY)
+    var k = Math.round(gNow); if (Math.abs(gNow - k) > .02 || mv) k = -1;   // the step being read (the ride's own record: the browser may already have shifted pageY())
     layout();
-    if (k >= 0 && REST[k]){ scrollTo(0, REST[k].a); sy = scrollY; }
+    if (k >= 0 && REST[k]){ setY(REST[k].a); sy = pageY(); }
   });
   ['gesturestart', 'gesturechange'].forEach(function(t){ document.addEventListener(t, function(e){ e.preventDefault(); }); });   // iOS pinch
   addEventListener('load', layout);
