@@ -161,6 +161,7 @@ h1,h2,h3{font-family:"Space Grotesk",Inter,sans-serif;letter-spacing:-.02em;marg
   .finale .cta .btn.accent{flex:0 1 auto;width:auto;padding:13px 26px}
   .finale .cta .btn.accent .wide-only{display:inline}
   .finale .cta .btn.mail{flex:0 1 auto;width:auto;padding:13px 22px}
+  @media (max-width:380px){.finale .cta .btn.accent .wide-only{display:none}}   /* small phones: 'LinkedIn' on one line */
   .orb-hint{top:calc(var(--topH) + 10px);bottom:auto;right:calc(16px + env(safe-area-inset-right))}
   /* the words arrive one after another once the Earth has settled */
   .finale .fin-in > *{opacity:0;transform:translateY(14px);transition:opacity .45s ease,transform .55s cubic-bezier(.2,.8,.2,1)}
@@ -534,7 +535,7 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
     <figure class="frame" id="frame">
       <div class="win-home" id="winHome"></div>
       <div class="win" id="win" aria-hidden="true">
-        <div class="layer"><img src="assets/story/0.webp?v=up4" srcset="assets/story/0.webp?v=up4 1920w, assets/story/0-3840.webp?v=up4 3840w" sizes="(max-aspect-ratio: 3/2) 150vh, 112vw" width="1920" height="1280" alt=""></div>
+        <div class="layer"><img src="assets/story/0.webp?v=up4" srcset="assets/story/0.webp?v=up4 1920w, assets/story/0-3840.webp?v=up4 3840w" sizes="(max-aspect-ratio: 3/2) 150vh, 112vw" width="1536" height="1024" alt=""></div>
         <div class="layer"><img src="assets/story/1v.webp?v=hd27" width="1920" height="1080" alt=""></div>
         <div class="layer"><img src="assets/story/4v.webp?v=hd27" width="1920" height="1080" alt=""></div>
         <div class="layer"><img src="assets/story/8.webp" width="1672" height="941" alt="">
@@ -542,7 +543,7 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
             <defs><radialGradient id="glow"><stop offset="0" stop-color="#fff"/><stop offset=".4" stop-color="#e6fbff" stop-opacity=".9"/><stop offset="1" stop-color="#7fe3ff" stop-opacity="0"/></radialGradient><radialGradient id="glowUp"><stop offset="0" stop-color="#fff4dc"/><stop offset=".4" stop-color="#ffcf7a" stop-opacity=".95"/><stop offset="1" stop-color="#ffb547" stop-opacity="0"/></radialGradient></defs>
           </svg>
         </div>
-        <div class="layer"><img src="assets/story/9.webp?v=up4" srcset="assets/story/9.webp?v=up4 1920w, assets/story/9-3840.webp?v=up4 3840w" sizes="(max-aspect-ratio: 16/9) 178vh, 100vw" width="1920" height="1081" alt="">
+        <div class="layer"><img src="assets/story/9.webp?v=up4" srcset="assets/story/9.webp?v=up4 1920w, assets/story/9-3840.webp?v=up4 3840w" sizes="(max-aspect-ratio: 16/9) 178vh, 100vw" width="1672" height="941" alt="">
           <svg viewBox="0 0 1672 941">
             <g id="orbits"></g>
             <g id="home"><circle class="ping" cx="803" cy="414" r="4"/><circle class="ping d2" cx="803" cy="414" r="4"/><circle class="ping d3" cx="803" cy="414" r="4"/><circle class="homedot" cx="803" cy="414" r="2.6"/></g>
@@ -696,7 +697,7 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
     {f:[.5,.5],  t:[.5,.5],  z:[1,1]},                                       // 1 liftoff (the video's first frame, held still so the video starts on it exactly)
     {f:[.5,.5],  t:[.5,.5],  z:[1,1]},                                       // 2 fairing open (last video frame): held still, so the video lands on it exactly
     {f:[.5,.5],  t:[.5,.5],  z:[1,1.03],  m:{f:[.263,.47],t:[.263,.47],z:[1,1]}},  // 3 beams: on phones, framed on the satellite
-    {f:[.5,.5],  t:[.5,.5],  z:[1.25,1],  m:{f:[.634,.5],t:[.634,.5],z:[1,1]}}   // 4 mission view (finale; phones: Earth and a OneSat)
+    {f:[.5,.5],  t:[.5,.5],  z:[1.25,1],  m:{f:[.645,.5],t:[.645,.5],z:[1,1]}}   // 4 mission view (finale; phones: Earth and a OneSat)
   ];
   // Transitions INTO these frames use "the world falls away": the old view sinks while the new one wipes in from above.
   var RISE = {2:1};
@@ -704,6 +705,7 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
   var SKY = [[0,[28,39,66]],[1,[22,34,60]],[2,[6,8,16]],[4,[5,7,13]]];
 
   var W, H, desk, Fw, Fh, Dw = 0, Dh = 0, Dx = null, Dy = null, mNow = -1, ar = -1, base = [], dims = [], REST = [], HOLD = [], dirty = true;
+  // width/height attributes stay in the original artwork's pixels: the cameras, the finale framing and the orbits are drawn in them
   layers.forEach(function(l){ var im = l.querySelector('img'); dims.push([+im.getAttribute('width'), +im.getAttribute('height')]); });
 
   function sizeFrame(a){
@@ -1100,7 +1102,7 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
             else {                                    // phones: the Earth in the upper third, pulling back as the finale arrives
               var land = Dw > Dh;                        // landscape: the whole GEO ring; portrait: the Earth and the near OneSat
               var ins = safeInsets(), safeW = Dw - ins[0] - ins[1];
-              var sF = land ? safeW * .92 / 1590 : (safeW - 24) / 690;   // portrait: the Earth's left limb (x 721) to the OneSat (x ~1400)
+              var sF = land ? safeW * .92 / 1590 : (safeW - 24) / 840;   // portrait: the Earth's left limb (x 721) to the whole OneSat (x ~1440), with room around
               ax += (ins[0] - ins[1]) / 2 / Dw * m;     // centred in the safe area
               z = lerp(z, sF / base[i] * lerp(2, 1, ss(f - (N - 2))), m); ay = lerp(ay, land ? .36 : .4, m);
               if (land){ fx = lerp(fx, .495, m); fy = lerp(fy, .48, m); }
