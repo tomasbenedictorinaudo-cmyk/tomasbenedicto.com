@@ -10,5 +10,5 @@ for c in "$CHROME" \
 done
 [ -z "$CH" ] && { echo "No Chromium found; set CHROME=/path/to/chrome" >&2; exit 1; }
 "$CH" --headless --disable-gpu --no-pdf-header-footer --virtual-time-budget=5000 \
-  --print-to-pdf="assets/Tomas-Benedicto-Rinaudo-CV.pdf" "file://$PWD/cv.html" 2>/dev/null
-echo "assets/Tomas-Benedicto-Rinaudo-CV.pdf"
+  --print-to-pdf="assets/Tomas-Benedicto-CV.pdf" "file://$PWD/cv.html" 2>/dev/null
+echo "assets/Tomas-Benedicto-CV.pdf"

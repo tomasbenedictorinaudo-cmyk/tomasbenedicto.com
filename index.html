@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Tomas Benedicto Rinaudo</title>
-<meta name="description" content="Tomas Benedicto Rinaudo — Head of Payload Architects at Airbus Defence and Space. A career told as a launch, from the pad to geostationary orbit.">
+<title>Tomas Benedicto</title>
+<meta name="description" content="Tomas Benedicto · Head of Payload Architects at Airbus Defence and Space. A career told as a launch, from the pad to geostationary orbit.">
 <meta name="theme-color" content="#1c2742">
-<meta property="og:title" content="Tomas Benedicto Rinaudo — Satellite Systems Engineer">
-<meta property="og:description" content="My career as a launch: from the pad to geostationary orbit. Telecom payload architect at Airbus — OneSat, Galileo G2, OneWeb.">
+<meta property="og:title" content="Tomas Benedicto · Satellite Systems Engineer">
+<meta property="og:description" content="My career as a launch: from the pad to geostationary orbit. Telecom payload architect at Airbus: OneSat, Galileo G2, OneWeb.">
 <meta property="og:image" content="assets/story/8.webp">
 <link rel="icon" type="image/svg+xml" href="assets/icons/icon.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png">
@@ -115,7 +115,6 @@ h1,h2,h3{font-family:"Space Grotesk",Inter,sans-serif;letter-spacing:-.02em;marg
 .win-home{flex:none}
 .no-js .win{position:relative;width:100%;aspect-ratio:3/2}
 .win.full{background:#02040a}
-.win.full #home{display:none}
 .win.full .term,.win.full .term-ring,.win.full .link{display:none}   /* no user terminals or their links in the finale */
 .layer{position:absolute;left:0;top:0;opacity:0;visibility:hidden;transform-origin:0 0;will-change:transform,opacity}
 .layer:first-child{opacity:1;visibility:visible;width:100%;height:100%}
@@ -138,9 +137,11 @@ figcaption b{color:var(--ink-2);font-weight:500}
 .gal-ring{fill:none;stroke:#ffd27a;stroke-width:1;vector-effect:non-scaling-stroke}
 .gal-ring.front{stroke-opacity:.45}.gal-ring.back{stroke-opacity:.16}
 .geo-ring{fill:none;stroke:#f2f5fb;stroke-width:2;vector-effect:non-scaling-stroke;stroke-opacity:0;transition:stroke-opacity .3s}
-.ow,.gal,.gal-ring,.beams{transition:opacity .3s}
-#orbits.hl-oneweb .gal,#orbits.hl-oneweb .gal-ring,#orbits.hl-geo .gal,#orbits.hl-geo .gal-ring{opacity:.4}
-#orbits.hl-galileo .ow,#orbits.hl-galileo .beams,#orbits.hl-geo .ow,#orbits.hl-geo .beams{opacity:.4}
+.ow,.gal{transition:fill-opacity .35s}.gal-ring,.beams{transition:opacity .35s}
+/* highlight: the other constellations step back a little. Satellites dim through fill-opacity, which multiplies their
+   depth-based opacity (behind / over / beside the Earth) instead of replacing it; that replacement made them pop. */
+#orbits.hl-oneweb .gal,#orbits.hl-geo .gal,#orbits.hl-galileo .ow,#orbits.hl-geo .ow,#orbits.hl-gateway .gal,#orbits.hl-gateway .ow{fill-opacity:.72}
+#orbits.hl-oneweb .gal-ring,#orbits.hl-geo .gal-ring,#orbits.hl-galileo .beams,#orbits.hl-geo .beams,#orbits.hl-gateway .gal-ring,#orbits.hl-gateway .beams{opacity:.72}
 #orbits.hl-galileo .gal-ring.front{stroke-opacity:.88}#orbits.hl-galileo .gal-ring.back{stroke-opacity:.36}
 #orbits.hl-geo .geo-ring{stroke-opacity:.72}
 .tip{position:fixed;left:0;top:0;z-index:50;max-width:300px;padding:12px 14px;border-radius:12px;background:rgba(9,14,28,.92);border:1px solid var(--line);
@@ -153,10 +154,13 @@ figcaption b{color:var(--ink-2);font-weight:500}
 .tip small{display:block;margin-top:8px;font-size:10px;letter-spacing:.04em;color:var(--muted)}
 .orb-hint{position:absolute;right:32px;bottom:28px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2);opacity:0;transition:opacity .6s;pointer-events:none}
 .orb-hint.on{opacity:.9}
-.ping{stroke-width:1.5;vector-effect:non-scaling-stroke}
-.ping{fill:none;stroke:#ffb547;transform-box:fill-box;transform-origin:center;animation:ping 2s ease-out infinite}
-.ping.d2{animation-delay:1s}
-@keyframes ping{from{transform:scale(.3);opacity:1}to{transform:scale(2.6);opacity:0}}
+.ping{stroke-width:1.3;vector-effect:non-scaling-stroke}
+/* the Toulouse gateway: a white point radiating very faint concentric rings */
+.ping{fill:none;stroke:#f2f5fb;stroke-opacity:.55;transform-box:fill-box;transform-origin:center;animation:ping 4.5s ease-out infinite}
+.ping.d2{animation-delay:1.5s}.ping.d3{animation-delay:3s}
+.homedot{fill:#f2f5fb;filter:drop-shadow(0 0 2px rgba(242,245,251,.6))}
+#orbits.hl-gateway ~ #home .ping{stroke-opacity:.85}
+@keyframes ping{0%{transform:scale(.6);opacity:1}60%{opacity:.6}100%{transform:scale(4.4);opacity:0}}
 
 /* ---------- altitude spine ---------- */
 .spine{position:sticky;top:0;height:100vh;padding-top:var(--topH);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:40px}
@@ -357,17 +361,17 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
 <script>document.body.classList.remove('no-js')</script>
 
 <header class="top">
-  <a href="#top" class="brand"><span class="brand-mark">TBR</span><span class="full">Tomas Benedicto Rinaudo</span></a>
+  <a href="#top" class="brand"><span class="brand-mark">TB</span><span class="full">Tomas Benedicto</span></a>
 </header>
 
 <section class="hero-spacer" id="top" data-alt="0" data-label="T-0 · Launch pad" data-fig="Launch pad · golden hour"></section>
 <div class="hero" id="heroLayer">
   <div class="hero-in">
     <div class="who">
-      <img class="me" src="assets/headshot.jpg" width="480" height="480" alt="Portrait of Tomas Benedicto Rinaudo">
+      <img class="me" src="assets/headshot.jpg" width="480" height="480" alt="Portrait of Tomas Benedicto">
       <div><b>Head of Payload Architects</b><span>Airbus Defence and Space · Toulouse</span></div>
     </div>
-    <h1>Tomas Benedicto Rinaudo</h1>
+    <h1>Tomas Benedicto</h1>
     <p class="claim">Aerospace engineer.<br>10 years building satellites.</p>
     <p class="pitch">From structural analyst to Head of Payload Architects.<br>From mechanical to propulsion to RF and digital payload.<br>So I can own a system end to end: the engineering, the contracts and the people.</p>
     <div class="cta hero-cta">
@@ -394,7 +398,7 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
         <div class="layer"><img src="assets/story/9.webp" width="1672" height="941" alt="">
           <svg viewBox="0 0 1672 941">
             <g id="orbits"></g>
-            <g id="home"><circle class="ping" cx="801" cy="409" r="4"/><circle class="ping d2" cx="801" cy="409" r="4"/><circle class="homedot" cx="801" cy="409" r="2.6" fill="#ffb547"/></g>
+            <g id="home"><circle class="ping" cx="803" cy="414" r="4"/><circle class="ping d2" cx="803" cy="414" r="4"/><circle class="ping d3" cx="803" cy="414" r="4"/><circle class="homedot" cx="803" cy="414" r="2.6"/></g>
           </svg>
         </div>
         <canvas class="ascent" id="ascent"></canvas>
@@ -477,8 +481,8 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
   <div class="orb-hint mono" id="orbHint" aria-hidden="true"></div>
   <div class="fin-in">
     <div class="who">
-      <img class="me" src="assets/headshot.jpg" width="480" height="480" alt="Portrait of Tomas Benedicto Rinaudo" loading="lazy">
-      <div><b>Tomas Benedicto Rinaudo</b><span>Head of Payload Architects · Airbus Defence and Space</span><small class="fluent">Fluent in Spanish, French and English · professional Dutch</small></div>
+      <img class="me" src="assets/headshot.jpg" width="480" height="480" alt="Portrait of Tomas Benedicto" loading="lazy">
+      <div><b>Tomas Benedicto</b><span>Head of Payload Architects · Airbus Defence and Space</span><small class="fluent">Fluent in Spanish, French and English · professional Dutch</small></div>
     </div>
     <h2>Let's build the next one together.</h2>
     <p class="pitch">LEO, MEO, GEO: three orbits so far. Next, I want to take responsibility for a complete system, from the first requirement to the service in orbit, and space left clear for those who follow.</p>
@@ -488,7 +492,7 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
       <a class="btn accent same" href="https://www.linkedin.com/in/tomasbenedictorinaudo" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg><span><span class="wide-only">Connect on </span>LinkedIn</span></a>
     </div>
   </div>
-  <footer><span>© <span id="yr">2026</span> Tomas Benedicto Rinaudo</span></footer>
+  <footer><span>© <span id="yr">2026</span> Tomas Benedicto</span></footer>
 </div>
 
 <script>
@@ -776,7 +780,7 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
         dots(oneweb, t); dots(galileo, t);
         if (!still) beamsUpdate(now);
       },
-      // the constellation nearest an image point, within tol image px: 'oneweb', 'galileo', 'geo' or null
+      // the constellation nearest an image point, within tol image px: 'oneweb', 'galileo', 'geo', 'gateway' or null
       pick: function(x, y, tol){
         var best = null, bd = tol;
         function near(key, d){ if (d < bd){ bd = d; best = key; } }
@@ -788,6 +792,7 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
         var a = Math.atan2((y - C[1]) / 110, (x - C[0]) / 764);
         near('geo', Math.hypot(x - (C[0] + 764 * Math.cos(a)), y - (C[1] + 110 * Math.sin(a))));
         [[1375, 515], [1590, 450]].forEach(function(q){ near('geo', Math.hypot(x - q[0], y - q[1]) * .5); });   // the painted OneSats
+        near('gateway', Math.hypot(x - 803, y - 414) * .6);                                          // the Toulouse gateway
         return best;
       },
       size: function(s){                            // keep dots a constant on-screen size whatever the frame size
@@ -1360,17 +1365,19 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
     galileo: {name: 'Galileo', col: '#ffd27a', facts: 'MEO 23,222 km · 24 satellites · one orbit every 14 h 05 min',
               me: 'I led the electric propulsion of its second generation.'},
     geo:     {name: 'OneSat', col: '#f2f5fb', facts: 'GEO 35,786 km · stays above the same spot on Earth',
-              me: 'I lead the development of its payload operations and contributed to the design of its satellite structures.'}
+              me: 'I lead the development of its payload operations and contributed to the design of its satellite structures.'},
+    gateway: {name: 'Gateway · Toulouse', col: '#f2f5fb', facts: '43.60° N, 1.44° E. Where I\'m based.',
+              me: 'Every mission needs a way down to Earth.', ground: true}
   };
   Object.keys(TIPS).forEach(function(k){ TIPS[k].cursor = reticle(TIPS[k].col); });
   var tip = document.getElementById('tip'), orbSvg = document.getElementById('orbits'), tipKey = null, tipHide = null, hinting = false;
   function showTip(key, cx, cy){
     if (key !== tipKey){
-      tipKey = key; orbSvg.classList.remove('hl-oneweb', 'hl-galileo', 'hl-geo');
+      tipKey = key; orbSvg.classList.remove('hl-oneweb', 'hl-galileo', 'hl-geo', 'hl-gateway');
       if (key){
         var d = TIPS[key];
         orbSvg.classList.add('hl-' + key);
-        tip.innerHTML = '<b><i style="background:' + d.col + '"></i>' + d.name + '</b><span>' + d.facts + '</span><em>“' + d.me + '”</em><small>To scale · real period · time ×30</small>';
+        tip.innerHTML = '<b><i style="background:' + d.col + '"></i>' + d.name + '</b><span>' + d.facts + '</span><em>“' + d.me + '”</em>' + (d.ground ? '' : '<small>To scale · real period · time ×30</small>');
       }
       tip.classList.toggle('on', !!key);
     }
@@ -1387,9 +1394,28 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
     return ORB.pick((cx - L.left) / k, (cy - L.top) / k, tol / k);
   }
   function overText(t){ return t.closest && t.closest('.fin-in .who, .fin-in h2, .fin-in p, .fin-in .cta, .fin-in a, .top'); }
+  // Hover with some tolerance, so crossing the thin orbit lines does not blink the highlight:
+  // a picked orbit stays picked until the pointer has been off it for 350 ms, and switching to another
+  // orbit needs that orbit under the pointer for 120 ms.
+  var pend = null, pendT = 0, lostT = 0, lostTimer = null, lastXY = [0, 0];
+  function steady(key){
+    var now = performance.now();
+    if (key === tipKey){ pend = null; lostT = 0; return key; }
+    if (!key){
+      if (!tipKey) return null;
+      if (!lostT){ lostT = now; clearTimeout(lostTimer); lostTimer = setTimeout(function(){ if (lostT){ lostT = 0; showTip(null); finLayer.style.cursor = ''; } }, 360); }
+      return now - lostT > 350 ? null : tipKey;
+    }
+    lostT = 0;
+    if (!tipKey) return key;
+    if (pend !== key){ pend = key; pendT = now; }
+    return now - pendT > 120 ? key : tipKey;
+  }
   document.addEventListener('pointermove', function(e){
     if (e.pointerType === 'touch' || hinting) return;
-    var key = overText(e.target) ? null : pickAt(e.clientX, e.clientY, 16);
+    var raw = overText(e.target) ? null : pickAt(e.clientX, e.clientY, 16);
+    if (overText(e.target)){ lostT = 0; clearTimeout(lostTimer); showTip(null); finLayer.style.cursor = ''; return; }
+    var key = steady(raw);
     showTip(key, e.clientX, e.clientY);
     finLayer.style.cursor = key ? TIPS[key].cursor : '';
   });
@@ -1405,9 +1431,9 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
     if (hinted || reduce) return; hinted = true; hinting = true;
     hintEl.textContent = matchMedia('(hover: hover)').matches ? 'Hover the orbits' : 'Tap the orbits';
     hintEl.classList.add('on');
-    ['oneweb', 'galileo', 'geo', null].forEach(function(k, i){
+    ['oneweb', 'galileo', 'geo', 'gateway', null].forEach(function(k, i){
       setTimeout(function(){
-        orbSvg.classList.remove('hl-oneweb', 'hl-galileo', 'hl-geo'); if (k) orbSvg.classList.add('hl-' + k);
+        orbSvg.classList.remove('hl-oneweb', 'hl-galileo', 'hl-geo', 'hl-gateway'); if (k) orbSvg.classList.add('hl-' + k);
         if (!k){ hinting = false; setTimeout(function(){ hintEl.classList.remove('on'); }, 2500); }
       }, 400 + i * 1100);
     });
