@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta name="theme-color" content="#070b14">
+<meta name="color-scheme" content="dark light">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Tomas Benedicto</title>
 <link rel="canonical" href="https://tomasbenedicto.com/cv.html">
@@ -79,9 +81,11 @@ header.nav.scrolled{border-bottom-color:var(--line)}
 .eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:13px;color:var(--ink-2);background:var(--surface);border:1px solid var(--line);padding:6px 14px 6px 10px;border-radius:999px;box-shadow:var(--shadow)}
 .pulse{width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 0 rgba(34,197,94,.5);animation:pulse 2.4s infinite}
 @keyframes pulse{70%{box-shadow:0 0 0 8px rgba(34,197,94,0)}100%{box-shadow:0 0 0 0 rgba(34,197,94,0)}}
-.hero h1{font-size:clamp(42px,6.4vw,76px);margin:22px 0 18px;font-weight:700}
+.hero h1{font-size:clamp(42px,6.4vw,76px);margin:0 0 18px;font-weight:700}
 .hero h1 .grad{background:linear-gradient(100deg,var(--warm) 10%,#ffd27a 60%,var(--warm) 110%);-webkit-background-clip:text;background-clip:text;color:transparent}
 .lede{font-size:clamp(17px,1.9vw,20px);color:var(--ink-2);max-width:580px;margin:0 0 30px}
+.hero h1 + .eyebrow{margin:4px 0 24px}
+@media (max-width:600px){.hero h1 + .eyebrow{font-size:11.5px;gap:8px;padding:5px 12px 5px 9px;white-space:nowrap}}
 .cta{display:flex;flex-wrap:wrap;gap:12px}
 .btn{display:inline-flex;align-items:center;gap:9px;padding:13px 20px;border-radius:12px;font-weight:600;font-size:15px;border:1px solid var(--line);background:var(--surface);color:var(--ink);transition:transform .2s,box-shadow .2s,background .2s;cursor:pointer}
 .btn:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
@@ -223,7 +227,7 @@ footer{padding:36px 0 48px;color:var(--muted);font-size:14px;display:flex;justif
 @media print{
   :root,:root[data-theme="dark"],:root:not([data-theme="light"]){--bg:#fff;--bg-2:#f3f5f9;--surface:#fff;--ink:#0b1220;--ink-2:#2b3446;--muted:#566079;--line:#dde2ec;--accent:#2f5bea;--accent-2:#5b8cff;--accent-soft:#e8eeff;--warm:#b8670a;--shadow:none}
   html,body{background:#fff !important;color:var(--ink);font-size:8.6pt;line-height:1.38}
-  .wrap{max-width:none;padding:0}
+  .wrap{max-width:none;padding:0 1.5mm 0 0}   /* a hair inside the right margin: Preview clips anything on its edge */
   header.nav,.orbit,.hero .cta,.eyebrow,.meta-row,#contact,footer,.icon-btn,.ico,.tags,.hero::before{display:none !important}
   .js .reveal{opacity:1 !important;transform:none !important}
   .print-head{display:flex;align-items:center;gap:12px;padding-bottom:8px;margin-bottom:8px;border-bottom:1.5px solid var(--ink)}
@@ -344,7 +348,7 @@ footer{padding:36px 0 48px;color:var(--muted);font-size:14px;display:flex;justif
   <div class="read" aria-hidden="true"><span id="gName">T-0 · Launch pad</span><b class="mono" id="gAlt">0 m</b></div>
   <div class="rail" id="gRail"><div class="fill" id="gFill"></div><div class="ship" id="gShip" aria-hidden="true"><div class="rk"><img class="rb" src="assets/story/rocket-body.webp" alt=""><img class="rfr" src="assets/story/rocket-fairing.webp" alt=""><div class="fw"><img class="rf" src="assets/story/rocket-flame.webp" alt=""></div></div><img class="stw" src="assets/story/onesat-stowed-sm.webp" alt=""><img class="sat" src="assets/story/onesat.webp" alt=""></div></div>
 </nav>
-<script>document.documentElement.classList.add('js');var t=null;try{t=localStorage.getItem('theme')}catch(e){}document.documentElement.dataset.theme=t||'dark';</script>
+<script>document.documentElement.classList.add('js');var t=null;try{t=localStorage.getItem('cvTheme')}catch(e){}document.documentElement.dataset.theme=t||'dark';var m=document.querySelector('meta[name=theme-color]');if(m)m.content=t==='light'?'#f7f8fb':'#070b14';</script>
 
 <header class="nav" id="nav">
   <div class="wrap nav-inner">
@@ -373,9 +377,9 @@ footer{padding:36px 0 48px;color:var(--muted);font-size:14px;display:flex;justif
     <div class="hero">
       <div class="hero-grid">
         <div>
-          <span class="eyebrow reveal"><span class="pulse"></span>Head of Payload Architects · Airbus Defence and Space</span>
           <h1 class="reveal">I architect space systems<br><span class="grad">end to end.</span></h1>
-          <p class="lede reveal">Aerospace engineer with 10 years in industry. I develop systems that span the space, ground and user segments, from flight hardware to concepts of operations. Today I lead Airbus's <strong>payload architects and mission managers</strong>: we support bids and design the next generation of telecom payloads, across all orbits.</p>
+          <span class="eyebrow reveal"><span class="pulse"></span>Head of Payload Architects · Airbus Defence and Space</span>
+          <p class="lede reveal">Aerospace engineer with 10 years in industry. I develop systems that span the space, ground and user segments, from flight hardware to concepts of operations. Today I lead Airbus's payload architects and mission managers: we support bids and design the next generation of telecom payloads, across all orbits.</p>
           <div class="cta reveal">
             <a class="btn primary" href="https://www.linkedin.com/in/tomasbenedictorinaudo" target="_blank" rel="noopener">
               <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>Connect on LinkedIn</a>
@@ -628,7 +632,8 @@ footer{padding:36px 0 48px;color:var(--muted);font-size:14px;display:flex;justif
   document.getElementById('theme').addEventListener('click',function(){
     var dark=root.dataset.theme? root.dataset.theme==='dark' : matchMedia('(prefers-color-scheme: dark)').matches;
     root.dataset.theme=dark?'light':'dark';
-    try{localStorage.setItem('theme',root.dataset.theme)}catch(e){}
+    try{localStorage.setItem('cvTheme',root.dataset.theme)}catch(e){}
+    var m=document.querySelector('meta[name=theme-color]');if(m)m.content=root.dataset.theme==='light'?'#f7f8fb':'#070b14';
   });
   // nav border
   var nav=document.getElementById('nav');

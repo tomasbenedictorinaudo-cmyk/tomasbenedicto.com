@@ -57,6 +57,10 @@ h1,h2,h3{font-family:"Space Grotesk",Inter,sans-serif;letter-spacing:-.02em;marg
 .top.atpad .dock{opacity:0;visibility:hidden}
 .brand .full{transition:opacity .35s}
 .top.onpad .brand .full{opacity:0}
+@media (max-width:899px),(max-height:500px){   /* phones: the finale has no CV button, so the CV icon stays up here */
+  .top.atfin .dock{opacity:1;visibility:visible}
+  .top.atfin .dock a:not(.cv){display:none}
+}
 .dock a{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--line);background:rgba(10,16,32,.35);color:var(--ink-2);transition:background .2s,color .2s,border-color .2s}
 .dock a:hover,.dock a:focus-visible{background:rgba(255,255,255,.14);color:var(--ink);border-color:rgba(255,255,255,.35)}
 .dock svg{width:15px;height:15px}
@@ -494,7 +498,7 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
 <header class="top atpad onpad">
   <a href="#top" class="brand"><span class="brand-mark">TB</span><span class="full">Tomas Benedicto</span></a>
   <nav class="dock" aria-label="Contact">
-    <a href="cv.html" aria-label="CV" title="CV"><b>CV</b></a>
+    <a class="cv" href="cv.html" aria-label="CV" title="CV"><b>CV</b></a>
     <a class="mail" href="cv.html#contact" aria-label="Email" title="Email"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></a>
     <a href="https://www.linkedin.com/in/tomasbenedictorinaudo" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn"><svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg></a>
   </nav>
@@ -1113,7 +1117,8 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
     }
     topBar.classList.toggle('onhero', m > .35);
     topBar.classList.toggle('atpad', gNow < .5 || gNow > NC - 1.5);
-    topBar.classList.toggle('onpad', gNow < .5);   // the landing shows the name in big: the logo stands alone   // the landing and the finale have their own big buttons: no contact icons up there
+    topBar.classList.toggle('onpad', gNow < .5);
+    topBar.classList.toggle('atfin', gNow > NC - 1.5);   // the landing shows the name in big: the logo stands alone   // the landing and the finale have their own big buttons: no contact icons up there
     panels(sy);
     avatarBox.classList.toggle('off', m > .02);
     // the gauge rocket: no flame on the pad, idle flame once lit, longer flame while you scroll
