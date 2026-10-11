@@ -197,9 +197,9 @@ section{padding:96px 0 0}
 @media (max-width:860px){.skills{grid-template-columns:1fr}}
 
 /* contact */
-.contact{--cbg:#0b1220;--cfg:#eef2fa;margin:96px 0 0;padding:64px 48px;border-radius:28px;background:radial-gradient(600px 300px at 90% 0%,rgba(91,140,255,.28),transparent 70%),var(--cbg);color:var(--cfg);border:1px solid var(--line);position:relative;overflow:hidden}
+.contact{--cbg:#0b1220;--cfg:#eef2fa;margin:0;padding:64px 48px;border-radius:28px;background:radial-gradient(600px 300px at 90% 0%,rgba(91,140,255,.28),transparent 70%),var(--cbg);color:var(--cfg);border:1px solid var(--line);position:relative;overflow:hidden}
 .contact::after{content:"";position:absolute;right:-120px;top:-120px;width:420px;height:420px;border-radius:50%;border:1px dashed rgba(238,242,250,.22);box-shadow:0 0 0 60px rgba(238,242,250,.03),0 0 0 140px rgba(238,242,250,.02)}
-.contact h2{font-size:clamp(32px,4.6vw,52px);max-width:640px;position:relative;z-index:1}
+.contact .contact-big{font:700 clamp(32px,4.6vw,52px)/1.1 "Space Grotesk",Inter,sans-serif;letter-spacing:-.02em;opacity:1;max-width:640px;margin:0;position:relative;z-index:1}
 .contact p{opacity:.72;max-width:560px;font-size:17px;position:relative;z-index:1}
 .contact .cta{position:relative;z-index:1;margin-top:28px}
 .contact .btn{background:transparent;color:var(--cfg);border-color:rgba(238,242,250,.3)}
@@ -222,7 +222,7 @@ footer{padding:36px 0 48px;color:var(--muted);font-size:14px;display:flex;justif
   :root,:root[data-theme="dark"],:root:not([data-theme="light"]){--bg:#fff;--bg-2:#f3f5f9;--surface:#fff;--ink:#0b1220;--ink-2:#2b3446;--muted:#566079;--line:#dde2ec;--accent:#2f5bea;--accent-2:#5b8cff;--accent-soft:#e8eeff;--warm:#b8670a;--shadow:none}
   html,body{background:#fff !important;color:var(--ink);font-size:8.6pt;line-height:1.38}
   .wrap{max-width:none;padding:0}
-  header.nav,.orbit,.hero .cta,.eyebrow,.meta-row,.contact,footer,.icon-btn,.ico,.tags,.hero::before{display:none !important}
+  header.nav,.orbit,.hero .cta,.eyebrow,.meta-row,#contact,footer,.icon-btn,.ico,.tags,.hero::before{display:none !important}
   .js .reveal{opacity:1 !important;transform:none !important}
   .print-head{display:flex;align-items:center;gap:12px;padding-bottom:8px;margin-bottom:8px;border-bottom:1.5px solid var(--ink)}
   .print-head img{width:46px;height:46px;border-radius:50%;object-fit:cover}
@@ -356,22 +356,22 @@ footer{padding:36px 0 48px;color:var(--muted);font-size:14px;display:flex;justif
     <!-- ABOUT -->
     <section id="about">
       <div class="sec-head reveal"><span class="sec-num mono">01</span><h2>What I bring</h2></div>
-      <p class="sec-sub reveal">Two things set me apart: I've worked at every level of engineering and on every major satellite subsystem.</p>
+      <p class="sec-sub reveal">Three things set me apart: I've worked at every level of engineering, on every major satellite subsystem, and I now lead a team that delivers.</p>
       <div class="pillars">
         <article class="card reveal">
           <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(-30 12 12)"/><circle cx="19.5" cy="7.5" r="1.3" fill="currentColor"/></svg></div>
           <h3>Every level</h3>
-          <p>Analyst, designer, tester, architect, chief engineer, project manager and now head of the payload architects. That brings perspective, technical expertise, proven ownership, business integration, trust and representation.</p>
+          <p>Analyst, designer, tester, architect, chief engineer, project manager, and now Head of Payload Architects. I know what each role needs because I've done it, and I take ownership from the first calculation to the final decision.</p>
+        </article>
+        <article class="card reveal">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 10 5-10 5L2 7z"/><path d="m2 12 10 5 10-5"/><path d="m2 17 10 5 10-5"/></svg></div>
+          <h3>Every subsystem</h3>
+          <p>Mechanical structures, electric propulsion, RF and digital telecom payloads. I see how a decision in one subsystem lands in the others, so I can design the system end to end.</p>
         </article>
         <article class="card reveal">
           <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-          <h3>Every subsystem</h3>
-          <p>Mechanical, electric propulsion, and RF and digital telecom payload, with expertise in mechanics, materials, electrical, thermal, avionics, propulsion, RF, digital signal processing and end-to-end systems engineering.</p>
-        </article>
-        <article class="card reveal">
-          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></svg></div>
-          <h3>Industrial leadership</h3>
-          <p>I draw up the costing and planning of my team's activities, manage its subcontracting and answer for cost, schedule and quality, working with 8+ global operators and key suppliers.</p>
+          <h3>Leadership &amp; delivery</h3>
+          <p>From Center of Competence board member to head of a team of 10+. I set the roadmap, cost and plan the work, manage subcontracting and empower people to deliver on time, on cost and on quality, with 8+ global operators and key suppliers.</p>
         </article>
       </div>
     </section>
@@ -538,14 +538,16 @@ footer{padding:36px 0 48px;color:var(--muted);font-size:14px;display:flex;justif
     </section>
 
     <!-- CONTACT -->
-    <div class="contact reveal" id="contact">
-      <span class="mono" style="opacity:.6;font-size:13px;position:relative;z-index:1">06 · CONTACT</span>
-      <h2 style="margin-top:14px">Let's build the next generation of space systems.</h2>
+    <section id="contact">
+    <div class="sec-head reveal"><span class="sec-num mono">06</span><h2>Contact</h2></div>
+    <div class="contact reveal">
+      <p class="contact-big">Let's build the next generation of space systems.</p>
       <p>I'm always happy to talk about satellite architecture, telecom payloads, systems engineering or a new challenge.</p>
       <div class="cta">
         <a class="btn primary" href="https://www.linkedin.com/in/tomasbenedictorinaudo" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>Connect on LinkedIn</a>
       </div>
     </div>
+    </section>
 
     <footer>
       <span>© <span id="yr">2026</span> Tomas Benedicto</span>
