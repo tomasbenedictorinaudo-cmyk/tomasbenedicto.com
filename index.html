@@ -38,7 +38,7 @@
   --topH:60px;
 }
 *{box-sizing:border-box}
-html.vscroll,html.vscroll body{overflow:hidden;height:100%;overscroll-behavior:none}   /* touch: the ride moves, the page stays */
+html.vscroll body{position:fixed;inset:0;overflow:hidden;overscroll-behavior:none}   /* touch: the ride moves, the page stays (body pinned, the usual iOS-safe lock) */
 html{overflow-anchor:none;-webkit-text-size-adjust:100%;overflow-x:clip}
 body{margin:0;touch-action:pan-y;background:var(--sky);color:var(--ink);font:16px/1.6 Inter,system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:clip}
 body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:var(--stars,0);
@@ -509,7 +509,7 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
       <div class="win-home" id="winHome"></div>
       <div class="win" id="win" aria-hidden="true">
         <div class="layer"><img src="assets/story/0.webp" width="1536" height="1024" alt=""></div>
-        <div class="layer"><img src="assets/story/1.webp" width="1536" height="1024" alt=""></div>
+        <div class="layer"><img src="assets/story/1v.webp?v=hd27" width="1920" height="1080" alt=""></div>
         <div class="layer"><img src="assets/story/4v.webp?v=hd27" width="1920" height="1080" alt=""></div>
         <div class="layer"><img src="assets/story/8.webp" width="1672" height="941" alt="">
           <svg viewBox="0 0 1672 941" id="packets">
@@ -631,7 +631,14 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
   // Touch devices: the page itself never scrolls. The ride keeps its own position (vY), so iPhone Safari never
   // collapses or re-expands its toolbars, and the screen stays still. Desktop keeps real scrolling (wheel, scrollbar).
   var VSCROLL = matchMedia('(hover: none) and (pointer: coarse)').matches, vY = 0;
-  if (VSCROLL) document.documentElement.classList.add('vscroll');
+  if (VSCROLL){
+    document.documentElement.classList.add('vscroll');
+    // Safari restores the last scroll position on reload/back; a restored offset leaves the page sitting under the
+    // status bar (the brand mark clipped). The real page must stay at the very top.
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    var pinTop = function(){ if (window.scrollY || document.documentElement.scrollTop) window.scrollTo(0, 0); };
+    pinTop(); addEventListener('pageshow', pinTop); addEventListener('load', pinTop); addEventListener('scroll', pinTop, {passive: true});
+  }
   function pageY(){ return VSCROLL ? vY : window.scrollY; }
   function setY(y){
     if (!VSCROLL){ window.scrollTo(0, y); return; }
@@ -653,7 +660,7 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
   // m = phone overrides (the phone frame is always 3:2, so 16:9 frames get cropped and panned).
   var CAM = [
     {f:[.5,.5],  t:[.5,.45], z:[1,1.06],  m:{f:[.46,.5],t:[.46,.5],z:[1,1]}},  // 0 pad (phones: tower and rocket centred)
-    {f:[.5,.38], t:[.5,.32], z:[1.02,1.1]},                                  // 1 liftoff (aimed high: headroom for the nose in the 16:9 frame)
+    {f:[.5,.5],  t:[.5,.5],  z:[1,1]},                                       // 1 liftoff (the video's first frame, held still so the video starts on it exactly)
     {f:[.5,.5],  t:[.5,.5],  z:[1,1]},                                       // 2 fairing open (last video frame): held still, so the video lands on it exactly
     {f:[.5,.5],  t:[.5,.5],  z:[1,1.03],  m:{f:[.263,.47],t:[.263,.47],z:[1,1]}},  // 3 beams: on phones, framed on the satellite
     {f:[.5,.5],  t:[.5,.5],  z:[1.25,1],  m:{f:[.634,.5],t:[.634,.5],z:[1,1]}}   // 4 mission view (finale; phones: Earth and a OneSat)
