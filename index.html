@@ -292,7 +292,7 @@ figcaption b{color:var(--ink-2);font-weight:500}
 .stat span{font-size:12.5px;color:var(--muted);line-height:1.3;display:block;margin-top:6px}
 .sun{margin:14px 0 0}
 .sun svg{display:block;width:100%;height:auto;overflow:visible}
-.sun .seg{cursor:pointer;outline:none;opacity:0;transform:scale(.92);transform-box:view-box;transform-origin:240px 150px;transition:opacity .6s,transform .8s cubic-bezier(.3,.7,.2,1),fill-opacity .25s}
+.sun .seg{cursor:pointer;outline:none;opacity:0;transform:scale(.92);transform-box:view-box;transform-origin:240px 150px;transition:opacity .48s,transform .64s cubic-bezier(.3,.7,.2,1),fill-opacity .25s}
 .sun.flown .seg{opacity:1;transform:none}
 .sun .seg.dom{fill-opacity:.6}
 .sun .seg.dom.alt{fill-opacity:.45}
@@ -303,9 +303,9 @@ figcaption b{color:var(--ink-2);font-weight:500}
 .sun.pick .seg.dom:not(.sel){fill-opacity:.3}
 .sun.pick .seg.sel{stroke:rgba(238,242,250,.6)}
 .sun.pick .seg.sel.on{fill-opacity:.95;stroke:var(--ink);stroke-width:1.8}
-.sun .sname{font:600 12.5px "Space Grotesk",sans-serif;fill:#0b1220;pointer-events:none;opacity:0;transition:opacity .5s .5s}
+.sun .sname{font:600 12.5px "Space Grotesk",sans-serif;fill:#0b1220;pointer-events:none;opacity:0;transition:opacity .4s .4s}
 .sun.flown .sname{opacity:1}
-.sun .dl{font:500 11px Inter,sans-serif;fill:var(--muted);paint-order:stroke;stroke:#05070d;stroke-width:4px;stroke-linejoin:round;pointer-events:none;opacity:0;transition:opacity .5s .7s,fill .2s}
+.sun .dl{font:500 11px Inter,sans-serif;fill:var(--muted);paint-order:stroke;stroke:#05070d;stroke-width:4px;stroke-linejoin:round;pointer-events:none;opacity:0;transition:opacity .4s .56s,fill .2s}
 .sun.flown .dl{opacity:1}
 .sun .dl.sel{fill:var(--ink-2)}.sun .dl.on{fill:var(--ink);font-weight:600}
 .sun .cbig{font:700 30px "Space Grotesk",sans-serif;fill:var(--ink)}
@@ -321,7 +321,7 @@ figcaption b{color:var(--ink-2);font-weight:500}
 .sun.pick .stop .dot{opacity:.55}.sun.pick .stop.sel .dot{opacity:.85}.sun.pick .stop.on .dot{opacity:1;transform:scale(1.3)}
 .slab{font:500 10.5px/1.25 Inter,sans-serif;color:var(--muted);text-align:center;transition:color .2s}
 .stop:hover .slab,.stop.on .slab{color:var(--ink)}
-.sun .call{cursor:pointer;outline:none;opacity:0;transition:opacity .6s}
+.sun .call{cursor:pointer;outline:none;opacity:0;transition:opacity .48s}
 .sun.flown .call{opacity:1}
 .sun .lead{fill:none;stroke:rgba(255,181,71,.45);stroke-width:1}
 .sun .leadDot{fill:var(--warm)}
@@ -1011,7 +1011,7 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
     fill.style.height = pct + '%'; ship.style.top = (100 - pct) + '%'; progFill.style.width = pct + '%';
     ticks.forEach(function(b, k){ b.classList.toggle('on', k <= gNow + .01); });
     if (vennStart && gNow > vennK - .6) vennStart();
-    if (sunStart && !sunFired && gNow > 1.3){ sunFired = true; sunStart(); }   // the ring draws during the liftoff video, done as it ends   // the Venn draws itself while its step is still arriving
+    if (sunStart && !sunFired && gNow > 1.02){ sunFired = true; sunStart(); }   // the ring draws with the liftoff video: both take 1.5 s   // the Venn draws itself while its step is still arriving
     var cur = Math.min(NC - 1, Math.floor(gNow + .3));
     if (cur !== curIdx){
       curIdx = cur; altName.textContent = names[cur]; miniName.textContent = names[cur];
@@ -1193,7 +1193,7 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
     SUBS.forEach(function(s, i){
       var a0 = a, a1 = a + s.yrs / total * 360; a = a1; domMid[i] = [];
       var g = el('path', {d: sector(46, 88, a0 + GAP / 2, a1 - GAP / 2), fill: s.col, 'class': 'seg sub', tabindex: 0, role: 'button', 'aria-label': s.name + ', ' + s.meta});
-      g.style.transitionDelay = (i * 120) + 'ms'; segs.push({e: g, s: i});
+      g.style.transitionDelay = (i * 96) + 'ms'; segs.push({e: g, s: i});
       // subsystem name along its arc, reading left to right
       var mid = (a0 + a1) / 2 + ROT, mm = ((mid % 360) + 360) % 360, flip = mm > 90 && mm < 270, id = 'arc' + i, b0 = a0 + 4, b1 = a1 - 4;
       var p = pt(64, flip ? b1 : b0), q = pt(64, flip ? b0 : b1);
@@ -1204,7 +1204,7 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
       s.doms.forEach(function(d, k){
         var d0 = a0 + k * step, d1 = d0 + step, m = (d0 + d1) / 2; domMid[i][k] = m;
         var e = el('path', {d: sector(92, 116, d0 + GAP / 2, d1 - GAP / 2), fill: s.col, 'class': 'seg dom' + (k % 2 ? ' alt' : ''), tabindex: 0, role: 'button', 'aria-label': d + ' (' + s.name + ')'});
-        e.style.transitionDelay = (360 + i * 120 + k * 50) + 'ms'; segs.push({e: e, s: i, d: k});
+        e.style.transitionDelay = (290 + i * 96 + k * 40) + 'ms'; segs.push({e: e, s: i, d: k});
         var lp = pt(124, m), sn = Math.sin((m + ROT) * D), cs = Math.cos((m + ROT) * D);
         var anchor = Math.abs(sn) < .2 ? 'middle' : (sn > 0 ? 'start' : 'end');
         labels.push({e: el('text', {x: lp[0].toFixed(1), y: (lp[1] + 4 + (cs < -.8 ? 6 : 0) - (cs > .8 ? 3 : 0)).toFixed(1), 'text-anchor': anchor, 'class': 'dl'}, d), s: i, d: k});
@@ -1217,7 +1217,7 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
       svg.insertBefore(g, svg.firstChild);              // leaders run under the ring and its labels
       var line = el('polyline', {'class': 'lead'}, null, g), dot = el('circle', {r: 2.4, 'class': 'leadDot'}, null, g);
       var box = el('rect', {rx: 9, height: 18, 'class': 'cbox'}, null, g), t = el('text', {'class': 'ctxt'}, '✦ ' + X[4], g);
-      g.style.transitionDelay = (900 + n * 120) + 'ms';
+      g.style.transitionDelay = (720 + n * 96) + 'ms';
       function on(){
         pick(X[0], X[5]); xbs.forEach(function(o, k){ o.g.classList.toggle('on', k === n); });
         tip.innerHTML = '<b>' + X[1] + '</b><small>' + X[2] + '</small><span>' + X[3] + '</span>';
@@ -1297,7 +1297,7 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
     [svg, key].forEach(function(e){ e.addEventListener('pointerover', function(){ touched = true; }); e.addEventListener('focusin', function(){ touched = true; }); });
     sunStart = function(){
       fig.classList.add('flown');
-      setTimeout(function(){ segs.forEach(function(o){ o.e.style.transitionDelay = '0ms'; }); }, 2200);   // after the entrance, hover reacts at once
+      setTimeout(function(){ segs.forEach(function(o){ o.e.style.transitionDelay = '0ms'; }); }, 1700);   // after the entrance, hover reacts at once
       if (demoed || reduce) return; demoed = true;
       setTimeout(function(){ if (touched) return; pick(2);
         setTimeout(function(){ if (!touched) pick(null); }, 3200); }, 2600);
@@ -1461,7 +1461,7 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
     setY(m.y);
     anim = requestAnimationFrame(tick);
   }
-  var VSPEED = .37;   // about 1.9 s from the ring's start to landing: the ring finishes drawing as the video ends
+  var VSPEED = .61;   // the liftoff video takes about 1.5 s, as long as the ring's drawing
   function inAscent(y){ return HOLD.length > 2 && y >= HOLD[1].b - 1 && y <= HOLD[2].a + 1; }   // the stretch where the liftoff video plays
   function stepAt(y){ for (var k = 0; k < REST.length; k++) if (y >= REST[k].a - 2 && y <= REST[k].b + 2) return k; return -1; }
   function launch(dirn, rate){                        // on to the next step in that direction
