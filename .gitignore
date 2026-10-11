@@ -1,0 +1,14 @@
+# private originals and working files: never published
+images/
+videos/
+.backups/
+.backups-keep/
+.claude/
+.DS_Store
+# images the site no longer uses
+assets/story/2.webp
+assets/story/3.webp
+assets/story/4.webp
+assets/story/5.webp
+assets/avatar-architect.webp
+assets/avatar-cleanroom.webp

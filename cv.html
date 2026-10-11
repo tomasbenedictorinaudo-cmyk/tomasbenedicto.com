@@ -1,0 +1,577 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tomas Benedicto Rinaudo</title>
+<meta name="description" content="Tomas Benedicto Rinaudo — Satellite Systems Engineer and Head of Payload Architects at Airbus Defence and Space, Toulouse.">
+<meta property="og:title" content="Tomas Benedicto Rinaudo — Satellite Systems Engineer">
+<meta property="og:description" content="Telecom payload system architect. 10 years building satellites at Airbus and ESA — OneSat, Galileo G2, OneWeb.">
+<meta property="og:image" content="assets/headshot.jpg">
+<link rel="icon" type="image/svg+xml" href="assets/icons/icon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16.png">
+<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f7f8fb; --bg-2:#eef1f7; --surface:#ffffff; --ink:#0b1220; --ink-2:#2a3447; --muted:#5d6880;
+  --line:#e2e6ef; --accent:#2f5bea; --accent-2:#5b8cff; --accent-soft:#e8eeff; --warm:#e8901a;
+  --shadow:0 1px 2px rgba(11,18,32,.04),0 8px 30px rgba(11,18,32,.06);
+  --radius:18px; --maxw:1120px;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#070b14; --bg-2:#0c1220; --surface:#0f1626; --ink:#eef2fa; --ink-2:#c9d2e3; --muted:#8994ab;
+    --line:#1d2638; --accent:#6f97ff; --accent-2:#9db8ff; --accent-soft:#131d36; --warm:#ffb547;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 40px rgba(0,0,0,.35);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#070b14; --bg-2:#0c1220; --surface:#0f1626; --ink:#eef2fa; --ink-2:#c9d2e3; --muted:#8994ab;
+  --line:#1d2638; --accent:#6f97ff; --accent-2:#9db8ff; --accent-soft:#131d36; --warm:#ffb547;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 40px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:clip}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 Inter,system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:clip}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+h1,h2,h3{font-family:"Space Grotesk",Inter,sans-serif;letter-spacing:-.02em;margin:0;line-height:1.1}
+.mono{font-family:"JetBrains Mono",ui-monospace,monospace}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+@media (max-width:600px){.wrap{padding:0 16px}}
+
+/* nav */
+header.nav{position:sticky;top:0;z-index:50;backdrop-filter:saturate(1.4) blur(14px);-webkit-backdrop-filter:saturate(1.4) blur(14px);background:color-mix(in srgb,var(--bg) 78%,transparent);border-bottom:1px solid transparent;transition:border-color .3s}
+header.nav.scrolled{border-bottom-color:var(--line)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
+.brand{display:flex;align-items:center;gap:10px;font-family:"Space Grotesk";font-weight:700;font-size:17px}
+.brand-mark{width:30px;height:30px;border-radius:9px;background:var(--ink);color:var(--bg);display:grid;place-items:center;font-size:13px;letter-spacing:.02em}
+.nav-links{display:flex;gap:4px;align-items:center}
+.nav-links a{padding:8px 12px;border-radius:10px;font-size:14px;color:var(--muted);font-weight:500;transition:color .2s,background .2s}
+.nav-links a:hover{color:var(--ink);background:var(--bg-2)}
+.icon-btn{width:38px;height:38px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);display:grid;place-items:center;cursor:pointer;margin-left:6px}
+.icon-btn svg{width:18px;height:18px}
+@media (max-width:820px){.nav-links a:not(.keep){display:none}}
+
+/* hero */
+.hero{position:relative;padding:72px 0 48px}
+.hero::before{content:"";position:absolute;top:-64px;bottom:0;left:50%;width:100vw;transform:translateX(-50%);background:
+  radial-gradient(min(640px,90vw) 420px at 75% 25%,color-mix(in srgb,var(--accent) 16%,transparent),transparent 70%);
+  pointer-events:none;z-index:-1}
+.hero-grid{display:grid;grid-template-columns:1.25fr .9fr;gap:56px;align-items:center}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:13px;color:var(--ink-2);background:var(--surface);border:1px solid var(--line);padding:6px 14px 6px 10px;border-radius:999px;box-shadow:var(--shadow)}
+.pulse{width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 0 rgba(34,197,94,.5);animation:pulse 2.4s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 8px rgba(34,197,94,0)}100%{box-shadow:0 0 0 0 rgba(34,197,94,0)}}
+.hero h1{font-size:clamp(42px,6.4vw,76px);margin:22px 0 18px;font-weight:700}
+.hero h1 .grad{background:linear-gradient(100deg,var(--accent) 10%,var(--accent-2) 55%,var(--warm) 110%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lede{font-size:clamp(17px,1.9vw,20px);color:var(--ink-2);max-width:580px;margin:0 0 30px}
+.cta{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-flex;align-items:center;gap:9px;padding:13px 20px;border-radius:12px;font-weight:600;font-size:15px;border:1px solid var(--line);background:var(--surface);color:var(--ink);transition:transform .2s,box-shadow .2s,background .2s;cursor:pointer}
+.btn:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+.btn.primary{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.btn svg{width:17px;height:17px}
+.meta-row{display:flex;flex-wrap:wrap;gap:18px;margin-top:30px;color:var(--muted);font-size:14px}
+.meta-row span{display:inline-flex;align-items:center;gap:7px}
+.meta-row svg{width:16px;height:16px}
+
+/* orbit portrait */
+.orbit{position:relative;width:min(420px,100%);aspect-ratio:1;margin-left:auto}
+.orbit .ring{position:absolute;border:1px dashed color-mix(in srgb,var(--muted) 45%,transparent);border-radius:50%;inset:0}
+.orbit .ring.r2{inset:9%;border-style:solid;border-color:var(--line)}
+.orbit .spin{position:absolute;inset:0;animation:spin 28s linear infinite}
+.orbit .spin.s2{inset:9%;animation-duration:18s;animation-direction:reverse}
+.orbit .sat{position:absolute;top:-7px;left:50%;width:14px;height:14px;margin-left:-7px;border-radius:4px;background:var(--warm);box-shadow:0 0 0 5px color-mix(in srgb,var(--warm) 22%,transparent),0 0 24px var(--warm)}
+.orbit .sat::before,.orbit .sat::after{content:"";position:absolute;top:4px;width:12px;height:6px;background:var(--accent);border-radius:1px}
+.orbit .sat::before{right:16px}.orbit .sat::after{left:16px}
+.orbit .spin.s2 .sat{top:auto;bottom:-5px;width:10px;height:10px;margin-left:-5px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 5px color-mix(in srgb,var(--accent) 22%,transparent),0 0 20px var(--accent)}
+.orbit .spin.s2 .sat::before,.orbit .spin.s2 .sat::after{display:none}
+.orbit .photo{position:absolute;inset:19%;border-radius:50%;overflow:hidden;box-shadow:0 20px 60px rgba(11,18,32,.25);border:4px solid var(--surface)}
+.orbit .photo img{width:100%;height:100%;object-fit:cover}
+.orbit .badge{position:absolute;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:10px 14px;box-shadow:var(--shadow);font-size:13px;line-height:1.3}
+.orbit .badge b{display:block;font-family:"Space Grotesk";font-size:20px}
+.orbit .badge.b1{left:-4%;bottom:12%}
+.orbit .badge.b2{right:-2%;top:8%}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (max-width:900px){
+  .hero-grid{grid-template-columns:1fr;gap:40px}
+  .orbit{margin:0 auto;width:min(340px,86%)}
+  .hero{padding-top:40px}
+}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;margin-top:56px}
+.stat{background:var(--surface);padding:24px 26px}
+.stat b{font-family:"Space Grotesk";font-size:clamp(30px,3.6vw,40px);font-weight:700;display:block;line-height:1}
+.stat span{color:var(--muted);font-size:14px;display:block;margin-top:8px}
+@media (max-width:700px){.stats{grid-template-columns:repeat(2,1fr)}}
+
+/* marquee */
+.programmes{margin-top:44px}
+.programmes .label{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);text-align:center;margin-bottom:14px}
+.marquee{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
+.track{display:flex;gap:44px;width:max-content;animation:marq 40s linear infinite}
+.track span{font-family:"Space Grotesk";font-weight:600;font-size:22px;color:var(--ink-2);opacity:.75;white-space:nowrap}
+.track span i{font-style:normal;color:var(--accent);margin-right:44px}
+@keyframes marq{to{transform:translateX(-50%)}}
+
+/* sections */
+section{padding:96px 0 0}
+.sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:36px;flex-wrap:wrap}
+.sec-num{font-size:13px;color:var(--accent)}
+.sec-head h2{font-size:clamp(30px,4vw,44px)}
+.sec-sub{color:var(--muted);max-width:620px;margin:-20px 0 36px;font-size:17px}
+
+/* pillars */
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow);transition:transform .3s,border-color .3s}
+.card:hover{transform:translateY(-4px);border-color:color-mix(in srgb,var(--accent) 40%,var(--line))}
+.ico{width:44px;height:44px;border-radius:12px;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;margin-bottom:18px}
+.ico svg{width:22px;height:22px}
+.card h3{font-size:20px;margin-bottom:10px}
+.card p{margin:0;color:var(--muted);font-size:15.5px}
+@media (max-width:900px){.pillars{grid-template-columns:1fr}}
+
+/* timeline */
+.timeline{position:relative;padding-left:34px}
+.timeline::before{content:"";position:absolute;left:8px;top:10px;bottom:10px;width:2px;background:linear-gradient(var(--accent),var(--line) 70%)}
+.role{position:relative;margin-bottom:22px}
+.role::before{content:"";position:absolute;left:-32px;top:30px;width:14px;height:14px;border-radius:50%;background:var(--bg);border:3px solid var(--accent)}
+.role.current::before{background:var(--accent);box-shadow:0 0 0 6px color-mix(in srgb,var(--accent) 20%,transparent)}
+.role .card{padding:26px 28px}
+.role-top{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:flex-start}
+.role h3{font-size:21px;margin-bottom:4px}
+.role .org{color:var(--accent);font-weight:600;font-size:15px}
+.role .when{font-size:13px;color:var(--muted);text-align:right;white-space:nowrap}
+.role .when .now{display:inline-block;background:var(--accent-soft);color:var(--accent);border-radius:999px;padding:2px 10px;font-weight:500;margin-bottom:4px}
+.role .summary{color:var(--ink-2);margin:14px 0 0}
+.role ul{margin:14px 0 0;padding:0;list-style:none;display:grid;gap:9px}
+.role li{position:relative;padding-left:20px;color:var(--muted);font-size:15.5px}
+.role li::before{content:"";position:absolute;left:2px;top:.72em;width:8px;height:2px;background:var(--accent);border-radius:2px}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.tag{font-size:12.5px;padding:5px 11px;border-radius:999px;background:var(--bg-2);color:var(--ink-2);border:1px solid var(--line)}
+@media (max-width:600px){.role .when{text-align:left}.timeline{padding-left:26px}.role::before{left:-24px}.timeline::before{left:4px}}
+
+/* highlights */
+.hl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.hl .yr{font-size:13px;color:var(--warm);margin-bottom:12px;display:block}
+@media (max-width:900px){.hl-grid{grid-template-columns:1fr}}
+
+/* education */
+.edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.edu{display:flex;gap:18px;align-items:flex-start}
+.edu .yr{font-size:12.5px;color:var(--muted);margin-top:6px}
+.edu h3{font-size:18px;margin-bottom:4px;line-height:1.3}
+.edu .school{color:var(--accent);font-weight:600;font-size:14.5px}
+.edu p{margin-top:8px !important}
+.award{display:inline-block;font-size:12px;margin-top:10px;padding:3px 10px;border-radius:999px;background:color-mix(in srgb,var(--warm) 15%,transparent);color:var(--warm);font-weight:600}
+@media (max-width:800px){.edu-grid{grid-template-columns:1fr}}
+
+/* skills */
+.skills{display:grid;grid-template-columns:1.3fr 1fr;gap:18px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.chip{padding:8px 14px;border-radius:10px;border:1px solid var(--line);background:var(--bg);font-size:14px;color:var(--ink-2)}
+.card h4{font-family:"Space Grotesk";font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 12px;font-weight:600}
+.card h4:not(:first-child){margin-top:26px}
+.lang{display:grid;grid-template-columns:90px 1fr auto;gap:14px;align-items:center;margin-bottom:14px;font-size:15px}
+.bar{height:6px;border-radius:6px;background:var(--bg-2);overflow:hidden}
+.bar i{display:block;height:100%;border-radius:6px;background:linear-gradient(90deg,var(--accent),var(--accent-2));width:0;transition:width 1.2s cubic-bezier(.2,.8,.2,1)}
+.lang small{color:var(--muted);font-size:12.5px}
+.interests{display:flex;gap:10px;flex-wrap:wrap}
+@media (max-width:860px){.skills{grid-template-columns:1fr}}
+
+/* contact */
+.contact{--cbg:#0b1220;--cfg:#eef2fa;margin:96px 0 0;padding:64px 48px;border-radius:28px;background:radial-gradient(600px 300px at 90% 0%,rgba(91,140,255,.28),transparent 70%),var(--cbg);color:var(--cfg);border:1px solid var(--line);position:relative;overflow:hidden}
+.contact::after{content:"";position:absolute;right:-120px;top:-120px;width:420px;height:420px;border-radius:50%;border:1px dashed rgba(238,242,250,.22);box-shadow:0 0 0 60px rgba(238,242,250,.03),0 0 0 140px rgba(238,242,250,.02)}
+.contact h2{font-size:clamp(32px,4.6vw,52px);max-width:640px;position:relative;z-index:1}
+.contact p{opacity:.72;max-width:560px;font-size:17px;position:relative;z-index:1}
+.contact .cta{position:relative;z-index:1;margin-top:28px}
+.contact .btn{background:transparent;color:var(--cfg);border-color:rgba(238,242,250,.3)}
+.contact .btn.primary{background:var(--cfg);color:var(--cbg);border-color:var(--cfg)}
+@media (max-width:600px){.contact{padding:44px 24px;border-radius:22px}}
+footer{padding:36px 0 48px;color:var(--muted);font-size:14px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+
+/* reveal */
+.js .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+.js .reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none !important;transition:none !important}
+  .js .reveal{opacity:1;transform:none}
+}
+
+/* print = two-page A4 CV (also the source of the downloadable PDF) */
+.print-head{display:none}
+@page{size:A4;margin:9mm 12mm}
+@media print{
+  :root,:root[data-theme="dark"],:root:not([data-theme="light"]){--bg:#fff;--bg-2:#f3f5f9;--surface:#fff;--ink:#0b1220;--ink-2:#2b3446;--muted:#566079;--line:#dde2ec;--accent:#2f5bea;--accent-2:#5b8cff;--accent-soft:#e8eeff;--warm:#b8670a;--shadow:none}
+  html,body{background:#fff !important;color:var(--ink);font-size:8.6pt;line-height:1.38}
+  .wrap{max-width:none;padding:0}
+  header.nav,.orbit,.hero .cta,.eyebrow,.meta-row,.contact,footer,.icon-btn,.ico,.tags,.hero::before{display:none !important}
+  .js .reveal{opacity:1 !important;transform:none !important}
+  .print-head{display:flex;align-items:center;gap:12px;padding-bottom:8px;margin-bottom:8px;border-bottom:1.5px solid var(--ink)}
+  .print-head img{width:46px;height:46px;border-radius:50%;object-fit:cover}
+  .print-head b{display:block;font:700 17pt/1.1 "Space Grotesk",sans-serif}
+  .print-head span{display:block;font-size:8.6pt;color:var(--ink-2)}
+  .hero{padding:0}
+  .hero-grid{display:block}
+  .hero h1{font-size:13pt;margin:0 0 3px}
+  .hero h1 br{display:none}
+  .lede{font-size:9pt;max-width:none;margin:0 0 6px}
+  .stats{margin-top:6px;border-radius:6px}
+  .stat{padding:5px 9px}
+  .stat b{font-size:13pt}
+  .stat span{font-size:7.6pt;margin-top:2px}
+  .programmes{margin-top:6px}
+  .programmes .label{text-align:left;font-size:7pt;margin-bottom:2px}
+  .marquee{-webkit-mask-image:none;mask-image:none}
+  .track{animation:none !important;width:auto;display:block}
+  .track span{font:500 8.4pt Inter,sans-serif;white-space:normal;opacity:1;color:var(--ink-2)}
+  .track span + span{display:none}
+  .track span i{margin:0 5px;font-size:7pt}
+  section{padding-top:7px}
+  .sec-head{margin-bottom:5px;gap:6px}
+  .sec-head h2{font-size:11.5pt}
+  .sec-num{font-size:7.5pt}
+  .sec-sub{font-size:8.6pt;margin:-2px 0 5px}
+  .card{box-shadow:none !important;border-radius:6px;padding:6px 9px;break-inside:avoid;transform:none !important}
+  .card h3{font-size:9.6pt;margin-bottom:2px}
+  .card p{font-size:8.2pt;line-height:1.34}
+  .pillars,.hl-grid{grid-template-columns:repeat(3,1fr);gap:6px}
+  .timeline{padding-left:13px}
+  .timeline::before{left:3px;top:6px;bottom:6px;width:1px}
+  .role{margin-bottom:5px;break-inside:avoid}
+  .role::before{left:-13px;top:10px;width:7px;height:7px;border-width:1.5px}
+  .role.current::before{box-shadow:none}
+  .role .card{padding:6px 9px}
+  .role h3{font-size:9.8pt;margin-bottom:1px}
+  .role .org{font-size:8.2pt}
+  .role .when{font-size:7.6pt;line-height:1.3}
+  .role .when .now{padding:0 6px;margin-bottom:1px}
+  .role ul{margin-top:3px;gap:1px}
+  .role li{font-size:8.2pt;line-height:1.34;padding-left:11px}
+  .role li::before{width:5px;top:.66em}
+  .hl .yr{font-size:7.4pt;margin-bottom:2px}
+  .edu-grid,.skills{grid-template-columns:1fr 1fr;gap:6px}
+  .edu .yr{font-size:7.6pt;margin-top:1px}
+  .edu h3{font-size:9.4pt}
+  .edu .school{font-size:8.2pt}
+  .edu p{margin-top:2px !important;font-size:8.3pt !important;line-height:1.38}
+  .hero h1 .grad::before{content:" "}
+  .award{font-size:7.4pt;margin-top:3px;padding:1px 7px}
+  .chips{gap:4px;margin-top:2px}
+  .chip{padding:1px 6px;font-size:7.6pt;border-radius:5px}
+  .card h4{font-size:7.4pt;margin-bottom:4px}
+  .card h4:not(:first-child){margin-top:5px}
+  .lang{grid-template-columns:52px 1fr auto;gap:8px;margin-bottom:3px;font-size:8.3pt}
+  .bar{height:4px}
+  .bar i{transition:none !important}
+  .lang small{font-size:7.4pt}
+}
+</style>
+</head>
+<body>
+<script>document.documentElement.classList.add('js');try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+
+<header class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a href="index.html" class="brand keep" title="Back to the launch"><span class="brand-mark">TBR</span><span>Tomas Benedicto Rinaudo</span></a>
+    <nav class="nav-links">
+      <a href="index.html">🚀 Take the ride</a>
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+      <button class="icon-btn" id="theme" aria-label="Toggle dark mode" title="Toggle theme">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <div class="wrap">
+    <!-- print-only header: name and contact for the PDF -->
+    <div class="print-head" aria-hidden="true">
+      <img src="assets/headshot.jpg" alt="">
+      <div><b>Tomas Benedicto Rinaudo</b><span>Head of Payload Architects · Airbus Defence and Space · Toulouse, France</span><span>linkedin.com/in/tomasbenedictorinaudo · English, Spanish, French, Dutch · PMP®</span></div>
+    </div>
+    <!-- HERO -->
+    <div class="hero">
+      <div class="hero-grid">
+        <div>
+          <span class="eyebrow reveal"><span class="pulse"></span>Head of Payload Architects · Airbus Defence and Space</span>
+          <h1 class="reveal">I architect satellites<br><span class="grad">end to end.</span></h1>
+          <p class="lede reveal">Aerospace engineer with 10 years in industry, from mechanical design to programme leadership. Today I lead Airbus's <strong>payload architects and mission managers</strong>: we support bids and design the next generation of telecom payloads, across all orbits.</p>
+          <div class="cta reveal">
+            <a class="btn primary" href="https://www.linkedin.com/in/tomasbenedictorinaudo" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>Connect on LinkedIn</a>
+            <a class="btn" href="assets/Tomas-Benedicto-Rinaudo-CV.pdf" download>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0-4-4m4 4 4-4M5 21h14"/></svg>Download CV (PDF)</a>
+          </div>
+          <div class="meta-row reveal">
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.1-7-11a7 7 0 1 1 14 0c0 4.9-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Toulouse, France</span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>EN · ES · FR · NL</span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 2 3 6.5 7 .8-5.2 4.8 1.4 7L12 17.6 5.8 21l1.4-7L2 9.3l7-.8z"/></svg>PMP® certified</span>
+          </div>
+        </div>
+        <div class="orbit reveal" aria-hidden="true">
+          <div class="ring"></div><div class="ring r2"></div>
+          <div class="spin"><div class="sat"></div></div>
+          <div class="spin s2"><div class="sat"></div></div>
+          <div class="photo"><img src="assets/headshot.jpg" alt="Portrait of Tomas Benedicto Rinaudo" width="480" height="480"></div>
+        </div>
+      </div>
+
+      <div class="stats reveal">
+        <div class="stat"><b data-count="10">10</b><span>years in the space industry</span></div>
+        <div class="stat"><b data-count="10" data-suffix="+">10+</b><span>satellite programmes contributed to</span></div>
+        <div class="stat"><b data-count="8" data-suffix="+">8+</b><span>global operators worked with</span></div>
+        <div class="stat"><b data-count="5">5</b><span>languages spoken</span></div>
+      </div>
+
+      <div class="programmes reveal">
+        <div class="label">Programmes I've worked on</div>
+        <div class="marquee"><div class="track" id="track">
+          <span>OneSat<i>✦</i>Galileo G2<i>✦</i>Galileo<i>✦</i>Galileo Thruster Pointing Assembly (TPA)<i>✦</i>Deployable Thruster Module Assembly (DTMA)<i>✦</i>OneWeb<i>✦</i>Eutelsat 172B<i>✦</i>SES-14<i>✦</i>Syracuse IV<i>✦</i>KMilSat<i>✦</i></span>
+        </div></div>
+      </div>
+    </div>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="sec-head reveal"><span class="sec-num mono">01</span><h2>What I bring</h2></div>
+      <p class="sec-sub reveal">Two things set me apart: I've worked at every level of engineering and on every major satellite subsystem.</p>
+      <div class="pillars">
+        <article class="card reveal">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(-30 12 12)"/><circle cx="19.5" cy="7.5" r="1.3" fill="currentColor"/></svg></div>
+          <h3>Every level</h3>
+          <p>Analyst, designer, tester, architect, chief engineer, project manager and now head of the payload architects. That brings perspective, technical expertise, proven ownership, business integration, trust and representation.</p>
+        </article>
+        <article class="card reveal">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <h3>Every subsystem</h3>
+          <p>Mechanical, electric propulsion, and RF and digital telecom payload, with expertise in mechanics, materials, electrical, thermal, avionics, propulsion, RF, digital signal processing and end-to-end systems engineering.</p>
+        </article>
+        <article class="card reveal">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></svg></div>
+          <h3>Industrial leadership</h3>
+          <p>I draw up the costing and planning of my team's activities, manage its subcontracting and answer for cost, schedule and quality, working with 8+ global operators and key suppliers.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience">
+      <div class="sec-head reveal"><span class="sec-num mono">02</span><h2>Experience</h2></div>
+      <div class="timeline">
+        <div class="role current reveal"><div class="card">
+          <div class="role-top">
+            <div><h3>Head of Payload Architects</h3><div class="org">Airbus Defence and Space · Telecom satellite payloads</div></div>
+            <div class="when mono"><span class="now">Current</span><br>Aug 2026 – Present<br>Toulouse, FR</div>
+          </div>
+          <ul>
+            <li>Leading the team shaping the future of Airbus telecommunications satellite payloads: building technical excellence, developing people, and delivering competitive solutions that create lasting value for commercial and institutional customers.</li>
+          </ul>
+          <div class="tags"><span class="tag">Engineering leadership</span><span class="tag">Satellite communications</span><span class="tag">People development</span></div>
+        </div></div>
+        <div class="role current reveal"><div class="card">
+          <div class="role-top">
+            <div><h3>Telecom Payload Systems Lead</h3><div class="org">Airbus Defence and Space · OneSat</div></div>
+            <div class="when mono"><span class="now">Current</span><br>Dec 2023 – Present<br>Toulouse, FR</div>
+          </div>
+          <ul>
+            <li>Technical lead defining the concept of operations of a flexible digital telecommunications satellite system, leading a team of 10+ payload architects.</li>
+            <li>Project manager for the payload, running its industrial contracts, schedule and risk.</li>
+            <li>Chief engineer of the OneSat Payload Configuration Manager, spanning space segment, ground segment and in-orbit operations.</li>
+            <li>Industrial contracts with global operators (Viasat, SES, Thaicom, JSAT, Optus, SingTel, Eutelsat, Yahsat) and suppliers (GMV, Kratos, TESAT, MDA) under tight cost, schedule and technical constraints.</li>
+          </ul>
+          <div class="tags"><span class="tag">Flexible digital payload</span><span class="tag">Space + ground segment</span><span class="tag">Contract management</span><span class="tag">Team leadership</span></div>
+        </div></div>
+        <div class="role reveal"><div class="card">
+          <div class="role-top">
+            <div><h3>Satellite Propulsion Lead Engineer &amp; Project Manager</h3><div class="org">Airbus Defence and Space · Galileo Second Generation and a new European constellation</div></div>
+            <div class="when mono">Jun 2021 – Jun 2024<br>Toulouse, FR</div>
+          </div>
+          <ul>
+            <li>Propulsion lead engineer for ESA's next-generation Galileo navigation satellites (Jun 2021 – May 2024): architecture of the electric propulsion subsystem and its mechanisms, verification and validation, and in-flight operations planning, reporting to the satellite chief engineer.</li>
+            <li>Project manager (Jun 2021 – Jun 2024): led the end-to-end development of a new plasma propulsion assembly for an innovative European satellite constellation.</li>
+            <li>Worked across propulsion, electrical, thermal and avionics engineering; flowed system requirements down to equipment and controlled compliance, deviations and waivers.</li>
+            <li>Managed suppliers and chaired critical design reviews and non-conformance boards with international stakeholders; delivered on time, on cost and on quality.</li>
+          </ul>
+          <div class="tags"><span class="tag">Electric propulsion</span><span class="tag">Navigation</span><span class="tag">ESA</span><span class="tag">Supplier management</span><span class="tag">Requirements flow-down</span></div>
+        </div></div>
+        <div class="role reveal"><div class="card">
+          <div class="role-top">
+            <div><h3>Spacecraft Platform Design &amp; Analysis Engineer</h3><div class="org">Airbus Defence and Space</div></div>
+            <div class="when mono">Oct 2017 – Jun 2021<br>Toulouse, FR · Stevenage, UK</div>
+          </div>
+          <ul>
+            <li>Designed, justified and tested satellite platforms and thermo-mechanical products for telecom satellites in LEO and GEO and for Earth observation satellites: OneWeb, OneSat, Eutelsat 172B, SES-14, Syracuse IV and KMilSat.</li>
+            <li>Optimised the design of OneSat's novel structure and of the interfaces between satellites on the launcher and with the launcher itself.</li>
+            <li>Co-authored Airbus's international, ECSS-aligned industry standard for modelling and optimising space structures.</li>
+          </ul>
+          <div class="tags"><span class="tag">FEM</span><span class="tag">Thermo-mechanical</span><span class="tag">AIT / test</span><span class="tag">LEO constellations</span></div>
+        </div></div>
+        <div class="role reveal"><div class="card">
+          <div class="role-top">
+            <div><h3>Aerospace Engineer, Structural Optimisation</h3><div class="org">Airbus Defence and Space</div></div>
+            <div class="when mono">Apr 2017 – Sep 2017<br>Toulouse, FR</div>
+          </div>
+          <ul>
+            <li>Structural optimisation of spacecraft structures, working to ECSS standards.</li>
+          </ul>
+          <div class="tags"><span class="tag">Structural optimisation</span><span class="tag">ECSS</span></div>
+        </div></div>
+        <div class="role reveal"><div class="card">
+          <div class="role-top">
+            <div><h3>Trainee, Structures &amp; Mechanisms Division</h3><div class="org">European Space Agency · ESTEC</div></div>
+            <div class="when mono">Jul 2015 – Sep 2015<br>Noordwijk, NL</div>
+          </div>
+          <ul>
+            <li>In the Spacecraft Dynamics Analysis team, verified the Ariane 5 to satellite interface in preparation for the first Ariane 5 launch of Galileo satellites.</li>
+          </ul>
+          <div class="tags"><span class="tag">Spacecraft dynamics</span><span class="tag">Ariane 5</span><span class="tag">Galileo</span></div>
+        </div></div>
+      </div>
+    </section>
+
+    <!-- HIGHLIGHTS -->
+    <section id="leadership">
+      <div class="sec-head reveal"><span class="sec-num mono">03</span><h2>Leadership &amp; R&amp;D</h2></div>
+      <div class="hl-grid">
+        <article class="card hl reveal">
+          <span class="yr mono">2022 – 2024 · Airbus DS</span>
+          <h3>Focal point, nuclear propulsion for space</h3>
+          <p>Airbus's focal point for system-level R&amp;D with nuclear-industry partners toward an ESA demonstrator targeted for 2035.</p>
+        </article>
+        <article class="card hl reveal">
+          <span class="yr mono">2018 – 2021 · Airbus DS</span>
+          <h3>Center of Competence board member</h3>
+          <p>Co-authored industry standards for finite element modelling and structural optimisation.</p>
+        </article>
+        <article class="card hl reveal">
+          <span class="yr mono">2018 · ESA &amp; Airbus DS</span>
+          <h3>ECSS MET conference paper</h3>
+          <p>Co-author of a scientific paper on design processes for structural parts made by additive layer manufacturing.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="education">
+      <div class="sec-head reveal"><span class="sec-num mono">04</span><h2>Education &amp; certifications</h2></div>
+      <div class="edu-grid">
+        <article class="card edu reveal"><div>
+          <h3>M.Sc. Aerospace Mechanics &amp; Avionics</h3>
+          <div class="school">ISAE-SUPAERO · Toulouse</div>
+          <div class="yr mono">2015 – 2017</div>
+          <span class="award">Award of Excellence 2017</span>
+          <p class="sec-sub" style="margin:0;font-size:15px">Specialised in aerospace structures. Research on the failure modes of high-strength fibre composites using infrared techniques. Master students' representative on the university board and student representative of the Royal Aeronautical Society's Toulouse branch.</p>
+        </div></article>
+        <article class="card edu reveal"><div>
+          <h3>B.Sc. Aerospace Engineering</h3>
+          <div class="school">TU Delft · Delft</div>
+          <div class="yr mono">2012 – 2015</div>
+          <span class="award">Awarded with Distinction</span>
+        </div></article>
+        <article class="card edu reveal"><div>
+          <h3>Systems Engineering &amp; Excellence</h3>
+          <div class="school">Airbus DS · Toulouse, Ottobrunn &amp; Getafe</div>
+          <div class="yr mono">2026</div>
+          <p class="sec-sub" style="margin:0;font-size:15px">Airbus's chief-engineer track: leadership, system accountability and technical decision-making.</p>
+        </div></article>
+        <article class="card edu reveal"><div>
+          <h3>Project Management Professional (PMP®)</h3>
+          <div class="school">PMI</div>
+          <div class="yr mono">Oct 2024</div>
+        </div></article>
+        <article class="card edu reveal" style="grid-column:1/-1"><div>
+          <h3>Architecture &amp; Systems Engineering: Models &amp; Methods to Manage Complex Systems</h3>
+          <div class="school">MIT xPRO · professional certificate</div>
+          <div class="yr mono">Jan – Jul 2021</div>
+          <p class="sec-sub" style="margin:0;font-size:15px">The systems engineering framework and MBSE for developing complex systems and managing uncertainty.</p>
+        </div></article>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <div class="sec-head reveal"><span class="sec-num mono">05</span><h2>Toolkit</h2></div>
+      <div class="skills">
+        <div class="card reveal">
+          <h4>Technical</h4>
+          <div class="chips">
+            <span class="chip">End-to-end systems engineering</span><span class="chip">Telecom payload</span><span class="chip">RF</span><span class="chip">Digital signal processing</span><span class="chip">Electric propulsion</span><span class="chip">Electrical</span><span class="chip">Thermal</span><span class="chip">Avionics</span><span class="chip">Mechanics &amp; materials</span><span class="chip">LEO constellations</span><span class="chip">AIT</span><span class="chip">V&amp;V</span><span class="chip">MBSE</span><span class="chip">ECSS</span><span class="chip">Python</span>
+          </div>
+          <h4>Leadership</h4>
+          <div class="chips">
+            <span class="chip">Project management</span><span class="chip">Contract leadership</span><span class="chip">Negotiation</span><span class="chip">Facilitation</span><span class="chip">Strategic thinking</span><span class="chip">Clear communication</span>
+          </div>
+        </div>
+        <div class="card reveal">
+          <h4>Languages</h4>
+          <div class="lang"><span>Spanish</span><div class="bar"><i data-w="100"></i></div><small>Native</small></div>
+          <div class="lang"><span>French</span><div class="bar"><i data-w="100"></i></div><small>Native</small></div>
+          <div class="lang"><span>English</span><div class="bar"><i data-w="100"></i></div><small>Bilingual</small></div>
+          <div class="lang"><span>Dutch</span><div class="bar"><i data-w="75"></i></div><small>Professional</small></div>
+          <div class="lang"><span>German</span><div class="bar"><i data-w="25"></i></div><small>Elementary</small></div>
+          <h4>Off duty</h4>
+          <div class="interests"><span class="chip">⚽ Football</span><span class="chip">🏄 Windsurfing</span><span class="chip">🎹 Piano</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <div class="contact reveal" id="contact">
+      <span class="mono" style="opacity:.6;font-size:13px;position:relative;z-index:1">06 · CONTACT</span>
+      <h2 style="margin-top:14px">Let's build the next generation of space systems.</h2>
+      <p>I'm always happy to talk about satellite architecture, telecom payloads, systems engineering or a new challenge.</p>
+      <div class="cta">
+        <a class="btn primary" href="https://www.linkedin.com/in/tomasbenedictorinaudo" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>Connect on LinkedIn</a>
+      </div>
+    </div>
+
+    <footer>
+      <span>© <span id="yr">2026</span> Tomas Benedicto Rinaudo</span>
+      <span class="mono">Toulouse · 43.60° N, 1.44° E</span>
+    </footer>
+  </div>
+</main>
+
+<script>
+(function(){
+  var root=document.documentElement;
+  document.getElementById('yr').textContent=new Date().getFullYear();
+  // theme
+  document.getElementById('theme').addEventListener('click',function(){
+    var dark=root.dataset.theme? root.dataset.theme==='dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+    root.dataset.theme=dark?'light':'dark';
+    try{localStorage.setItem('theme',root.dataset.theme)}catch(e){}
+  });
+  // nav border
+  var nav=document.getElementById('nav');
+  addEventListener('scroll',function(){nav.classList.toggle('scrolled',scrollY>8)},{passive:true});
+  // duplicate marquee content for seamless loop
+  var tr=document.getElementById('track');tr.innerHTML+=tr.innerHTML;
+  // reveal + counters + bars
+  function count(el){
+    var to=+el.dataset.count,suf=el.dataset.suffix||'',t0=null;
+    function step(t){t0=t0||t;var p=Math.min((t-t0)/1100,1);el.textContent=Math.round(to*(1-Math.pow(1-p,3)))+suf;if(p<1)requestAnimationFrame(step)}
+    requestAnimationFrame(step);
+  }
+  addEventListener('beforeprint',function(){document.querySelectorAll('.reveal').forEach(function(e){e.classList.add('in')});document.querySelectorAll('.bar i').forEach(function(b){b.style.width=b.dataset.w+'%'})});
+  if(!('IntersectionObserver' in window)){document.querySelectorAll('.reveal').forEach(function(e){e.classList.add('in')});return}
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){
+    if(!e.isIntersecting)return;var el=e.target;el.classList.add('in');
+    el.querySelectorAll('[data-count]').forEach(count);
+    el.querySelectorAll('.bar i').forEach(function(b){b.style.width=b.dataset.w+'%'});
+    io.unobserve(el);
+  })},{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal').forEach(function(el,i){el.style.transitionDelay=(i%3)*70+'ms';io.observe(el)});
+})();
+</script>
+</body>
+</html>

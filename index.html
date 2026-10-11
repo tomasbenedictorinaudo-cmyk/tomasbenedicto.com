@@ -1,0 +1,1426 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tomas Benedicto Rinaudo</title>
+<meta name="description" content="Tomas Benedicto Rinaudo — Head of Payload Architects at Airbus Defence and Space. A career told as a launch, from the pad to geostationary orbit.">
+<meta name="theme-color" content="#1c2742">
+<meta property="og:title" content="Tomas Benedicto Rinaudo — Satellite Systems Engineer">
+<meta property="og:description" content="My career as a launch: from the pad to geostationary orbit. Telecom payload architect at Airbus — OneSat, Galileo G2, OneWeb.">
+<meta property="og:image" content="assets/story/8.webp">
+<link rel="icon" type="image/svg+xml" href="assets/icons/icon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16.png">
+<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="assets/story/0.webp" fetchpriority="high">
+<style>
+:root{
+  color-scheme:dark;
+  --sky:#1c2742; --ink:#eef2fa; --ink-2:#c9d2e3; --muted:#8f9bb3; --accent:#8fb0ff; --warm:#ffb547;
+  --line:rgba(255,255,255,.12); --chip:rgba(255,255,255,.06);
+  --topH:60px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;overflow-x:clip}
+body{margin:0;background:var(--sky);color:var(--ink);font:16px/1.6 Inter,system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:clip}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:var(--stars,0);
+  background-image:radial-gradient(1px 1px at 12% 18%,#fff8,transparent),radial-gradient(1px 1px at 72% 32%,#fff6,transparent),radial-gradient(1.5px 1.5px at 38% 74%,#fff7,transparent),radial-gradient(1px 1px at 88% 82%,#fff5,transparent),radial-gradient(1px 1px at 56% 8%,#fff6,transparent),radial-gradient(1px 1px at 22% 52%,#fff4,transparent);background-size:420px 420px}
+a{color:inherit;text-decoration:none}
+h1,h2,h3{font-family:"Space Grotesk",Inter,sans-serif;letter-spacing:-.02em;margin:0;line-height:1.08}
+.mono{font-family:"JetBrains Mono",ui-monospace,monospace}
+
+/* ---------- top bar ---------- */
+.top{position:fixed;top:0;left:0;right:0;z-index:40;height:var(--topH);display:flex;align-items:center;justify-content:space-between;padding:0 32px;
+  background:linear-gradient(180deg,var(--sky) 55%,transparent)}
+.brand{display:flex;align-items:center;gap:10px;font-family:"Space Grotesk";font-weight:700;font-size:16px}
+.brand-mark{width:30px;height:30px;border-radius:9px;background:var(--ink);color:#0b1220;display:grid;place-items:center;font-size:12px}
+.pill{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;border:1px solid var(--line);background:var(--chip);font-size:14px;font-weight:500;transition:background .2s}
+.pill:hover{background:rgba(255,255,255,.12)}
+.pill svg{width:16px;height:16px}
+
+/* ---------- landing ---------- */
+.hero-spacer,.finale-spacer{display:block}
+.hero-spacer{height:100vh;height:100svh;min-height:560px}
+.hero{position:fixed;top:0;left:0;right:0;z-index:4;height:100vh;height:100svh;min-height:560px;overflow:hidden;will-change:transform,opacity;display:flex;align-items:center;padding:var(--topH) 32px 72px}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:linear-gradient(90deg,rgba(10,16,32,.86) 0%,rgba(10,16,32,.62) 34%,rgba(10,16,32,0) 62%),linear-gradient(0deg,var(--sky) 0%,rgba(28,39,66,0) 22%)}
+.hero-in{max-width:1560px;width:100%;margin:0 auto}
+.hero-in>*{max-width:540px}
+.who{display:flex;align-items:center;gap:16px;margin-bottom:22px}
+.me{width:84px;height:84px;border-radius:50%;object-fit:cover;object-position:50% 50%;border:2px solid rgba(255,255,255,.85);box-shadow:0 0 0 6px rgba(255,181,71,.25),0 10px 30px rgba(0,0,0,.4);flex:none}
+.who b{display:block;font:600 17px "Space Grotesk",sans-serif}
+.who span{font-size:14px;color:var(--ink-2)}
+.who .fluent{display:block;margin-top:3px;font-size:13px;color:var(--muted)}
+.hero h1{font-size:clamp(44px,5.6vw,80px);margin-bottom:18px;text-shadow:0 2px 24px rgba(0,0,0,.35)}
+.claim{font:600 clamp(22px,2.4vw,32px)/1.2 "Space Grotesk",sans-serif;margin:0 0 16px;color:var(--warm);letter-spacing:-.01em}
+.pitch{font-size:17px;line-height:1.7;color:var(--ink-2);margin:0 0 6px}
+.launch{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:4px;font:500 12px "JetBrains Mono",monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2)}
+.launch{white-space:nowrap}
+.launch i{font-style:normal;font-size:18px;animation:bob 1.6s ease-in-out infinite}
+.top.onhero{background:transparent}
+@media (max-width:899px){
+  .hero{align-items:flex-end;padding:var(--topH) 16px 76px}
+  .hero::before{background:linear-gradient(0deg,var(--sky) 0%,rgba(10,16,32,.88) 30%,rgba(10,16,32,.55) 58%,rgba(10,16,32,0) 78%)}
+  .me{width:60px;height:60px}
+  .who{margin-bottom:14px;gap:12px}
+  .who b{font-size:15px}.who span{font-size:13px}
+  .hero h1{font-size:38px;margin-bottom:10px}
+  .claim{font-size:21px;margin-bottom:10px}
+  .pitch{font-size:15px}
+  .hero .cta{margin-top:14px}
+  .hero .btn{padding:10px 14px;font-size:14px}
+  body .hero-cta{flex-wrap:nowrap;gap:8px}
+  .btn.icon{flex:none}
+  .hero .btn.icon{width:44px;height:44px}
+  body .btn.same{width:auto;flex:1 1 0}
+  .wide-only{display:none}
+}
+@media (max-height:700px) and (max-width:899px){.pitch{display:none}}
+
+/* ---------- finale ---------- */
+.finale{position:fixed;top:0;left:0;right:0;z-index:4;will-change:transform,opacity;min-height:100vh;min-height:100svh;display:flex;align-items:center;padding:var(--topH) 32px 90px;overflow:hidden}
+.fin-vis{position:absolute;inset:0;z-index:0}
+.fin-bg,.fin-orb{position:absolute;inset:0;width:100%;height:100%}
+.fin-bg{object-fit:cover}
+.finale::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(90deg,rgba(4,6,12,.85) 0%,rgba(4,6,12,.55) 30%,rgba(4,6,12,0) 50%)}
+.fin-in{position:relative;z-index:2;max-width:1560px;width:100%;margin:0 auto}
+.fin-in>*{max-width:480px}
+.finale h2{font-size:clamp(34px,3.6vw,52px);margin:0 0 14px}
+.finale .pitch + .pitch{margin-top:10px}
+.finale footer{position:absolute;left:32px;right:32px;bottom:14px;z-index:2;padding:0}
+@media (max-width:899px){
+  .finale{align-items:flex-start;padding:40vh 16px 20px;flex-direction:column}
+  .finale::before{background:linear-gradient(0deg,rgba(4,6,12,.96) 0%,rgba(4,6,12,.88) 55%,rgba(4,6,12,0) 66%)}
+  .finale .offduty{display:none}
+  .finale footer{position:relative;left:auto;right:auto;bottom:auto;margin-top:22px;width:100%}
+}
+
+/* ---------- three-column shell (desktop) ---------- */
+.shell{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1.35fr) 132px minmax(340px,.95fr);max-width:1560px;margin:0 auto;padding:0 32px}
+.visual{position:sticky;top:0;z-index:3;height:100vh;padding-top:var(--topH);display:flex;align-items:center;justify-content:center}
+.frame{margin:0;display:flex;flex-direction:column;gap:12px;position:relative}
+/* the engineer of each era, stepping out of the frame's corner */
+.avatars{position:absolute;right:-30px;bottom:34px;height:calc(var(--fh, 400px) * .44);width:0;z-index:5;pointer-events:none;transition:opacity .4s}
+.avatars.off{opacity:0}
+.avatars img{position:absolute;right:0;bottom:0;height:calc(100% * var(--h, 1));width:auto;max-width:none;opacity:0;transform:translateY(16px);
+  transition:opacity .55s ease,transform .7s cubic-bezier(.2,.8,.2,1);filter:drop-shadow(0 10px 18px rgba(0,0,0,.55))}
+.avatars img.on{opacity:1;transform:none}
+.mini-me{display:none}
+.win{position:fixed;left:0;top:0;z-index:3;overflow:hidden;border-radius:18px;will-change:transform;background:#0b1220;box-shadow:0 0 0 1px var(--line),0 30px 80px rgba(0,0,0,.45)}
+.win-home{flex:none}
+.no-js .win{position:relative;width:100%;aspect-ratio:3/2}
+.win.full{background:#02040a}
+.win.full #home{display:none}
+.win.full .term,.win.full .term-ring,.win.full .link{display:none}   /* no user terminals or their links in the finale */
+.layer{position:absolute;left:0;top:0;opacity:0;visibility:hidden;transform-origin:0 0;will-change:transform,opacity}
+.layer:first-child{opacity:1;visibility:visible;width:100%;height:100%}
+.ascent{position:absolute;left:0;top:0;width:100%;height:100%;opacity:0;visibility:hidden;pointer-events:none;z-index:2}   /* liftoff -> fairing video, scrubbed by scroll */
+.layer img{display:block;width:100%;height:100%;object-fit:cover;user-select:none;-webkit-user-drag:none}
+.layer svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}
+figcaption{display:flex;justify-content:flex-end;align-items:center;gap:12px;font:500 12px "JetBrains Mono",monospace;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+figcaption b{color:var(--ink-2);font-weight:500}
+#fig{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.mini{display:none}
+
+/* overlay art (frames 8–9) */
+.gal{fill:#ffd27a}
+.ow{fill:#7fe3ff}
+.cone{stroke:none}
+.foot{fill-opacity:.3;stroke-opacity:.9;stroke-width:1;vector-effect:non-scaling-stroke}
+.term{fill:#fff;stroke:#0b1220;stroke-width:1;vector-effect:non-scaling-stroke}
+.term-ring{fill:none;stroke-width:1.5;vector-effect:non-scaling-stroke}
+.link{stroke-width:1.3;stroke-linecap:round;vector-effect:non-scaling-stroke}
+.gal-ring{fill:none;stroke:#ffd27a;stroke-width:1;vector-effect:non-scaling-stroke}
+.gal-ring.front{stroke-opacity:.45}.gal-ring.back{stroke-opacity:.16}
+.geo-ring{fill:none;stroke:#f2f5fb;stroke-width:2;vector-effect:non-scaling-stroke;stroke-opacity:0;transition:stroke-opacity .3s}
+.ow,.gal,.gal-ring,.beams{transition:opacity .3s}
+#orbits.hl-oneweb .gal,#orbits.hl-oneweb .gal-ring,#orbits.hl-geo .gal,#orbits.hl-geo .gal-ring{opacity:.4}
+#orbits.hl-galileo .ow,#orbits.hl-galileo .beams,#orbits.hl-geo .ow,#orbits.hl-geo .beams{opacity:.4}
+#orbits.hl-galileo .gal-ring.front{stroke-opacity:.88}#orbits.hl-galileo .gal-ring.back{stroke-opacity:.36}
+#orbits.hl-geo .geo-ring{stroke-opacity:.72}
+.tip{position:fixed;left:0;top:0;z-index:50;max-width:300px;padding:12px 14px;border-radius:12px;background:rgba(9,14,28,.92);border:1px solid var(--line);
+  box-shadow:0 12px 30px rgba(0,0,0,.45);pointer-events:none;opacity:0;transition:opacity .2s;font-size:13px;line-height:1.45;color:var(--ink-2)}
+.tip.on{opacity:1}
+.tip b{display:flex;align-items:center;gap:8px;font:600 15px "Space Grotesk",sans-serif;color:var(--ink);margin-bottom:3px}
+.tip b i{width:9px;height:9px;border-radius:50%}
+.tip span{display:block;font-family:"JetBrains Mono",monospace;font-size:11.5px;color:var(--muted)}
+.tip em{display:block;margin-top:8px;font-style:normal;color:var(--ink)}
+.tip small{display:block;margin-top:8px;font-size:10px;letter-spacing:.04em;color:var(--muted)}
+.orb-hint{position:absolute;right:32px;bottom:28px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2);opacity:0;transition:opacity .6s;pointer-events:none}
+.orb-hint.on{opacity:.9}
+.ping{stroke-width:1.5;vector-effect:non-scaling-stroke}
+.ping{fill:none;stroke:#ffb547;transform-box:fill-box;transform-origin:center;animation:ping 2s ease-out infinite}
+.ping.d2{animation-delay:1s}
+@keyframes ping{from{transform:scale(.3);opacity:1}to{transform:scale(2.6);opacity:0}}
+
+/* ---------- altitude spine ---------- */
+.spine{position:sticky;top:0;height:100vh;padding-top:var(--topH);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:40px}
+.read{text-align:center}
+.read span{display:block;font:500 10.5px "JetBrains Mono",monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);min-height:2.6em;display:flex;align-items:flex-end;justify-content:center}
+.read b{display:block;font:600 19px "Space Grotesk",sans-serif;white-space:nowrap;margin-top:2px}
+.rail{position:relative;width:2px;height:min(58vh,520px);background:rgba(255,255,255,.16);border-radius:2px}
+.rail .fill{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(0deg,var(--warm),var(--accent));border-radius:2px}
+.tick{position:absolute;left:50%;width:22px;height:22px;margin:-11px 0 0 -11px;border-radius:50%;display:grid;place-items:center;cursor:pointer;background:none;border:0;padding:0}
+.tick::before{content:"";width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.3);transition:background .2s,transform .2s}
+.tick.on::before{background:var(--ink)}
+.tick:hover::before{transform:scale(1.6);background:var(--warm)}
+.tick span{position:absolute;left:26px;white-space:nowrap;font:500 11.5px "JetBrains Mono",monospace;color:var(--ink);opacity:0;transform:translateX(-6px);transition:.2s;pointer-events:none;background:#0b1220;border:1px solid var(--line);padding:3px 8px;border-radius:6px}
+.tick:hover span{opacity:1;transform:none}
+.ship{position:absolute;left:50%;width:0;height:0;z-index:2;pointer-events:none}
+.rk{position:absolute;left:-11px;top:-81px;width:22px;height:180px;transform:scale(.36);transform-origin:11px 81px;transition:opacity .5s}
+.rb{position:absolute;left:0;top:0;width:22px;height:180px;z-index:1;transition:opacity .4s}
+/* fairing open (cut from frame 4), scaled so its body is about as thick as the rocket sprite's; nozzle on the flame */
+.rfr{position:absolute;left:-10.3px;top:26.9px;width:44.7px;height:150.1px;z-index:1;opacity:0;transition:opacity .4s}
+.ship.fair .rb{opacity:0}.ship.fair .rfr{opacity:1}
+.fw{position:absolute;left:-5.5px;top:174px;width:30px;height:61px;transform-origin:17.1px 0;transform:scale(calc(.75 + var(--thrust,0) * .25),var(--thrust,0));filter:drop-shadow(0 0 5px rgba(255,170,60,.9))}
+.rf{display:block;width:30px;height:61px;transform-origin:17.1px 0;animation:flick .09s linear infinite alternate}
+@keyframes flick{0%{transform:scale(1,1);opacity:.92}35%{transform:scale(.9,1.14);opacity:1}70%{transform:scale(1.06,.9);opacity:.85}100%{transform:scale(.95,1.07);opacity:1}}
+.ship .stw,.ship .sat{position:absolute;left:0;top:0;transform:translate(-50%,-50%);opacity:0;transition:opacity .5s}
+.ship .stw{height:22px;filter:drop-shadow(0 0 4px rgba(255,214,120,.55)) brightness(1.15)}                          /* same scale as the deployed sprite (22 : 89, was 16 : 65), with a soft glow so it reads on the dark rail */
+.ship .sat{height:89px;transform:translate(-50%,-50%) rotate(30deg);filter:drop-shadow(0 0 4px rgba(255,214,120,.35))}
+.ship.sep .rk{opacity:0}.ship.sep .stw{opacity:1}
+.ship.dep .stw{opacity:0}.ship.dep .sat{opacity:1}
+
+/* ---------- story text ---------- */
+.story{position:relative}
+.reader{position:fixed;z-index:2;overflow:hidden;pointer-events:none}
+.ch{position:absolute;left:0;right:0;top:0;visibility:hidden;will-change:transform,opacity}
+.ch.vis{pointer-events:auto}
+.txt{max-width:520px}
+.kicker{display:flex;align-items:center;gap:10px;font:500 12px "JetBrains Mono",monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--warm);margin-bottom:14px}
+.kicker::before{content:"";width:18px;height:2px;background:currentColor;border-radius:2px}
+.txt h1{font-size:clamp(40px,4.4vw,60px);margin-bottom:16px}
+.txt h2{font-size:clamp(26px,2.5vw,34px);margin-bottom:6px}
+.org{color:var(--accent);font-weight:600;font-size:15px;margin-bottom:12px}
+.txt p{margin:0 0 12px;color:var(--ink-2)}
+.txt p.lede{font-size:18px;color:var(--ink)}
+.quip{font-style:italic;color:var(--muted) !important;border-left:2px solid var(--warm);padding-left:12px;margin-top:4px !important}
+.txt ul{margin:6px 0 4px;padding:0;list-style:none;display:grid;gap:8px}
+.txt li{position:relative;padding-left:20px;color:var(--ink-2);font-size:15px}
+.txt li::before{content:"";position:absolute;left:2px;top:.72em;width:8px;height:2px;background:var(--accent);border-radius:2px}
+.txt li b{color:var(--ink);font-weight:600}
+.tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px}
+.tag{font-size:12.5px;padding:4px 10px;border-radius:999px;background:var(--chip);border:1px solid var(--line);color:var(--ink-2)}
+.cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 18px;border-radius:12px;font-weight:600;font-size:15px;border:1px solid var(--line);background:var(--chip);transition:transform .2s,background .2s;cursor:pointer;color:var(--ink)}
+.btn:hover{transform:translateY(-2px);background:rgba(255,255,255,.12)}
+.btn.primary{background:var(--ink);color:#0b1220;border-color:var(--ink)}
+.btn svg{width:16px;height:16px}
+.btn.icon{padding:0;width:50px;height:50px;align-self:center;justify-content:center;border-radius:50%}   /* same height as the text buttons beside it */
+.btn.icon svg{width:18px;height:18px}
+.btn.accent{background:var(--warm);border-color:var(--warm);color:#0b1220}
+.btn.accent:hover{background:#ffc56b}
+.btn.same{width:220px;justify-content:center}   /* finale: CV and LinkedIn share one width */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:16px}
+.stat{background:var(--chip);border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+.stat b{display:block;font:700 28px "Space Grotesk",sans-serif;line-height:1}
+.stat span{font-size:12.5px;color:var(--muted);line-height:1.3;display:block;margin-top:6px}
+.sun{margin:14px 0 0}
+.sun svg{display:block;width:100%;height:auto;overflow:visible}
+.sun .seg{cursor:pointer;outline:none;opacity:0;transform:scale(.92);transform-box:view-box;transform-origin:240px 150px;transition:opacity .6s,transform .8s cubic-bezier(.3,.7,.2,1),fill-opacity .25s}
+.sun.flown .seg{opacity:1;transform:none}
+.sun .seg.dom{fill-opacity:.6}
+.sun .seg.dom.alt{fill-opacity:.45}
+.sun .seg.lvl{fill-opacity:.9}
+/* highlight = gentle: the other subsystems step back a little, the picked one gets a thin outline */
+.sun .seg{stroke:transparent;stroke-width:1.2;transition-property:opacity,transform,fill-opacity,stroke}
+.sun.pick .seg.sub:not(.sel){fill-opacity:.55}
+.sun.pick .seg.dom:not(.sel){fill-opacity:.3}
+.sun.pick .seg.sel{stroke:rgba(238,242,250,.6)}
+.sun.pick .seg.sel.on{fill-opacity:.95;stroke:var(--ink);stroke-width:1.8}
+.sun .sname{font:600 12.5px "Space Grotesk",sans-serif;fill:#0b1220;pointer-events:none;opacity:0;transition:opacity .5s .5s}
+.sun.flown .sname{opacity:1}
+.sun .dl{font:500 11px Inter,sans-serif;fill:var(--muted);paint-order:stroke;stroke:#05070d;stroke-width:4px;stroke-linejoin:round;pointer-events:none;opacity:0;transition:opacity .5s .7s,fill .2s}
+.sun.flown .dl{opacity:1}
+.sun .dl.sel{fill:var(--ink-2)}.sun .dl.on{fill:var(--ink);font-weight:600}
+.sun .cbig{font:700 30px "Space Grotesk",sans-serif;fill:var(--ink)}
+.sun.pick .cbig{font-size:17px}
+.sun .csm{font:500 10.5px "JetBrains Mono",monospace;fill:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+.tip-box{margin-top:12px;min-height:6.2em}
+@media (min-width:900px){.tip-box{min-height:140px}.sun .tip-box{min-height:148px}}   /* room for the longest description, so the panel never jumps on hover */
+.sun-tip{border-left:2px solid var(--sc,var(--warm));padding-left:12px;transition:border-color .25s}   /* the bar is only as tall as the text */
+.track{position:relative;display:grid;grid-template-columns:repeat(7,1fr);margin-top:6px}
+.track::before{content:"";position:absolute;left:7%;right:7%;top:8px;height:2px;border-radius:2px;background:linear-gradient(90deg,#7fe3ff,#ffd27a 55%,#f2f5fb)}
+.stop{display:flex;flex-direction:column;align-items:center;gap:6px;position:relative;background:none;border:0;padding:0;cursor:pointer;outline:none}
+.dot{display:block;width:13px;height:13px;border-radius:50%;border:2px solid #0b1220;box-sizing:content-box;transition:transform .2s,opacity .2s}
+.sun.pick .stop .dot{opacity:.55}.sun.pick .stop.sel .dot{opacity:.85}.sun.pick .stop.on .dot{opacity:1;transform:scale(1.3)}
+.slab{font:500 10.5px/1.25 Inter,sans-serif;color:var(--muted);text-align:center;transition:color .2s}
+.stop:hover .slab,.stop.on .slab{color:var(--ink)}
+.sun .call{cursor:pointer;outline:none;opacity:0;transition:opacity .6s}
+.sun.flown .call{opacity:1}
+.sun .lead{fill:none;stroke:rgba(255,181,71,.45);stroke-width:1}
+.sun .leadDot{fill:var(--warm)}
+.sun .cbox{fill:#0b1220;stroke:rgba(255,181,71,.4)}
+.sun .ctxt{font:500 11px Inter,sans-serif;fill:var(--ink-2)}
+.sun .call:hover .cbox,.sun .call.on .cbox,.sun .call:focus .cbox{stroke:var(--warm)}
+.sun .call:hover .ctxt,.sun .call.on .ctxt{fill:var(--ink)}
+.sun .call:hover .lead,.sun .call.on .lead{stroke:var(--warm)}
+.sun-tip b{display:block;font:600 15px "Space Grotesk",sans-serif;color:var(--sc,var(--ink));transition:color .25s}   /* heading takes the hovered subsystem's colour */
+.sun-tip small{display:block;font:500 11.5px "JetBrains Mono",monospace;color:var(--muted);margin:2px 0 4px}
+.sun-tip span{display:block;font-size:14px;line-height:1.5;color:var(--ink-2)}
+.venn{margin:10px 0 0}
+.venn svg{display:block;width:100%;max-width:368px;height:auto;margin:0 auto;overflow:visible}
+.venn .vc{fill:var(--vc);fill-opacity:.13;stroke:var(--vc);stroke-opacity:.65;stroke-width:1.5;mix-blend-mode:screen;cursor:pointer;outline:none;
+  opacity:0;transform:scale(.85);transform-box:fill-box;transform-origin:center;transition:opacity .7s,transform .9s cubic-bezier(.3,.7,.2,1),fill-opacity .25s,stroke-opacity .25s}
+.venn.flown .vc{opacity:1;transform:none}
+.venn .vc:hover,.venn .vc.on,.venn .vc:focus-visible{fill-opacity:.28;stroke-opacity:1}
+.venn.pick .vc:not(.on){fill-opacity:.06;stroke-opacity:.3}
+.venn .vn{font:600 15px "Space Grotesk",sans-serif;fill:var(--ink);pointer-events:none}
+.venn .vp{font:500 11.5px Inter,sans-serif;fill:var(--muted);pointer-events:none}
+.venn .vt{opacity:0;transition:opacity .5s .6s}.venn.flown .vt{opacity:1}
+.venn .core{cursor:pointer;outline:none}
+.venn .coreMe{filter:drop-shadow(0 6px 10px rgba(0,0,0,.6))}
+.venn .coreT{font:600 10.5px "JetBrains Mono",monospace;letter-spacing:.06em;text-transform:uppercase;fill:var(--ink)}
+.pillars{display:grid;gap:12px;margin-top:6px}
+.pillar{display:grid;grid-template-columns:36px 1fr;gap:12px;align-items:start}
+.pillar i{width:36px;height:36px;border-radius:10px;background:rgba(143,176,255,.14);color:var(--accent);display:grid;place-items:center;font-style:normal;font-size:17px}
+.pillar b{display:block;font-family:"Space Grotesk";font-size:17px;margin-bottom:2px}
+.pillar span{color:var(--ink-2);font-size:14.5px}
+.edu{display:grid;gap:12px;margin-top:6px}
+/* education & credentials: one card per institution, logos in white */
+.creds{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.creds.three{grid-template-columns:repeat(3,1fr);margin-top:0}
+.cred{display:flex;flex-direction:column;gap:4px;padding:14px;border-radius:14px;background:var(--chip);border:1px solid var(--line);transition:border-color .2s,background .2s}
+.cred:hover{border-color:rgba(255,181,71,.45);background:rgba(255,255,255,.08)}
+.cred .logo{height:26px;max-height:38px;width:auto;max-width:100%;object-fit:contain;object-position:left center;filter:brightness(0) invert(1);opacity:.92;margin-bottom:8px;align-self:flex-start}
+.cred b{font-family:"Space Grotesk";font-size:14.5px;line-height:1.25;color:var(--ink)}
+.cred small{font-size:12px;color:var(--muted)}
+.cred .award{margin-top:4px;align-self:flex-start}
+.awards{display:flex;flex-wrap:wrap;gap:5px}
+.award.plain{background:var(--chip);color:var(--ink-2);border:1px solid var(--line)}
+/* the graduate stands beside the credentials, balancing the illustration on the left */
+.cred-wrap{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:14px;align-items:end}
+.side-me{height:300px;width:auto;filter:drop-shadow(0 12px 22px rgba(0,0,0,.55));margin-right:-6px}
+@media (min-width:900px){
+  /* beside the graduate, credentials read as a compact list */
+  .cred-wrap .creds,.cred-wrap .creds.three{grid-template-columns:1fr;gap:5px}
+  .cred-wrap .cred{display:grid;grid-template-columns:60px 1fr;column-gap:12px;row-gap:1px;padding:8px 12px;align-items:center}
+  .cred-wrap .cred b{font-size:.86rem;line-height:1.25}
+  .cred-wrap .cred .logo{grid-row:1 / span 3;margin:0;max-width:60px;object-fit:contain;justify-self:start}
+  .cred-wrap .cred > :not(.logo){grid-column:2}
+  .cred-wrap .cred .award,.cred-wrap .cred .awards{justify-self:start;margin-top:2px}
+  .cred-wrap .cred .awards .award{margin-top:0}
+  .side-me{height:280px}
+}
+.edu div{border-left:2px solid var(--line);padding-left:14px}
+.edu b{display:block;font-family:"Space Grotesk";font-size:16.5px}
+.edu small{color:var(--muted);font-size:13px}
+.award{display:inline-block;font-size:11.5px;margin-top:6px;padding:2px 9px;border-radius:999px;background:rgba(255,181,71,.16);color:var(--warm);font-weight:600}
+.sub{font:600 12px "Space Grotesk",sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:18px 0 8px}
+.hint{display:inline-flex;align-items:center;gap:8px;margin-top:22px;font:500 13px "JetBrains Mono",monospace;color:var(--ink-2)}
+.hint i{display:inline-block;animation:bob 1.6s ease-in-out infinite;font-style:normal}
+@keyframes bob{50%{transform:translateY(5px)}}
+footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;flex-wrap:wrap;justify-content:space-between}
+
+/* ---------- phone: frame pinned on top, text underneath ---------- */
+@media (max-width:899px){
+  :root{--topH:56px}
+  .top{padding:0 16px;background:var(--sky)}
+  .brand .full{display:none}
+  .pill.hide-sm{display:none}
+  .shell{display:block;padding:0}
+  .visual{top:var(--topH);height:auto;padding:4px 16px 12px;z-index:5;background:var(--sky);margin-top:var(--topH);
+    box-shadow:0 14px 18px -8px var(--sky)}
+  .frame{width:100%;gap:8px}
+  .win{border-radius:14px}
+  .spine{display:none}
+  .mini{display:flex;align-items:center;gap:10px;color:var(--ink);text-transform:none;letter-spacing:0}
+  .mini b{font:600 14px "Space Grotesk",sans-serif;color:var(--ink)}
+  figcaption .mini{white-space:nowrap;flex-shrink:0}
+  #miniName{display:none}
+  .prog{position:relative;height:2px;background:rgba(255,255,255,.14);border-radius:2px;margin-top:2px}
+  .prog i{position:absolute;left:0;top:0;bottom:0;background:linear-gradient(90deg,var(--warm),var(--accent));border-radius:2px}
+  .story{padding:0}
+  .txt h1{font-size:36px}
+  .avatars{display:none}
+  .mini-me{display:block;float:right;height:112px;width:auto;margin:-4px 0 8px 12px;filter:drop-shadow(0 6px 12px rgba(0,0,0,.5))}
+  .txt p.lede{font-size:16.5px}
+  .stat b{font-size:24px}
+  .creds.three{grid-template-columns:1fr 1fr}
+  .cred{padding:12px}
+  .creds.three .cred:last-child{grid-column:1 / -1}
+  .cred-wrap{display:block}
+  .side-me{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  .txt{transition:none;opacity:1;transform:none}
+  .ping,.hint i,.rf,.launch i{animation:none}
+}
+</style>
+</head>
+<body class="no-js">
+<script>document.body.classList.remove('no-js')</script>
+
+<header class="top">
+  <a href="#top" class="brand"><span class="brand-mark">TBR</span><span class="full">Tomas Benedicto Rinaudo</span></a>
+</header>
+
+<section class="hero-spacer" id="top" data-alt="0" data-label="T-0 · Launch pad" data-fig="Launch pad · golden hour"></section>
+<div class="hero" id="heroLayer">
+  <div class="hero-in">
+    <div class="who">
+      <img class="me" src="assets/headshot.jpg" width="480" height="480" alt="Portrait of Tomas Benedicto Rinaudo">
+      <div><b>Head of Payload Architects</b><span>Airbus Defence and Space · Toulouse</span></div>
+    </div>
+    <h1>Tomas Benedicto Rinaudo</h1>
+    <p class="claim">Aerospace engineer.<br>10 years building satellites.</p>
+    <p class="pitch">From structural analyst to Head of Payload Architects.<br>From mechanical to propulsion to RF and digital payload.<br>So I can own a system end to end: the engineering, the contracts and the people.</p>
+    <div class="cta hero-cta">
+      <a class="btn primary" href="cv.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg>CV</a>
+      <a class="btn icon" href="https://www.linkedin.com/in/tomasbenedictorinaudo" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg></a>
+    </div>
+  </div>
+  <a class="launch" href="#c1"><span>Scroll to launch</span><i>↓</i></a>
+</div>
+
+<div class="shell">
+  <div class="visual" id="visual">
+    <figure class="frame" id="frame">
+      <div class="win-home" id="winHome"></div>
+      <div class="win" id="win" aria-hidden="true">
+        <div class="layer"><img src="assets/story/0.webp" width="1536" height="1024" alt=""></div>
+        <div class="layer"><img src="assets/story/1.webp" width="1536" height="1024" alt=""></div>
+        <div class="layer"><img src="assets/story/4v.webp?v=hd27" width="1920" height="1080" alt=""></div>
+        <div class="layer"><img src="assets/story/8.webp" width="1672" height="941" alt="">
+          <svg viewBox="0 0 1672 941" id="packets">
+            <defs><radialGradient id="glow"><stop offset="0" stop-color="#fff"/><stop offset=".4" stop-color="#e6fbff" stop-opacity=".9"/><stop offset="1" stop-color="#7fe3ff" stop-opacity="0"/></radialGradient><radialGradient id="glowUp"><stop offset="0" stop-color="#fff4dc"/><stop offset=".4" stop-color="#ffcf7a" stop-opacity=".95"/><stop offset="1" stop-color="#ffb547" stop-opacity="0"/></radialGradient></defs>
+          </svg>
+        </div>
+        <div class="layer"><img src="assets/story/9.webp" width="1672" height="941" alt="">
+          <svg viewBox="0 0 1672 941">
+            <g id="orbits"></g>
+            <g id="home"><circle class="ping" cx="801" cy="409" r="4"/><circle class="ping d2" cx="801" cy="409" r="4"/><circle class="homedot" cx="801" cy="409" r="2.6" fill="#ffb547"/></g>
+          </svg>
+        </div>
+        <canvas class="ascent" id="ascent"></canvas>
+      </div>
+      <div class="avatars" id="avatars" aria-hidden="true">
+      </div>
+      <figcaption>
+        <span class="mini"><span id="miniName">T-0</span><b class="mono" id="miniVal">0 m</b></span>
+      </figcaption>
+      <div class="prog mini" aria-hidden="true"><i id="progFill"></i></div>
+    </figure>
+  </div>
+
+  <aside class="spine" aria-label="Altitude and chapters">
+    <div class="read"><span id="altName">T-0 · Launch pad</span><b class="mono" id="altVal">0 m</b></div>
+    <div class="rail" id="rail"><div class="fill" id="railFill"></div><div class="ship" id="ship"><div class="rk"><img class="rb" src="assets/story/rocket-body.webp" alt=""><img class="rfr" src="assets/story/rocket-fairing.webp" alt=""><div class="fw"><img class="rf" src="assets/story/rocket-flame.webp" alt=""></div></div><img class="stw" src="assets/story/onesat-stowed-sm.webp" alt=""><img class="sat" src="assets/story/onesat.webp" alt=""></div></div>
+  </aside>
+
+  <main class="story">
+  <div class="reader" id="reader">
+
+  <section class="ch" id="c1" data-fig="Ignition and liftoff" data-alt="1" data-label="Liftoff">
+    <div class="txt">
+      <img class="mini-me" src="assets/avatar-graduate.webp" alt="Illustration of Tomas as a graduate, tossing his cap" loading="lazy">
+      <div class="kicker">Liftoff · Education · 2012 → today</div>
+      <h2>A strong foundation</h2>
+      <p>Aerospace engineering first, then systems engineering and project management. The learning never stops.</p>
+      <div class="cred-wrap">
+      <div class="cred-main">
+      <div class="creds">
+        <article class="cred"><img class="logo" src="assets/logos/tudelft.svg" alt="TU Delft"><b>B.Sc. Aerospace Engineering</b><small>2012 – 2015</small><span class="award">Distinction</span></article>
+        <article class="cred"><img class="logo" style="height:38px" src="assets/logos/isae.png" alt="ISAE-SUPAERO"><b>M.Sc. Aerospace Mechanics &amp; Avionics</b><small>2015 – 2017 · structures</small><span class="awards"><span class="award">Award of Excellence</span><span class="award plain">Student representative</span></span></article>
+      </div>
+      <div class="sub">Professional credentials</div>
+      <div class="creds three">
+        <article class="cred"><img class="logo" style="height:24px;margin-top:1px;margin-bottom:9px" src="assets/logos/mit.svg" alt="MIT"><b>Architecture &amp; Systems Engineering</b><small>MIT xPRO · 2021</small></article>
+        <article class="cred"><img class="logo" src="assets/logos/pmi.png" alt="Project Management Institute"><b>Project Management Professional</b><small>PMP® · 2024</small></article>
+        <article class="cred"><img class="logo" style="height:20px;margin-top:3px;margin-bottom:11px" src="assets/logos/airbus.svg" alt="Airbus"><b>Systems Engineering &amp; Excellence</b><small>Chief-engineer track · 2026</small></article>
+      </div>
+      </div>
+      <img class="side-me" src="assets/avatar-graduate.webp" alt="Illustration of Tomas as a graduate, tossing his cap" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <section class="ch" id="c2" data-fig="Fairing separation · the payload" data-alt="115" data-label="Fairing separation">
+    <div class="txt">
+      <div class="kicker">Fairing separation · the satellite revealed</div>
+      <h2>Every subsystem, every level</h2>
+      <p>With the fairing gone, the whole satellite shows.<br>Structure carries, propulsion moves, payload earns.<br>I have worked in all three, from analyst to head of.</p>
+      <figure class="sun" id="sun" aria-label="Experience by satellite subsystem and domain">
+        <svg viewBox="0 -12 480 320" id="sunSvg"></svg>
+        <div class="track" id="sunLvls" aria-label="Levels held, from analyst to head of"></div>
+        <div class="tip-box"><div class="sun-tip" id="sunTip" aria-live="polite"></div></div>
+      </figure>
+    </div>
+  </section>
+
+  <section class="ch" id="c5" data-fig="On station · multibeam coverage" data-alt="35786" data-label="On station">
+    <div class="txt">
+      <div class="kicker">On station · Aug 2026 → today</div>
+      <h2>Head of Payload Architects</h2>
+      <p>Leading 10+ payload architects and mission managers: we support bids and design Airbus's next telecom payloads, across all orbits.</p>
+      <figure class="venn" id="venn" aria-label="My role: between the engineering, the contracts and the people">
+        <svg viewBox="48 12 324 296" id="vennSvg"></svg>
+        <div class="tip-box"><div class="sun-tip" id="vennTip" aria-live="polite"></div></div>
+      </figure>
+    </div>
+  </section>
+
+
+
+  </div>
+  </main>
+</div>
+
+<section class="finale-spacer" id="finale" data-alt="35786" data-label="Mission view" data-fig="Mission view · to scale"></section>
+<div class="tip" id="tip" role="status" aria-live="polite"></div>
+<div class="finale" id="finLayer">
+  <div class="orb-hint mono" id="orbHint" aria-hidden="true"></div>
+  <div class="fin-in">
+    <div class="who">
+      <img class="me" src="assets/headshot.jpg" width="480" height="480" alt="Portrait of Tomas Benedicto Rinaudo" loading="lazy">
+      <div><b>Tomas Benedicto Rinaudo</b><span>Head of Payload Architects · Airbus Defence and Space</span><small class="fluent">Fluent in Spanish, French and English · professional Dutch</small></div>
+    </div>
+    <h2>Let's build the next one together.</h2>
+    <p class="pitch">LEO, MEO, GEO: three orbits so far. Next, I want to take responsibility for a complete system, from the first requirement to the service in orbit, and space left clear for those who follow.</p>
+    <p class="pitch">If you're building ambitious space systems, I'd like to hear from you.</p>
+    <div class="cta hero-cta">
+      <a class="btn primary same" href="cv.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg>CV</a>
+      <a class="btn accent same" href="https://www.linkedin.com/in/tomasbenedictorinaudo" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg><span><span class="wide-only">Connect on </span>LinkedIn</span></a>
+    </div>
+  </div>
+  <footer><span>© <span id="yr">2026</span> Tomas Benedicto Rinaudo</span></footer>
+</div>
+
+<script>
+(function(){
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  var win = document.getElementById('win'), visual = document.getElementById('visual'), frameEl = document.getElementById('frame');
+  var avatarBox = document.getElementById('avatars'), avatarImgs = [].slice.call(avatarBox.querySelectorAll('img'));
+  var layers = [].slice.call(win.querySelectorAll('.layer'));
+  var hero = document.getElementById('top'), finale = document.getElementById('finale'), winHome = document.getElementById('winHome');
+  // the landing and the finale are steps 0 and N-1: the frame window grows to full screen there
+  var chapters = [hero].concat([].slice.call(document.querySelectorAll('.ch')), [finale]);
+  var N = layers.length, NC = chapters.length, gNow = 0, sy = scrollY, sunStart = null, vennStart = null, thru = false;
+  var FR = [0, 1, 2, 3, 4];                         // frame shown by each chapter: one transition between consecutive steps
+
+  // Camera inside the frame: focus point (fraction of image) and zoom, start -> end of each frame's life.
+  // m = phone overrides (the phone frame is always 3:2, so 16:9 frames get cropped and panned).
+  var CAM = [
+    {f:[.5,.5],  t:[.5,.45], z:[1,1.06]},                                   // 0 pad
+    {f:[.5,.38], t:[.5,.32], z:[1.02,1.1]},                                  // 1 liftoff (aimed high: headroom for the nose in the 16:9 frame)
+    {f:[.5,.5],  t:[.5,.5],  z:[1,1]},                                       // 2 fairing open (last video frame): held still, so the video lands on it exactly
+    {f:[.5,.5],  t:[.5,.5],  z:[1,1.03],  m:{f:[.22,.5],t:[.62,.5],z:[1,1]}},  // 3 beams: on phones, pan along them
+    {f:[.5,.5],  t:[.5,.5],  z:[1.25,1],  m:{f:[.54,.48],t:[.54,.48],z:[1,1]}} // 4 mission view (finale)
+  ];
+  // Transitions INTO these frames use "the world falls away": the old view sinks while the new one wipes in from above.
+  var RISE = {2:1};
+  // Page colour follows altitude: dusk at the pad, black in orbit.
+  var SKY = [[0,[28,39,66]],[1,[22,34,60]],[2,[6,8,16]],[4,[5,7,13]]];
+
+  var W, H, desk, Fw, Fh, Dw = 0, Dh = 0, Dx = null, Dy = null, mNow = -1, ar = -1, base = [], dims = [], REST = [], HOLD = [], dirty = true;
+  layers.forEach(function(l){ var im = l.querySelector('img'); dims.push([+im.getAttribute('width'), +im.getAttribute('height')]); });
+
+  function sizeFrame(a){
+    ar = a;
+    if (desk){
+      var colW = visual.clientWidth, maxH = H - parseFloat(getComputedStyle(visual).paddingTop) - 120;
+      Fw = Math.min(colW, maxH * a); Fh = Fw / a;
+    } else { Fw = W - 32; Fh = Fw / a; }
+    winHome.style.width = Fw + 'px'; winHome.style.height = Fh + 'px'; frameEl.style.setProperty('--fh', Fh + 'px');
+    dirty = true;
+  }
+  function sizeLayers(w, h){                       // cover-fit every frame into the window's current size
+    Dw = w; Dh = h; win.style.width = w + 'px'; win.style.height = h + 'px';
+    layers.forEach(function(l, i){
+      var s = Math.max(w / dims[i][0], h / dims[i][1]);
+      base[i] = s; l.style.width = dims[i][0] * s + 'px'; l.style.height = dims[i][1] * s + 'px';
+    });
+  }
+  // 1 = window fills the screen (landing / finale), 0 = window sits in its frame
+  function morph(){
+    var fin = finale.getBoundingClientRect().top + scrollY - sy;    // where the finale is, seen from the smoothed position
+    if (reduce) return sy < hero.offsetHeight * .5 || fin < H * .45 ? 1 : 0;
+    return Math.max(1 - ss(sy / hero.offsetHeight), ss((H * .9 - fin) / (H * .9)));
+  }
+  function layout(){
+    W = innerWidth; H = innerHeight; desk = W >= 900;
+    sizeFrame(desk ? frameAR(lastF < 0 ? 0 : lastF) : 1.5);
+    if (!desk){
+      var vb = visual.getBoundingClientRect();
+      document.documentElement.style.setProperty('--textH', Math.max(320, H - vb.height - 56) + 'px');
+    }
+    REST = rests();
+    // the film holds a step's frame while you read it (A..B) and transitions in the gaps between steps.
+    // Frame 0 holds until the window has shrunk into its frame; the last frame is in before it grows again.
+    HOLD = REST.map(function(r){ return {a: r.a, b: r.b}; });
+    HOLD[0].b = Math.max(HOLD[0].b, hero.offsetHeight * .2);    // the pad shows only at the start of the shrink
+    HOLD[NC - 1].a = Math.max(HOLD[NC - 2].b + 1, finale.getBoundingClientRect().top + scrollY - H * .9);
+    if (mv && mv.k != null && REST[mv.k]) mv.target = mv.dir > 0 ? REST[mv.k].a : REST[mv.k].b;   // re-measured mid-move: re-aim
+    buildRail(); dirty = true;
+  }
+  function frameAR(f){ return desk ? 16 / 9 : 1.5; }   // one frame size for every step (16:9 on desktop, 3:2 on phones)
+
+  // ---------- scroll -> film position f in [0, N-1] ----------
+  function filmPos(){
+    var y = sy, i = 0;
+    while (i < NC - 1 && y > HOLD[i].b + 2 && y >= HOLD[i + 1].a - 2) i++;
+    thru = false;
+    if (i === NC - 1 || y <= HOLD[i].b + 2){ gNow = i; return FR[i]; }  // reading a step: hold its frame (2 px slack for rounding)
+    var p = (y - HOLD[i].b) / (HOLD[i + 1].a - HOLD[i].b);              // between steps: transition
+    gNow = i + p;
+    var span = FR[i + 1] - FR[i];
+    thru = span > 1;                                                     // flying through several frames: one continuous move,
+    return FR[i] + span * (thru ? ss(p) : p);                            // eased once at its ends, steady in between
+  }
+  function ss(x){ x = Math.max(0, Math.min(1, x)); return x * x * (3 - 2 * x); }
+  function lerp(a, b, t){ return a + (b - a) * t; }
+
+  // ---------- overlays ----------
+  (function(){   // GEO multibeam frame: data riding the beams, down to the users (white-cyan) and up from them (amber)
+    var svg = document.getElementById('packets'), NS = 'http://www.w3.org/2000/svg', SAT = '440 440';
+    var ends = [[1185,330],[1190,350],[1280,410],[1360,465],[1170,520],[1330,560],[1450,610],[1460,730],[1250,645],[1060,700],[1190,700],[1410,520]];
+    function packet(path, fill, r, dur, begin){
+      var c = document.createElementNS(NS, 'circle'); c.setAttribute('r', r); c.setAttribute('fill', fill);
+      var a = document.createElementNS(NS, 'animateMotion');
+      a.setAttribute('path', path); a.setAttribute('dur', dur + 's'); a.setAttribute('begin', begin + 's'); a.setAttribute('repeatCount', 'indefinite');
+      c.appendChild(a); svg.appendChild(c);
+    }
+    ends.forEach(function(e, k){
+      var p = e[0] + ' ' + e[1];
+      packet('M' + SAT + ' L' + p, 'url(#glow)', 9, 1.6 + (k % 4) * .25, -k * .37);              // downlink
+      if (k % 2 === 0) packet('M' + p + ' L' + SAT, 'url(#glowUp)', 7, 2.1 + (k % 3) * .3, -k * .53 - .9);   // uplink
+    });
+  })();
+  // ---------- Frame 9: real constellations, to scale, in the Earth-fixed frame ----------
+  // Measured on the painting: GEO ring centre (827,452), semi-axes 764 x 110 px. So 1 Earth radius = 764 / 6.618 px
+  // (GEO radius 42,164 km / 6,371 km) and the viewer sits asin(110/764) = 8.3 deg above the equator.
+  // Earth-fixed frame: the painted Earth does not spin, so GEO satellites stand still (as painted) while the
+  // orbital planes of Galileo and OneWeb drift west at Earth's rotation rate. All periods are real; time runs only x30, so the motion is a quiet surprise rather than a show.
+  function makeOrbits(svg, home){
+    var NS = 'http://www.w3.org/2000/svg';
+    var C = [827, 452], K = 764 / 6.618, EL = Math.asin(110 / 764), ROCC = 108, LON0 = 15 * Math.PI / 180;
+    // the painted globe: centre and radius measured on the image (slightly smaller than the GEO-ring scale implies)
+    var CE = [830, 452], RE_PX = 109;
+    var RE = 6371, MU = 398600.4418, WE = 2 * Math.PI / 86164.1, WARP = 30, EPOCH = Math.random() * 86164, D = Math.PI / 180;
+    var cE = Math.cos(EL), sE = Math.sin(EL), cL = Math.cos(LON0), sL = Math.sin(LON0);
+    function proj(x, y, z, rr){                      // Earth-fixed unit vector -> [screen x, screen y, depth (+ = towards viewer)]
+      var xp = x * cL + y * sL, yp = -x * sL + y * cL;
+      return [C[0] + K * rr * yp, C[1] - K * rr * (-xp * sE + z * cE), xp * cE + z * sE];
+    }
+    function ground(v){                              // a point on the Earth's surface, placed on the painted globe
+      var p = proj(v[0], v[1], v[2], 1), k = RE_PX / K;
+      return [CE[0] + (p[0] - C[0]) * k, CE[1] + (p[1] - C[1]) * k, p[2]];
+    }
+    function hidden(p){ return p[2] < 0 && Math.hypot(p[0] - CE[0], p[1] - CE[1]) < ROCC; }   // behind the painted globe
+    function pos(sh, raan, u, t){                    // circular orbit: argument of latitude u, node drifting west with Earth rotation
+      u += sh.n * t; var O = raan - WE * t;
+      var cu = Math.cos(u), su = Math.sin(u), cO = Math.cos(O), sO = Math.sin(O);
+      var x = cO * cu - sO * su * sh.ci, y = sO * cu + cO * su * sh.ci, z = su * sh.si, p = proj(x, y, z, sh.rr);
+      if (sh.ground){ var g = RE_PX / K; p[0] = CE[0] + (p[0] - C[0]) * g; p[1] = CE[1] + (p[1] - C[1]) * g; }   // LEO: scaled on the painted globe
+      p.v = [x, y, z]; return p;
+    }
+    function el(tag, cls, parent){ var e = document.createElementNS(NS, tag); e.setAttribute('class', cls); (parent || svg).appendChild(e); return e; }
+    var gPaths = el('g', 'paths'), gBeams = el('g', 'beams'), gDots = el('g', 'dots');
+    var geoRing = el('ellipse', 'geo-ring', gPaths);              // traces the painted GEO ring when highlighted
+    geoRing.setAttribute('cx', C[0]); geoRing.setAttribute('cy', C[1]); geoRing.setAttribute('rx', 764); geoRing.setAttribute('ry', 110);
+    // Walker-style shell: planes spread over `spread` deg of node, `phase` deg offset between neighbouring planes
+    function shell(altKm, inc, planes, perPlane, spread, phase, cls, path){
+      var a = RE + altKm, sh = {rr: a / RE, n: Math.sqrt(MU / (a * a * a)), ci: Math.cos(inc * D), si: Math.sin(inc * D), sats: [], rings: []};
+      for (var j = 0; j < planes; j++){
+        var raan = j * spread / planes * D;
+        if (path) sh.rings.push({raan: raan, front: el('path', cls + '-ring front', gPaths), back: el('path', cls + '-ring back', gPaths)});
+        for (var k = 0; k < perPlane; k++) sh.sats.push({e: el('circle', cls, gDots), raan: raan, u: (k * 360 / perPlane + j * phase) * D});
+      }
+      return sh;
+    }
+    var oneweb  = shell(1200,  87.9, 12, 49, 180, 360 / 49 / 2, 'ow', false);  // OneWeb: 12 x 49, 1,200 km, 87.9 deg, T = 1 h 49 min
+    oneweb.ground = true;                                                       // its altitude is measured from the painted surface
+    var galileo = shell(23222, 56,    3,  8, 360, 15,           'gal', true);  // Galileo: Walker 56:24/3/1, 23,222 km, T = 14 h 05 min
+    oneweb.op = [.28, .4, .85]; galileo.op = [.45, 1, 1];                      // opacity: behind / over the disc / in open space
+    function ring(sh, r, t){
+      var df = '', db = '', last = null, side = 0, pts = [];
+      for (var s = 0; s <= 120; s++){
+        var p = pos(sh, r.raan, s / 120 * 2 * Math.PI, t), pt = p[0].toFixed(1) + ' ' + p[1].toFixed(1);
+        if (hidden(p)){ side = 0; last = null; continue; }
+        pts.push(p);
+        var now = p[2] >= 0 ? 1 : -1, cmd = (now === side ? 'L' : 'M' + (last && side ? last + 'L' : '')) + pt;
+        if (now > 0) df += cmd; else db += cmd;
+        side = now; last = pt;
+      }
+      r.front.setAttribute('d', df); r.back.setAttribute('d', db);
+      r.pts = pts;
+    }
+    function dots(sh, t){
+      sh.sats.forEach(function(s){
+        var p = pos(sh, s.raan, s.u, t); s.p = p;
+        if (hidden(p)){ s.e.setAttribute('visibility', 'hidden'); return; }
+        s.e.setAttribute('visibility', 'visible'); s.e.setAttribute('cx', p[0].toFixed(1)); s.e.setAttribute('cy', p[1].toFixed(1));
+        var disc = Math.hypot(p[0] - C[0], p[1] - C[1]) < ROCC;      // in front of the painted Earth: keep it a whisper
+        s.e.setAttribute('opacity', p[2] < 0 ? sh.op[0] : disc ? sh.op[1] : sh.op[2]);
+      });
+    }
+    // OneWeb beams as on the real first-generation satellites: the 16 beams are fixed to the satellite, so its
+    // ~1,080 km footprint sweeps the ground with it. What stays put are the user terminals: each is served by the
+    // nearest satellite overhead and hands over as the next footprint sweeps in (about every 3 min, ~6 s at x30).
+    // Footprints near the limb are drawn too: seen side-on, their cones show the shell's depth.
+    var scale = 1;                                  // on-screen px per image px, set by size()
+    var FOOT = 540 / RE * RE_PX, uid = Math.random().toString(36).slice(2, 7), gid = 0;
+    var NEAR = Math.cos(7.5 * D), SHOW = Math.cos(8.5 * D), FULL = Math.cos(6 * D);
+    var SHADES = ['#7fe3ff', '#3fb4ff', '#5ad6c8', '#9cb6ff', '#2f8ce8', '#a8efff'];
+    oneweb.sats.forEach(function(s, k){ s.col = SHADES[k % SHADES.length]; });
+    var defs = el('defs', '');
+    function dot(a, b){ return a[0] * b[0] + a[1] * b[1] + a[2] * b[2]; }
+    function makeCone(g){                            // a cone path with its own gradient running from apex to footprint
+      var id = 'bm' + uid + (gid++), lg = document.createElementNS(NS, 'linearGradient');
+      lg.setAttribute('id', id); lg.setAttribute('gradientUnits', 'userSpaceOnUse');
+      lg.innerHTML = '<stop offset="0" stop-opacity=".75"/><stop offset="1" stop-opacity=".14"/>'; defs.appendChild(lg);
+      var path = el('path', 'cone', g); path.setAttribute('fill', 'url(#' + id + ')');
+      return {path: path, lg: lg, stops: lg.querySelectorAll('stop'), col: null};
+    }
+    function footAt(v){                              // a 1,080 km circle on the ground, foreshortened towards the limb
+      var n = ground(v);
+      return {n: n, rx: FOOT, ry: FOOT * Math.max(.2, n[2]), a: Math.atan2(n[1] - CE[1], n[0] - CE[0]) + Math.PI / 2};
+    }
+    function setFoot(e, f){
+      e.setAttribute('cx', f.n[0].toFixed(1)); e.setAttribute('cy', f.n[1].toFixed(1)); e.setAttribute('rx', f.rx.toFixed(1)); e.setAttribute('ry', f.ry.toFixed(1));
+      e.setAttribute('transform', 'rotate(' + (f.a * 180 / Math.PI).toFixed(1) + ' ' + f.n[0].toFixed(1) + ' ' + f.n[1].toFixed(1) + ')');
+    }
+    function drawCone(c, s, f){
+      if (c.col !== s.col){ c.col = s.col; c.stops.forEach(function(st){ st.setAttribute('stop-color', s.col); }); }
+      var P = s.p, ca = Math.cos(f.a), sa = Math.sin(f.a);
+      // apex in the footprint's frame, stretched so the ellipse becomes a circle: tangent lines are then exact
+      var qx = (P[0] - f.n[0]) * ca + (P[1] - f.n[1]) * sa, qy = (-(P[0] - f.n[0]) * sa + (P[1] - f.n[1]) * ca) * f.rx / f.ry;
+      var d = Math.hypot(qx, qy), r = f.rx, dpath = '';
+      if (d > r * 1.02){                            // otherwise we look straight down the cone: the footprint says it all
+        var phi = Math.atan2(qy, qx), al = Math.acos(r / d);
+        var T = [phi + al, phi - al].map(function(t){
+          var lx = r * Math.cos(t), ly = r * Math.sin(t) * f.ry / f.rx;
+          return [f.n[0] + lx * ca - ly * sa, f.n[1] + lx * sa + ly * ca];
+        });
+        dpath = 'M' + P[0].toFixed(1) + ' ' + P[1].toFixed(1) + 'L' + T[0][0].toFixed(1) + ' ' + T[0][1].toFixed(1) +
+                'A' + f.rx.toFixed(1) + ' ' + f.ry.toFixed(1) + ' ' + (f.a * 180 / Math.PI).toFixed(1) + ' 1 1 ' + T[1][0].toFixed(1) + ' ' + T[1][1].toFixed(1) + 'Z';
+      }
+      c.path.setAttribute('d', dpath);
+      c.lg.setAttribute('x1', P[0].toFixed(1)); c.lg.setAttribute('y1', P[1].toFixed(1));
+      c.lg.setAttribute('x2', f.n[0].toFixed(1)); c.lg.setAttribute('y2', f.n[1].toFixed(1));
+    }
+    var POOL = [];
+    for (var pi = 0; pi < 44; pi++){
+      var pg = el('g', 'beam', gBeams); pg.setAttribute('visibility', 'hidden');
+      POOL.push({g: pg, cone: makeCone(pg), foot: el('ellipse', 'foot', pg)});
+    }
+    var gLinks = el('g', 'links');
+    var TERM = [[50, 12], [24, 44], [8, 22], [-16, 26], [28, -18], [4, -4]].map(function(c){
+      var la = c[0] * D, lo = c[1] * D, v = [Math.cos(la) * Math.cos(lo), Math.cos(la) * Math.sin(lo), Math.sin(la)];
+      return {v: v, n: ground(v), link: el('line', 'link', gLinks), ring: el('circle', 'term-ring', gLinks), mark: el('circle', 'term', gLinks), sat: null, tSw: -1e9};
+    });
+    var lit = [], LIMB = new Array(12).fill(null);
+    function beamsUpdate(now){
+      var act = [];                                 // satellites whose footprint is drawn, with an opacity
+      function add(s, o){ for (var i = 0; i < act.length; i++) if (act[i][0] === s){ act[i][1] = Math.max(act[i][1], o); return; } act.push([s, o]); }
+      // footprints on the limb, seen side-on, spread evenly around the globe: one satellite per 30-deg sector,
+      // kept until it leaves the limb band, so the cones ring the planet and show the shell in 3D
+      function inBand(s){ return s.p[2] > .04 && s.p[2] < .34; }
+      function sector(s){ return Math.floor(((Math.atan2(s.p[1] - C[1], s.p[0] - C[0]) + Math.PI) / (2 * Math.PI)) * LIMB.length) % LIMB.length; }
+      LIMB.forEach(function(cur, b){
+        if (!(cur && inBand(cur) && Math.abs(sector(cur) - b) % (LIMB.length - 1) <= 1)){
+          cur = null; var bestD = 1;
+          oneweb.sats.forEach(function(s){ if (inBand(s) && sector(s) === b && Math.abs(s.p[2] - .2) < bestD){ bestD = Math.abs(s.p[2] - .2); cur = s; } });
+          LIMB[b] = cur;
+        }
+        if (cur) add(cur, .9 * Math.min(1, (cur.p[2] - .04) / .07, (.34 - cur.p[2]) / .07));
+      });
+      TERM.forEach(function(t){
+        var best = null, bd = NEAR;
+        oneweb.sats.forEach(function(s){
+          var d = dot(s.p.v, t.v);
+          if (d > SHOW) add(s, .55 * Math.min(1, (d - SHOW) / (FULL - SHOW)));   // the next footprint sweeping in
+          if (d > bd){ bd = d; best = s; }
+        });
+        if (t.sat && best && best !== t.sat && dot(t.sat.p.v, t.v) > NEAR && bd - dot(t.sat.p.v, t.v) < .0004) best = t.sat;  // hysteresis
+        if (best !== t.sat){ t.sat = best; t.tSw = now; }
+        var n = t.n, k = Math.min(1, (now - t.tSw) / 900);
+        t.mark.setAttribute('cx', n[0].toFixed(1)); t.mark.setAttribute('cy', n[1].toFixed(1)); t.mark.setAttribute('r', (2.4 / scale).toFixed(2));
+        t.ring.setAttribute('cx', n[0].toFixed(1)); t.ring.setAttribute('cy', n[1].toFixed(1));
+        t.ring.setAttribute('r', ((2.4 + 9 * k) / scale).toFixed(2)); t.ring.setAttribute('opacity', (1 - k).toFixed(2));
+        if (best){
+          add(best, 1);
+          t.link.setAttribute('x1', n[0].toFixed(1)); t.link.setAttribute('y1', n[1].toFixed(1));
+          t.link.setAttribute('x2', best.p[0].toFixed(1)); t.link.setAttribute('y2', best.p[1].toFixed(1));
+          t.link.setAttribute('stroke', best.col); t.ring.setAttribute('stroke', best.col);
+          t.link.setAttribute('opacity', Math.min(1, (now - t.tSw) / 300).toFixed(2));
+        } else t.link.setAttribute('opacity', 0);
+      });
+      POOL.forEach(function(b, i){
+        var a = act[i];
+        if (!a || a[1] <= .01){ if (b.on){ b.g.setAttribute('visibility', 'hidden'); b.on = false; } return; }
+        if (!b.on){ b.g.setAttribute('visibility', 'visible'); b.on = true; }
+        var s = a[0], f = footAt(s.p.v);
+        setFoot(b.foot, f); b.foot.setAttribute('fill', s.col); b.foot.setAttribute('stroke', s.col);
+        drawCone(b.cone, s, f); b.g.setAttribute('opacity', a[1].toFixed(2));
+      });
+      // light up the satellites that are carrying a beam
+      var on = act.filter(function(a){ return a[1] > .5; }).map(function(a){ return a[0]; });
+      lit.forEach(function(s){ if (on.indexOf(s) < 0){ s.e.style.fill = ''; s.e.setAttribute('r', (.9 / scale).toFixed(2)); } });
+      on.forEach(function(s){ s.e.style.fill = s.col; s.e.setAttribute('r', (2 / scale).toFixed(2)); s.e.setAttribute('opacity', 1); });
+      lit = on;
+    }
+    var t0 = null, ping = [].slice.call(home.querySelectorAll('circle'));
+    return {
+      update: function(now, still){
+        if (t0 === null) t0 = now;
+        var t = EPOCH + (still ? 0 : (now - t0) / 1000 * WARP);   // a different moment of the day on every visit
+        galileo.rings.forEach(function(r){ ring(galileo, r, t); });
+        dots(oneweb, t); dots(galileo, t);
+        if (!still) beamsUpdate(now);
+      },
+      // the constellation nearest an image point, within tol image px: 'oneweb', 'galileo', 'geo' or null
+      pick: function(x, y, tol){
+        var best = null, bd = tol;
+        function near(key, d){ if (d < bd){ bd = d; best = key; } }
+        var r = Math.hypot(x - CE[0], y - CE[1]);
+        if (r > RE_PX * .92 && r < RE_PX * 7571 / 6371 + 10) near('oneweb', 0);              // the OneWeb shell around the globe
+        oneweb.sats.forEach(function(s){ if (s.p && !hidden(s.p)) near('oneweb', Math.hypot(x - s.p[0], y - s.p[1]) * 1.4); });
+        galileo.rings.forEach(function(rg){ (rg.pts || []).forEach(function(p){ near('galileo', Math.hypot(x - p[0], y - p[1])); }); });
+        galileo.sats.forEach(function(s){ if (s.p && !hidden(s.p)) near('galileo', Math.hypot(x - s.p[0], y - s.p[1]) * .7); });
+        var a = Math.atan2((y - C[1]) / 110, (x - C[0]) / 764);
+        near('geo', Math.hypot(x - (C[0] + 764 * Math.cos(a)), y - (C[1] + 110 * Math.sin(a))));
+        [[1375, 515], [1590, 450]].forEach(function(q){ near('geo', Math.hypot(x - q[0], y - q[1]) * .5); });   // the painted OneSats
+        return best;
+      },
+      size: function(s){                            // keep dots a constant on-screen size whatever the frame size
+        if (Math.abs(s - scale) < .001) return; scale = s;
+        oneweb.sats.forEach(function(d){ d.e.setAttribute('r', (.9 / s).toFixed(2)); });
+        galileo.sats.forEach(function(d){ d.e.setAttribute('r', (2.6 / s).toFixed(2)); });
+        ping.forEach(function(c){ c.setAttribute('r', ((c.classList.contains('homedot') ? 2.6 : 4) / s).toFixed(2)); });
+      }
+    };
+  }
+  var ORB = makeOrbits(document.getElementById('orbits'), document.getElementById('home'));
+
+
+  // ---------- altimeter ----------
+  // altitude per frame; labels and captions per chapter
+  var alts = [0, 1, 115, 35786, 35786];   // km, per frame: pad, liftoff, fairing, GEO, mission view
+  var names = chapters.map(function(c){ return c.dataset.label; });
+  var rail = document.getElementById('rail'), fill = document.getElementById('railFill'), ship = document.getElementById('ship');
+  var altVal = document.getElementById('altVal'), altName = document.getElementById('altName');
+  var miniVal = document.getElementById('miniVal'), miniName = document.getElementById('miniName'), progFill = document.getElementById('progFill');
+  var ticks = [], curIdx = -1;
+  function goTo(i){
+    var y = REST[i].a;
+    go(Math.max(0, y), 2.5, i);
+  }
+  function buildRail(){
+    if (ticks.length) return;
+    chapters.forEach(function(c, i){
+      var b = document.createElement('button'); b.className = 'tick'; b.style.top = (100 - i / (NC - 1) * 100) + '%';
+      b.setAttribute('aria-label', 'Go to ' + c.dataset.label); b.innerHTML = '<span>' + c.dataset.label + '</span>';
+      b.onclick = function(){ goTo(i); };
+      rail.appendChild(b); ticks.push(b);
+    });
+  }
+  function fmtAlt(km){ return km < 1 ? Math.round(km * 1000) + ' m' : (km < 100 ? String(Math.round(km * 10) / 10) : Math.round(km).toLocaleString('en-US')) + ' km'; }
+  function altimeter(f){
+    var i = Math.min(N - 2, Math.floor(f)), t = f - i;
+    var a = fmtAlt(Math.expm1(lerp(Math.log1p(alts[i]), Math.log1p(alts[i + 1]), thru ? t : ss(t))));
+    altVal.textContent = a; miniVal.textContent = a;
+    var pct = gNow / (NC - 1) * 100;
+    fill.style.height = pct + '%'; ship.style.top = (100 - pct) + '%'; progFill.style.width = pct + '%';
+    ticks.forEach(function(b, k){ b.classList.toggle('on', k <= gNow + .01); });
+    var cur = Math.min(NC - 1, Math.floor(gNow + .3));
+    if (cur !== curIdx){
+      curIdx = cur; altName.textContent = names[cur]; miniName.textContent = names[cur];
+      chapters.forEach(function(c, k){ c.classList.toggle('on', k === cur); });
+      if (chapters[cur].id === 'c2' && sunStart) sunStart();
+      if (chapters[cur].id === 'c5' && vennStart) vennStart();
+      avatarImgs.forEach(function(img){ img.classList.toggle('on', img.dataset.ch === chapters[cur].id); });
+    }
+  }
+  function sky(f){
+    var k = 0; while (k < SKY.length - 2 && f > SKY[k + 1][0]) k++;
+    var a = SKY[k], b = SKY[k + 1], t = ss((f - a[0]) / (b[0] - a[0]));
+    var c = a[1].map(function(v, j){ return Math.round(lerp(v, b[1][j], t)); });
+    var col = 'rgb(' + c.join(',') + ')', root = document.documentElement.style;
+    root.setProperty('--sky', col); root.setProperty('--stars', ss((f - 1.3) / .6).toFixed(3));
+  }
+
+  // camera progress through a frame's life; a frame shared by several chapters moves across all of them
+  // camera progress through a frame's whole life on screen, from the start of its transition in to the end of its
+  // transition out, so the image keeps a slow drift while you read
+  function camU(i){
+    var c0 = FR.indexOf(i), c1 = FR.lastIndexOf(i);
+    if (c0 < 0){ var k = 0; while (FR[k + 1] < i) k++; return ss((sy - HOLD[k].b) / Math.max(1, HOLD[k + 1].a - HOLD[k].b)); }   // a frame flown through between two steps
+    var from = c0 > 0 ? HOLD[c0 - 1].b : 0, to = c1 < NC - 1 ? HOLD[c1 + 1].a : HOLD[c1].b + H;
+    return ss((sy - from) / Math.max(1, to - from));
+  }
+  // ---------- the ascent video (0 – 2.7 s of videos/2_2.mp4, 1920×1080): liftoff -> fairing opening, as 48 frames scrubbed by the scroll ----------
+  // Loaded after the page settles; until every frame is in, the step change falls back to the image transition.
+  var ASC = {n: 48, v: 'hd27', imgs: [], ready: 0, cv: document.getElementById('ascent'), last: -1, on: false};   // v: bump when the cut changes (busts the browser cache)
+  function loadAscent(){
+    if (ASC.imgs.length || reduce) return;
+    for (var k = 0; k < ASC.n; k++){
+      var im = new Image(); im.decoding = 'async';
+      im.onload = function(){ if (++ASC.ready === ASC.n) dirty = true; };
+      im.src = 'assets/ascent/' + String(k).padStart(2, '0') + '.webp?v=' + ASC.v; ASC.imgs.push(im);
+    }
+  }
+  addEventListener('load', function(){ setTimeout(loadAscent, 500); });
+  function drawAscent(f){
+    var cv = ASC.cv, show = !reduce && f > 1 && f < 2 && ASC.ready === ASC.n;
+    if (!show){ if (ASC.on){ cv.style.visibility = 'hidden'; cv.style.opacity = 0; ASC.on = false; } return; }
+    var dpr = Math.min(2, devicePixelRatio || 1), w = Math.round(Dw * dpr), h = Math.round(Dh * dpr);
+    if (cv.width !== w || cv.height !== h){ cv.width = w; cv.height = h; ASC.last = -1; }
+    var k = Math.round((f - 1) * (ASC.n - 1));
+    if (k !== ASC.last){                                         // cover-fit, centred: the same framing as the still it lands on
+      var im = ASC.imgs[k], s = Math.max(w / im.naturalWidth, h / im.naturalHeight), dw = im.naturalWidth * s, dh = im.naturalHeight * s;
+      cv.getContext('2d').drawImage(im, (w - dw) / 2, (h - dh) / 2, dw, dh); ASC.last = k;
+    }
+    cv.style.visibility = 'visible'; cv.style.opacity = ss((f - 1) / .1).toFixed(3); ASC.on = true;
+  }
+
+  // ---------- render loop ----------
+  var lastF = -1, zNow = [], topBar = document.querySelector('.top');
+  var lastY = scrollY, thrust = 0, lastG = -1;
+  function render(time){
+    sy = reduce ? scrollY : sy + (scrollY - sy) * .25;            // the film eases after the page, like a wheel with inertia
+    if (Math.abs(scrollY - sy) < .4) sy = scrollY;
+    var f = filmPos(), v = scrollY - lastY; lastY = scrollY;
+    var a = frameAR(f);
+    if (Math.abs(a - ar) > .0005) sizeFrame(a);
+    // aim at where the frame sits once pinned, so the window lands exactly as the frame locks in place
+    var m = morph(), r = winHome.getBoundingClientRect(), vr = visual.getBoundingClientRect(), pinTop = r.top - vr.top + (desk ? 0 : parseFloat(getComputedStyle(visual).top));
+    var wx = lerp(r.left, 0, m), wy = lerp(pinTop, 0, m), ww = lerp(r.width, W, m), wh = lerp(r.height, H, m);
+    if (Math.abs(ww - Dw) > .5 || Math.abs(wh - Dh) > .5){ sizeLayers(ww, wh); dirty = true; }
+    if (wx !== Dx || wy !== Dy){ win.style.transform = 'translate3d(' + wx.toFixed(1) + 'px,' + wy.toFixed(1) + 'px,0)'; Dx = wx; Dy = wy; }
+    if (m !== mNow){ win.style.borderRadius = ((desk ? 18 : 14) * (1 - m)).toFixed(1) + 'px'; win.classList.toggle('full', m > .5); mNow = m; dirty = true; }
+    if (f !== lastF || gNow !== lastG || dirty){
+      var b = Math.floor(f), tw = thru ? f - b : ss(f - b), rise = RISE[b + 1] && !reduce;   // no stop at each frame when flying through
+      layers.forEach(function(l, i){
+        if (i < b || i > b + 1 || (i === b + 1 && tw <= 0)){ if (l.style.visibility !== 'hidden'){ l.style.visibility = 'hidden'; l.style.opacity = 0; } return; }
+        var c = (!desk && CAM[i].m) || CAM[i], u = reduce ? .5 : camU(i);
+        var fx = lerp(c.f[0], c.t[0], u), fy = lerp(c.f[1], c.t[1], u), z = lerp(c.z[0], c.z[1], u), ax = .5, ay = .5;
+        if (i === 0 || i === N - 1){                // full screen: make room for the text on the left (desktop) or below (phone)
+          if (desk && !i){ ax += .08 * m; z *= 1 + .12 * m; }
+          if (i){                                   // finale: zoom out so the whole GEO ring stays in view
+            z = lerp(z, desk ? Math.min(1, Dw * .97 / (1590 * base[i])) : .5 / base[i], m);
+            if (!desk) ay -= .2 * m;
+          }
+        }
+        var Lw = dims[i][0] * base[i] * z, Lh = dims[i][1] * base[i] * z;
+        var x = Dw * ax - fx * Lw, y = Dh * ay - fy * Lh;    // keep the window covered; if the image is smaller, keep it inside
+        x = Lw >= Dw ? Math.min(0, Math.max(Dw - Lw, x)) : Math.max(0, Math.min(Dw - Lw, x));
+        y = Lh >= Dh ? Math.min(0, Math.max(Dh - Lh, y)) : Math.max(0, Math.min(Dh - Lh, y));
+        var dy = 0, op = 1, mask = '';
+        if (i === b + 1){
+          if (rise){ dy = -(1 - tw) * .22 * Dh; var p = lerp(-25, 125, tw); mask = 'linear-gradient(to bottom,#000 ' + (p - 25) + '%,transparent ' + p + '%)'; }
+          else op = tw;
+        } else if (rise && tw > 0) dy = tw * .22 * Dh;
+        if (Lh < Dh - 1) mask = 'linear-gradient(to bottom,transparent,#000 12%,#000 88%,transparent)';   // letterboxed: fade into space
+        l.style.visibility = 'visible'; l.style.opacity = op;
+        l.style.webkitMaskImage = l.style.maskImage = mask;
+        zNow[i] = z;
+        l.style.transform = 'translate3d(' + x.toFixed(1) + 'px,' + (y + dy).toFixed(1) + 'px,0) scale(' + z.toFixed(4) + ')';
+      });
+      drawAscent(f); altimeter(f); sky(f); lastF = f; lastG = gNow; dirty = false;
+    }
+    topBar.classList.toggle('onhero', m > .35);
+    panels(sy);
+    avatarBox.classList.toggle('off', m > .02);
+    // the gauge rocket: no flame on the pad, idle flame once lit, longer flame while you scroll
+    var target = f < .5 ? 0 : .55 + Math.min(1.5, Math.abs(v) * .05);
+    thrust += (target - thrust) * (target > thrust ? .35 : .08);
+    ship.style.setProperty('--thrust', thrust.toFixed(3));
+    ship.classList.toggle('fair', f >= 1.5);                // the fairing opens as 'Every subsystem' comes in
+    ship.classList.toggle('sep', f >= 2.3);                 // rocket -> stowed OneSat soon after leaving 'Every subsystem'
+    ship.classList.toggle('dep', f >= 2.9);                 // -> deployed OneSat just before 'On station'
+    if (f > N - 1.8){ ORB.size(base[N - 1] * (zNow[N - 1] || 1)); ORB.update(time || 0, reduce); }
+    requestAnimationFrame(render);
+  }
+
+  // ---------- "Every subsystem, every level": inner ring = subsystems (sized by years), outer ring = the domains within each,
+  // callouts = work beyond the role, pointing at their domain; under the ring, the level track (analyst -> head of) ----------
+  (function(){
+    var svg = document.getElementById('sunSvg'), tip = document.getElementById('sunTip'), fig = document.getElementById('sun'), key = document.getElementById('sunLvls');
+    if (!svg) return;
+    var NS = 'http://www.w3.org/2000/svg', CX = 240, CY = 150, D = Math.PI / 180;
+    // hover notes are written as the role: what I did (past) or do (current). LEVELS[n][1] is the note for a level held in several subsystems.
+    var LEVELS = [
+      ['Analyst', ''],
+      ['Designer', ''],
+      ['Tester', ''],
+      ['Architect', 'Architected the electric propulsion of Galileo Second Generation; now define the operations concept of a flexible digital telecom payload with a team of 10+ architects.'],
+      ['Chief engineer', ''],
+      ['Project manager', 'Took a new plasma propulsion assembly from development to delivery; now run the payload\'s contracts with more than eight global operators and key suppliers.'],
+      ['Head of', '']
+    ];
+    // colours of the finale's orbits: OneWeb (mechanical), Galileo (propulsion), OneSat (payload); level entries from the CV
+    var SUBS = [
+      {name: 'Mechanical', col: '#7fe3ff', yrs: 4.5, when: '2015–21', big: 'Mechanical &amp; structures',
+       meta: '2015 – 2021 · analyst, designer, tester',
+       text: 'Analysed, designed and tested the structures of six satellite programmes, OneWeb and OneSat among them, after a first mission at ESA ESTEC on the Ariane 5 launch of Galileo.',
+       doms: ['Structures', 'Materials', 'Thermo-mechanical', 'AIT', 'Launcher interfaces'],
+       lvls: [[0, '2015 · 2017 – 2021', 'Optimised spacecraft structures to ECSS standards, after verifying the Ariane 5 to satellite interface at ESA ESTEC.'],
+              [1, '2017 – 2021', 'Optimised the design of OneSat\'s novel structure and of its interfaces with the other satellites on the launcher and with the launcher itself.'],
+              [2, '2017 – 2021', 'Justified and tested satellite platforms and thermo-mechanical products for OneWeb, OneSat, Eutelsat 172B, SES-14, Syracuse IV and KMilSat.']]},
+      {name: 'Propulsion', col: '#ffd27a', yrs: 3, when: '2021–24', big: 'Propulsion',
+       meta: '2021 – 2024 · architect, project manager',
+       text: 'Architected the electric propulsion and mechanisms of Galileo Second Generation, took part in the launch and early orbit operations (LEOP) of Eurostar Neo satellites, and managed the development of a new plasma propulsion assembly for a European constellation.',
+       doms: ['Electric propulsion', 'Mechanisms', 'Electrical', 'Thermal', 'Avionics'],
+       lvls: [[3, 'Jun 2021 – May 2024', 'Architected Galileo Second Generation\'s electric propulsion and mechanisms as propulsion lead engineer, through verification, validation and in-flight operations planning.'],
+              [5, 'Jun 2021 – Jun 2024', 'Led the end-to-end development of a new plasma propulsion assembly; managed suppliers and chaired critical design reviews and non-conformance boards.']]},
+      {name: 'Payload', col: '#f2f5fb', yrs: 3, when: '2023 →', big: 'Payload',
+       meta: 'Dec 2023 → today · architect, chief engineer, project manager, head of',
+       text: 'Define, engineer and deliver OneSat\'s flexible digital payload across the space segment, the ground segment and in-orbit operations, and lead the team of payload architects.',
+       doms: ['RF', 'Digital processing', 'Ground segment', 'Operations'],
+       lvls: [[3, 'Dec 2023 → today', 'Define the concept of operations of a flexible digital telecom satellite system, leading a team of 10+ payload architects.'],
+              [4, 'Dec 2023 → today', 'Own technical authority for OneSat\'s Payload Configuration Manager, across the space segment, the ground segment and in-orbit operations.'],
+              [5, 'Dec 2023 → today', 'Run the payload\'s industrial contracts with more than eight global operators and key suppliers, owning schedule and risk.'],
+              [6, 'Aug 2026 → today', 'Lead the team shaping the future of Airbus telecom satellite payloads: building technical excellence and developing people.']]}
+    ];
+    // beyond the day job: [subsystem, title, where, detail, short label, domain, corner, row]
+    var EXTRAS = [
+      [1, 'Nuclear propulsion focal point', 'Airbus · 2022 – 2024', 'Airbus\'s focal point for system-level R&amp;D with the nuclear industry toward an ESA nuclear propulsion demonstrator.', 'Nuclear propulsion', 0, 'br', 0],
+      [0, 'Center of Competence board', 'Airbus · 2018 – 2021', 'Sat on the board and co-authored Airbus\'s international, ECSS-aligned standard on modelling and optimising space structures.', 'Competence board', 0, 'tl', 0],
+      [0, 'ECSS MET paper', 'ESA &amp; Airbus · 2018', 'Published a conference paper on design processes for structural parts made by additive layer manufacturing.', 'ECSS paper', 0, 'tl', 1],
+      [0, 'Composite failure research', 'ISAE-SUPAERO · 2015 – 2017', 'Researched the failure of high-strength fibre composites using infrared techniques, during my M.Sc.', 'Composite research', 1, 'tr', 0]
+    ];
+    var DEF = '<b>What it means</b><small>Hover or tap a subsystem, a level or a callout</small><span>A satellite is one system: every subsystem pulls on the others. Having done the work in each, at every level, I can weigh a trade-off across the whole spacecraft and own it end to end.</span>';
+    var ROT = -29;                                   // turn the ring so each callout's domain faces its corner
+    function el(tag, a, txt, parent){ var e = document.createElementNS(NS, tag); for (var k in a) e.setAttribute(k, a[k]); if (txt) e.textContent = txt; (parent || svg).appendChild(e); return e; }
+    function pt(r, a){ return [CX + r * Math.sin((a + ROT) * D), CY - r * Math.cos((a + ROT) * D)]; }   // a: degrees clockwise from the top
+    function sector(r0, r1, a0, a1){
+      var p = pt(r1, a0), q = pt(r1, a1), s = pt(r0, a1), t = pt(r0, a0), L = a1 - a0 > 180 ? 1 : 0;
+      return 'M' + p + ' A' + r1 + ' ' + r1 + ' 0 ' + L + ' 1 ' + q + ' L' + s + ' A' + r0 + ' ' + r0 + ' 0 ' + L + ' 0 ' + t + 'Z';
+    }
+    var total = SUBS.reduce(function(n, s){ return n + s.yrs; }, 0), a = 0, GAP = 1.6, segs = [], labels = [], domMid = [];
+    var cBig = el('text', {x: CX, y: CY + 4, 'text-anchor': 'middle', 'class': 'cbig'}, '10');
+    var cSm = el('text', {x: CX, y: CY + 22, 'text-anchor': 'middle', 'class': 'csm'}, 'years');
+    SUBS.forEach(function(s, i){
+      var a0 = a, a1 = a + s.yrs / total * 360; a = a1; domMid[i] = [];
+      var g = el('path', {d: sector(46, 88, a0 + GAP / 2, a1 - GAP / 2), fill: s.col, 'class': 'seg sub', tabindex: 0, role: 'button', 'aria-label': s.name + ', ' + s.meta});
+      g.style.transitionDelay = (i * 120) + 'ms'; segs.push({e: g, s: i});
+      // subsystem name along its arc, reading left to right
+      var mid = (a0 + a1) / 2 + ROT, mm = ((mid % 360) + 360) % 360, flip = mm > 90 && mm < 270, id = 'arc' + i, b0 = a0 + 4, b1 = a1 - 4;
+      var p = pt(64, flip ? b1 : b0), q = pt(64, flip ? b0 : b1);
+      el('path', {id: id, d: 'M' + p + ' A64 64 0 0 ' + (flip ? 0 : 1) + ' ' + q, fill: 'none'});
+      var tx = el('text', {'class': 'sname', dy: flip ? 9 : 0, 'text-anchor': 'middle'});
+      el('textPath', {href: '#' + id, startOffset: '50%'}, s.name, tx);
+      var step = (a1 - a0) / s.doms.length;
+      s.doms.forEach(function(d, k){
+        var d0 = a0 + k * step, d1 = d0 + step, m = (d0 + d1) / 2; domMid[i][k] = m;
+        var e = el('path', {d: sector(92, 116, d0 + GAP / 2, d1 - GAP / 2), fill: s.col, 'class': 'seg dom' + (k % 2 ? ' alt' : ''), tabindex: 0, role: 'button', 'aria-label': d + ' (' + s.name + ')'});
+        e.style.transitionDelay = (360 + i * 120 + k * 50) + 'ms'; segs.push({e: e, s: i, d: k});
+        var lp = pt(124, m), sn = Math.sin((m + ROT) * D), cs = Math.cos((m + ROT) * D);
+        var anchor = Math.abs(sn) < .2 ? 'middle' : (sn > 0 ? 'start' : 'end');
+        labels.push({e: el('text', {x: lp[0].toFixed(1), y: (lp[1] + 4 + (cs < -.8 ? 6 : 0) - (cs > .8 ? 3 : 0)).toFixed(1), 'text-anchor': anchor, 'class': 'dl'}, d), s: i, d: k});
+      });
+    });
+
+    // beyond the role: badges in the corners, a leader line to the domain they belong to
+    var xbs = EXTRAS.map(function(X, n){
+      var g = el('g', {'class': 'call', tabindex: 0, role: 'button', 'aria-label': X[1] + ', ' + X[2]});
+      svg.insertBefore(g, svg.firstChild);              // leaders run under the ring and its labels
+      var line = el('polyline', {'class': 'lead'}, null, g), dot = el('circle', {r: 2.4, 'class': 'leadDot'}, null, g);
+      var box = el('rect', {rx: 9, height: 18, 'class': 'cbox'}, null, g), t = el('text', {'class': 'ctxt'}, '✦ ' + X[4], g);
+      g.style.transitionDelay = (900 + n * 120) + 'ms';
+      function on(){
+        pick(X[0], X[5]); xbs.forEach(function(o, k){ o.g.classList.toggle('on', k === n); });
+        tip.innerHTML = '<b>' + X[1] + '</b><small>' + X[2] + '</small><span>' + X[3] + '</span>';
+      }
+      g.addEventListener('mouseenter', on); g.addEventListener('focus', on); g.addEventListener('click', on);
+      return {g: g, line: line, dot: dot, box: box, t: t, X: X};
+    });
+    function placeCallouts(){
+      var VB = svg.viewBox.baseVal;
+      xbs.forEach(function(o){
+        var X = o.X, w = o.t.getComputedTextLength() + 20, right = X[6][1] === 'r', top = X[6][0] === 't';
+        var x = right ? VB.x + VB.width - w : VB.x, y = top ? VB.y + 2 + X[7] * 22 : VB.y + VB.height - 20 - X[7] * 22;
+        o.box.setAttribute('x', x); o.box.setAttribute('y', y); o.box.setAttribute('width', w);
+        o.t.setAttribute('x', x + 10); o.t.setAttribute('y', y + 12.5);
+        var tp = pt(117, domMid[X[0]][X[5]]), sx = right ? x : x + w, sy = y + 9, ex = sx + (right ? -10 : 10);
+        o.line.setAttribute('points', sx + ',' + sy + ' ' + ex + ',' + sy + ' ' + tp[0].toFixed(1) + ',' + tp[1].toFixed(1));
+        o.dot.setAttribute('cx', tp[0].toFixed(1)); o.dot.setAttribute('cy', tp[1].toFixed(1));
+      });
+    }
+    placeCallouts();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(placeCallouts);
+
+    // the level track: one stop per level, one dot each, in the colours of the subsystems where it was held
+    var stops = LEVELS.map(function(L, n){
+      var held = [];
+      SUBS.forEach(function(s, i){ s.lvls.forEach(function(E, k){ if (E[0] === n) held.push({s: i, k: k}); }); });
+      var st = document.createElement('button'); st.type = 'button'; st.className = 'stop';
+      var cols = held.map(function(h){ return SUBS[h.s].col; });
+      st.innerHTML = '<i class="dot" style="background:' + (cols.length > 1 ? 'linear-gradient(90deg,' + cols[0] + ' 50%,' + cols[1] + ' 50%)' : cols[0]) + '"></i><span class="slab">' + L[0] + '</span>';
+      st.setAttribute('aria-label', L[0] + ', ' + held.map(function(h){ return SUBS[h.s].name; }).join(' and '));
+      key.appendChild(st);
+      function on(){ pickLevel(n); }
+      st.addEventListener('mouseenter', on); st.addEventListener('focus', on); st.addEventListener('click', on);
+      return {st: st, held: held};
+    });
+    key.addEventListener('mouseleave', function(){ pick(null); });
+
+    function mark(fn){ segs.concat(labels).forEach(function(o){ var r = fn(o); o.e.classList.toggle('sel', r[0]); o.e.classList.toggle('on', r[1]); }); }
+    function pick(si, dk, lk){
+      fig.classList.toggle('pick', si != null);
+      mark(function(o){ return [o.s === si, o.s === si && dk != null && o.d === dk]; });
+      var lvl = si != null && lk != null ? SUBS[si].lvls[lk][0] : null;
+      stops.forEach(function(o, n){
+        o.st.classList.toggle('sel', o.held.some(function(h){ return h.s === si; })); o.st.classList.toggle('on', n === lvl);
+      });
+      xbs.forEach(function(o){ o.g.classList.remove('on'); });
+      if (si == null){ tip.innerHTML = DEF; tip.style.removeProperty('--sc'); cBig.textContent = '10'; cSm.textContent = 'years'; return; }
+      var s = SUBS[si];
+      if (lk != null){
+        var L = s.lvls[lk];
+        tip.innerHTML = '<b>' + LEVELS[L[0]][0] + ' · ' + s.name + '</b><small>' + L[1] + '</small><span>' + L[2] + '</span>';
+      } else tip.innerHTML = '<b>' + s.big + '</b><small>' + s.meta + '</small><span>' + s.text + '</span>';
+      tip.style.setProperty('--sc', s.col); cBig.textContent = s.when; cSm.textContent = s.name;
+    }
+    function pickLevel(n){
+      var held = stops[n].held;
+      if (held.length === 1) return pick(held[0].s, null, held[0].k);     // held in one subsystem: its CV entry
+      var subs = held.map(function(h){ return h.s; });
+      fig.classList.add('pick');
+      mark(function(o){ return [subs.indexOf(o.s) >= 0, false]; });
+      stops.forEach(function(o, k){ o.st.classList.toggle('sel', k === n); o.st.classList.toggle('on', k === n); });
+      xbs.forEach(function(o){ o.g.classList.remove('on'); });
+      tip.innerHTML = '<b>' + LEVELS[n][0] + '</b><small>' + held.map(function(h){ return SUBS[h.s].name + ' ' + SUBS[h.s].lvls[h.k][1]; }).join(' · ') +
+        '</small><span>' + LEVELS[n][1] + '</span>';
+      tip.style.setProperty('--sc', SUBS[subs[subs.length - 1]].col); cBig.textContent = subs.length + '×'; cSm.textContent = LEVELS[n][0];
+    }
+
+    segs.forEach(function(o){
+      function on(){ pick(o.s); }                               // inner or outer ring: the whole subsystem, one note
+      o.e.addEventListener('mouseenter', on); o.e.addEventListener('focus', on); o.e.addEventListener('click', on);
+    });
+    svg.addEventListener('mouseleave', function(){ pick(null); });
+    pick(null);
+    sunStart = function(){
+      fig.classList.add('flown');
+      setTimeout(function(){ segs.forEach(function(o){ o.e.style.transitionDelay = '0ms'; }); }, 2200);   // after the entrance, hover reacts at once
+    };
+  })();
+
+
+  // ---------- current role: the engineering, the contracts and the people, with me where they overlap ----------
+  (function(){
+    var svg = document.getElementById('vennSvg'), tip = document.getElementById('vennTip'), fig = document.getElementById('venn');
+    if (!svg) return;
+    var NS = 'http://www.w3.org/2000/svg', R0 = 96;
+    var SETS = [
+      {name: 'Engineering', proof: ['Next-generation', 'payloads'], col: '#8fb0ff', c: [150, 112], t: [115, 81],
+       meta: 'Flexible payloads · ground, space and user segments',
+       text: 'Shaping and innovating next-generation flexible payloads for evolving market needs, bridging operations with hardware across the ground, space and user segments.'},
+      {name: 'Contracts', proof: ['Forecast &amp; own', 'cost and planning'], col: '#ffb547', c: [270, 112], t: [305, 81],
+       meta: '8+ global operators · key suppliers',
+       text: 'Drawing up the costing and planning of my team\'s future activities, managing its subcontracting, and accountable for delivering on cost, on time and on quality.'},
+      {name: 'People', proof: ['Define the roadmap', 'empower the team', 'build performance'], col: '#7ee0b5', c: [210, 206], t: [210, 233],
+       meta: 'Payload architects · payload mission managers',
+       text: 'Defining the team roadmap, empowering each member to take ownership, and accountable for building the team\'s performance and technical excellence.'}
+    ];
+    var DEF = '<b>My role</b><small>Hover or tap a circle</small><span>My role sits between the engineering, the contracts and the people.</span>';
+    function el(tag, a, txt, parent){ var e = document.createElementNS(NS, tag); for (var k in a) e.setAttribute(k, a[k]); if (txt) e.innerHTML = txt; (parent || svg).appendChild(e); return e; }
+    var circles = SETS.map(function(S, i){
+      var c = el('circle', {cx: S.c[0], cy: S.c[1], r: R0, 'class': 'vc', tabindex: 0, role: 'button', 'aria-label': S.name + ': ' + S.meta});
+      c.style.setProperty('--vc', S.col); c.style.transitionDelay = (i * 150) + 'ms';
+      function on(){ pick(i); }
+      c.addEventListener('mouseenter', on); c.addEventListener('focus', on); c.addEventListener('click', on);
+      return c;
+    });
+    SETS.forEach(function(S){
+      el('text', {x: S.t[0], y: S.t[1], 'text-anchor': 'middle', 'class': 'vn vt'}, S.name);
+      S.proof.forEach(function(line, k){ el('text', {x: S.t[0], y: S.t[1] + 18 + k * 15, 'text-anchor': 'middle', 'class': 'vp vt'}, line); });
+    });
+    // the overlap: where I work (labels sit on the centroid of each circle's own region)
+    var core = el('g', {'class': 'core vt', tabindex: 0, role: 'button', 'aria-label': 'Tomas, between the engineering, the contracts and the people'});
+    el('image', {href: 'assets/avatar-leader.webp', x: 189.5, y: 78.3, width: 41, height: 130, 'class': 'coreMe'}, null, core);   // centred on the diagram's centroid (210, 143.3)
+    function pick(i){
+      fig.classList.toggle('pick', i != null);
+      circles.forEach(function(c, k){ c.classList.toggle('on', k === i); });
+      if (i == null){ tip.innerHTML = DEF; tip.style.removeProperty('--sc'); return; }
+      var S = SETS[i];
+      tip.innerHTML = '<b>' + S.name + '</b><small>' + S.meta + '</small><span>' + S.text + '</span>';
+      tip.style.setProperty('--sc', S.col);
+    }
+    core.addEventListener('mouseenter', function(){ pick(null); }); core.addEventListener('click', function(){ pick(null); });
+    svg.addEventListener('mouseleave', function(){ pick(null); });
+    pick(null);
+    vennStart = function(){ fig.classList.add('flown'); };
+  })();
+
+
+  // ---------- the step track ----------
+  // The text is not scrolled like a page: each step's text is a panel in a fixed reading area, and the page's scroll
+  // length is an invisible track. A step holds while you read it (long texts scroll inside the panel); between steps
+  // the outgoing panel sinks away and the next one descends from above, in step with the scenery falling away as
+  // the rocket climbs. REST holds each step's [a, b] range on the track.
+  var reader = document.getElementById('reader'), story = document.querySelector('.story');
+  var heroLayer = document.getElementById('heroLayer'), finLayer = document.getElementById('finLayer'), PANEL = [], RH = 0;
+  function rests(){
+    var topH = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--topH')) || 60;
+    var sr = story.getBoundingClientRect(), rTop = desk ? topH : topH + visual.offsetHeight;
+    RH = H - rTop;
+    reader.style.top = rTop + 'px'; reader.style.height = RH + 'px';
+    reader.style.left = (desk ? sr.left : 16) + 'px'; reader.style.width = (desk ? sr.width : W - 32) + 'px';
+    // the first step follows the landing closely: liftoff fades in while the frame is still shrinking into place
+    var G = Math.round(H * .9), avail = RH - 48, y = hero.offsetHeight + Math.round(H * .25), out = [{a: 0, b: 0}];
+    PANEL = [null];
+    chapters.slice(1, NC - 1).forEach(function(c, j){
+      var h = c.offsetHeight, read = Math.max(0, h - avail);
+      PANEL.push({el: c, restY: read ? 24 : (RH - h) / 2, read: read});
+      out.push({a: y, b: y + read});
+      y += read + Math.round(G * Math.max(1, .8 * (FR[j + 2] - FR[j + 1])));   // flying through several frames takes a longer gap
+    });
+    var finTop = y + H * .9;                           // the beams frame is in before the finale grows
+    story.style.height = Math.max(0, finTop - (sr.top + scrollY)) + 'px';
+    var readFin = Math.max(0, finLayer.scrollHeight - H);   // phones: the finale can be taller than the screen
+    finale.style.height = (H + readFin) + 'px';
+    out.push({a: finTop, b: finTop + readFin});
+    return out;
+  }
+  function ease(x){ x = Math.max(0, Math.min(1, x)); return x * x * (3 - 2 * x); }
+  function panels(y){
+    var D = RH * .28;
+    for (var k = 1; k < NC - 1; k++){
+      var R = REST[k], P = PANEL[k], ty = 0, op = 0, el = P.el;
+      if (y >= R.a && y <= R.b){ ty = P.restY - (y - R.a); op = 1; }                       // reading
+      else if (y < R.a){                                                                    // arriving from above
+        var p = (y - REST[k - 1].b) / (R.a - REST[k - 1].b);
+        if (p > 0){ ty = P.restY - D * (1 - ease(p)); op = ease((p - .3) / .7); }
+      } else {                                                                              // sinking away
+        var q = (y - R.b) / (REST[k + 1].a - R.b);
+        if (q < 1){ ty = P.restY - P.read + D * ease(q); op = 1 - ease(q / .7); }
+      }
+      if (op <= .005){ if (el.style.visibility !== 'hidden'){ el.style.visibility = 'hidden'; el.classList.remove('vis'); } continue; }
+      el.style.visibility = 'visible'; el.classList.toggle('vis', op > .5);
+      el.style.opacity = op.toFixed(3); el.style.transform = 'translate3d(0,' + ty.toFixed(1) + 'px,0)';
+    }
+    // the landing text sinks away as the frame shrinks; the finale text descends as the Earth grows
+    var hm = 1 - ease(y / hero.offsetHeight);
+    heroLayer.style.visibility = hm > .005 ? 'visible' : 'hidden';
+    heroLayer.style.opacity = ease(hm * 1.2).toFixed(3); heroLayer.style.transform = 'translate3d(0,' + (H * .22 * (1 - hm)).toFixed(1) + 'px,0)';
+    heroLayer.style.pointerEvents = hm > .5 ? 'auto' : 'none';
+    var F = REST[NC - 1], fm = ease((y - (F.a - H * .9)) / (H * .9)), inner = Math.max(0, Math.min(F.b - F.a, y - F.a));
+    finLayer.style.visibility = fm > .005 ? 'visible' : 'hidden';
+    finLayer.style.opacity = ease((fm - .3) / .7).toFixed(3); finLayer.style.transform = 'translate3d(0,' + (-H * .22 * (1 - fm) - inner).toFixed(1) + 'px,0)';
+    finLayer.style.pointerEvents = fm > .5 ? 'auto' : 'none';
+    if (fm > .98 && typeof finaleHint === 'function') finaleHint();
+    if (fm < .9 && tipKey) showTip(null);
+  }
+  // ---------- moving between steps ----------
+  // Inside a long step you read freely. At a step's edge, scrolling on launches the move to the next step and the page
+  // takes over like a wheel: it spins up smoothly, cruises at a speed set by how fast you scrolled, then brakes at a
+  // constant rate so it stops exactly on the step. Keep scrolling fast and it carries on through the next steps
+  // instead of stopping; slow input and the trackpad's leftover momentum never skip a step.
+  var RAMP = 180, BRAKE = 380, FAST = 2.4;            // spin-up ms, braking distance px, "still scrolling fast" px/ms
+  var anim = null, mv = null, hush = false, hushT = null, wIn = [];
+  function cruiseFor(rate){ return Math.max(1.3, Math.min(5, .9 + rate * .9)); }   // input rate px/ms -> cruise px/ms
+  function inputRate(dirn){                           // wheel input over the last 120 ms in that direction, px/ms
+    var now = performance.now(), sum = 0;
+    wIn = wIn.filter(function(w){ return now - w[0] < 120; });
+    wIn.forEach(function(w){ if (w[1] * dirn > 0) sum += Math.abs(w[1]); });
+    return sum / 120;
+  }
+  function stopGlide(){ if (anim){ cancelAnimationFrame(anim); anim = null; } mv = null; }
+  function hushFor(){ hush = true; clearTimeout(hushT); hushT = setTimeout(function(){ hush = false; }, 160); }
+  function go(target, rate, k){
+    var y = scrollY, d = target - y;
+    if (Math.abs(d) < 1) return;
+    if (reduce){ scrollTo(0, target); return; }
+    var dirn = d > 0 ? 1 : -1;
+    if (mv && mv.dir === dirn){ mv.target = target; mv.k = k; mv.cruise = Math.max(mv.cruise, cruiseFor(rate)); return; }
+    stopGlide();
+    mv = {target: target, k: k, dir: dirn, v: 0, cruise: cruiseFor(rate), y: y, last: performance.now(), ext: 0};
+    anim = requestAnimationFrame(tick);
+  }
+  function extend(rate){                              // still scrolling fast: carry on to the step after
+    var m = mv, now = performance.now();
+    if (!m || m.k == null || now - m.ext < 90) return;
+    var t = REST[m.k + m.dir]; if (!t) return;
+    m.k += m.dir; m.target = m.dir > 0 ? t.a : t.b; m.cruise = Math.max(m.cruise, cruiseFor(rate)); m.ext = now;
+  }
+  function tick(now){
+    var m = mv; if (!m) return;
+    var dt = Math.min(40, now - m.last); m.last = now;
+    var rem = (m.target - m.y) * m.dir;
+    // decide to carry on before braking would begin (braking distance at the current speed, plus a margin)
+    if (m.wheel && rem < BRAKE * (m.v * m.v) / (m.cruise * m.cruise) + 260 && inputRate(m.dir) >= FAST){ extend(inputRate(m.dir)); rem = (m.target - m.y) * m.dir; }
+    var A = m.cruise * m.cruise / (2 * BRAKE);        // constant braking that stops in BRAKE px from cruise speed
+    var want = Math.min(m.cruise, Math.sqrt(2 * A * Math.max(0, rem)));
+    m.v = want > m.v ? Math.min(want, m.v + m.cruise / RAMP * dt) : want;
+    m.y += m.dir * m.v * dt;
+    if ((m.target - m.y) * m.dir <= .5){ scrollTo(0, m.target); anim = null; mv = null; hushFor(); return; }
+    scrollTo(0, m.y);
+    anim = requestAnimationFrame(tick);
+  }
+  function stepAt(y){ for (var k = 0; k < REST.length; k++) if (y >= REST[k].a - 2 && y <= REST[k].b + 2) return k; return -1; }
+  function launch(dirn, rate){                        // on to the next step in that direction
+    var y = scrollY, k = stepAt(y), n;
+    if (k >= 0) n = k + dirn;
+    else { var i = 0; while (i < REST.length - 2 && y > REST[i + 1].a) i++; n = dirn > 0 ? i + 1 : i; }
+    var t = REST[n]; if (t) go(dirn > 0 ? t.a : t.b, rate, n);
+  }
+  // mouse wheel and trackpad
+  addEventListener('wheel', function(e){
+    if (e.ctrlKey) return;                             // pinch-zoom
+    var dy = e.deltaY * (e.deltaMode === 1 ? 16 : e.deltaMode === 2 ? H : 1);
+    if (!dy) return;
+    var dirn = dy > 0 ? 1 : -1;
+    wIn.push([performance.now(), dy]);
+    if (mv){                                         // the wheel is spinning: more input in its direction speeds it up
+      e.preventDefault();
+      if (mv.dir === dirn){ mv.wheel = true; mv.cruise = Math.max(mv.cruise, cruiseFor(inputRate(dirn))); }
+      return;
+    }
+    if (hush){
+      e.preventDefault(); hushFor();
+      if (inputRate(dirn) >= FAST) launch(dirn, inputRate(dirn));    // fast scrolling carries straight on
+      if (mv) mv.wheel = true;
+      return;
+    }
+    var y = scrollY, k = stepAt(y);
+    if (k < 0){ e.preventDefault(); launch(dirn, inputRate(dirn)); if (mv) mv.wheel = true; return; }
+    var r = REST[k], edge = dirn > 0 ? r.b : r.a;
+    if (Math.abs(y - edge) <= 2){ e.preventDefault(); launch(dirn, inputRate(dirn)); if (mv) mv.wheel = true; return; }
+    if (dirn > 0 ? y + dy > r.b : y + dy < r.a){ e.preventDefault(); scrollTo(0, edge); } // stop on the edge first
+  }, {passive: false});
+  // touch: drag to read a long step (with momentum); pull past its edge to move on, swipe again to keep going
+  var tLast = 0, tVel = 0, tTime = 0, tMode = '', pull = 0, coastF = null;
+  addEventListener('touchstart', function(e){
+    if (e.touches.length > 1){ tMode = ''; return; }
+    cancelAnimationFrame(coastF); tLast = e.touches[0].clientY; tVel = 0; tTime = performance.now(); pull = 0;
+    tMode = mv ? 'chain' : 'read';
+  }, {passive: true});
+  addEventListener('touchmove', function(e){
+    if (!tMode || e.touches.length > 1) return;
+    var cy = e.touches[0].clientY, dy = tLast - cy, now = performance.now();
+    tVel = tVel * .6 + .4 * dy / Math.max(8, now - tTime); tTime = now; tLast = cy;
+    e.preventDefault();
+    if (!dy) return;
+    if (tMode === 'chain'){                            // swiping again while moving: carry on to the next step
+      pull += dy * (mv ? mv.dir : 0);
+      if (mv && pull > 40){ extend(Math.abs(tVel)); pull = -1e9; }
+      return;
+    }
+    if (tMode !== 'read') return;
+    var y = scrollY, k = stepAt(y);
+    if (k < 0){ tMode = 'done'; launch(dy > 0 ? 1 : -1, Math.abs(tVel)); return; }
+    var r = REST[k], ny = y + dy;
+    if (ny > r.b || ny < r.a){
+      scrollTo(0, ny > r.b ? r.b : r.a); pull += Math.abs(dy);
+      if (pull > 36){ tMode = 'done'; launch(dy > 0 ? 1 : -1, Math.abs(tVel)); }
+    } else { pull = 0; scrollTo(0, ny); }
+  }, {passive: false});
+  addEventListener('touchend', function(){
+    if (tMode === 'read' && Math.abs(tVel) > .15 && performance.now() - tTime < 80){
+      (function coast(){                               // momentum while reading, stopping at the step's edges
+        tVel *= .95;
+        var y = scrollY, k = stepAt(y); if (k < 0) return;
+        var r = REST[k], ny = Math.max(r.a, Math.min(r.b, y + tVel * 16));
+        scrollTo(0, ny);
+        if (Math.abs(tVel) > .02 && ny > r.a && ny < r.b) coastF = requestAnimationFrame(coast);
+      })();
+    }
+    tMode = '';
+  }, {passive: true});
+  // keys: through a long step a screenful at a time, then on to the next step; holding the key keeps going
+  addEventListener('keydown', function(e){
+    if (e.target.closest && e.target.closest('input,textarea,select,[contenteditable],a,button')) return;   // let focused links work
+    var dirn = {ArrowDown: 1, PageDown: 1, ArrowUp: -1, PageUp: -1}[e.key] || (e.key === ' ' ? (e.shiftKey ? -1 : 1) : 0);
+    if (!dirn) return;
+    e.preventDefault();
+    if (mv){ if (mv.dir === dirn && e.repeat) extend(3); return; }
+    var y = scrollY, k = stepAt(y);
+    if (k >= 0){
+      var r = REST[k], edge = dirn > 0 ? r.b : r.a;
+      if (Math.abs(y - edge) > 2){ go(dirn > 0 ? Math.min(edge, y + H * .8) : Math.max(edge, y - H * .8), 1, null); return; }
+    }
+    launch(dirn, 1);
+  });
+  // anything else that leaves the page between steps (dragging the scrollbar): finish the move in that direction
+  var idle = null, dir = 1, prevY = scrollY;
+  addEventListener('scroll', function(){
+    var d = scrollY - prevY; if (d) dir = d > 0 ? 1 : -1; prevY = scrollY;
+    clearTimeout(idle); idle = setTimeout(function(){ if (!mv && !tMode && stepAt(scrollY) < 0) launch(dir, 1); }, 160);
+  }, {passive: true});
+
+  // ---------- finale datatips: hover (or tap) an orbit or a satellite ----------
+  // The nearest constellation within reach is highlighted and described, with what it meant in my career.
+  // a small targeting reticle (ring + centre dot) in the colour of the orbit under the pointer
+  function reticle(col){
+    return 'url("data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"><circle cx="14" cy="14" r="9" fill="none" stroke="#0b1220" stroke-width="3.5" opacity=".55"/><circle cx="14" cy="14" r="9" fill="none" stroke="' + col + '" stroke-width="1.6"/><circle cx="14" cy="14" r="1.8" fill="' + col + '"/></svg>') + '") 14 14, crosshair';
+  }
+  var TIPS = {
+    oneweb:  {name: 'OneWeb', col: '#7fe3ff', facts: 'LEO 1,200 km · 588 satellites · one orbit every 1 h 49 min',
+              me: 'I participated in the design of its satellite structures.'},
+    galileo: {name: 'Galileo', col: '#ffd27a', facts: 'MEO 23,222 km · 24 satellites · one orbit every 14 h 05 min',
+              me: 'I led the electric propulsion of its second generation.'},
+    geo:     {name: 'OneSat', col: '#f2f5fb', facts: 'GEO 35,786 km · stays above the same spot on Earth',
+              me: 'I lead the development of its payload operations and contributed to the design of its satellite structures.'}
+  };
+  Object.keys(TIPS).forEach(function(k){ TIPS[k].cursor = reticle(TIPS[k].col); });
+  var tip = document.getElementById('tip'), orbSvg = document.getElementById('orbits'), tipKey = null, tipHide = null, hinting = false;
+  function showTip(key, cx, cy){
+    if (key !== tipKey){
+      tipKey = key; orbSvg.classList.remove('hl-oneweb', 'hl-galileo', 'hl-geo');
+      if (key){
+        var d = TIPS[key];
+        orbSvg.classList.add('hl-' + key);
+        tip.innerHTML = '<b><i style="background:' + d.col + '"></i>' + d.name + '</b><span>' + d.facts + '</span><em>“' + d.me + '”</em><small>To scale · real period · time ×30</small>';
+      }
+      tip.classList.toggle('on', !!key);
+    }
+    if (key){
+      var w = tip.offsetWidth, h = tip.offsetHeight, x = cx + 18, y = cy + 18;
+      if (x + w > W - 12) x = cx - w - 18;
+      if (y + h > H - 12) y = cy - h - 18;
+      tip.style.transform = 'translate(' + Math.max(12, x) + 'px,' + Math.max(12, y) + 'px)';
+    }
+  }
+  function pickAt(cx, cy, tol){
+    if (!win.classList.contains('full')) return null;
+    var L = layers[N - 1].getBoundingClientRect(), k = L.width / 1672;
+    return ORB.pick((cx - L.left) / k, (cy - L.top) / k, tol / k);
+  }
+  function overText(t){ return t.closest && t.closest('.fin-in .who, .fin-in h2, .fin-in p, .fin-in .cta, .fin-in a, .top'); }
+  document.addEventListener('pointermove', function(e){
+    if (e.pointerType === 'touch' || hinting) return;
+    var key = overText(e.target) ? null : pickAt(e.clientX, e.clientY, 16);
+    showTip(key, e.clientX, e.clientY);
+    finLayer.style.cursor = key ? TIPS[key].cursor : '';
+  });
+  document.addEventListener('pointerdown', function(e){
+    if (e.pointerType !== 'touch' || hinting || overText(e.target)) return;
+    var key = pickAt(e.clientX, e.clientY, 30);
+    showTip(key, e.clientX, e.clientY);
+    clearTimeout(tipHide); if (key) tipHide = setTimeout(function(){ showTip(null); }, 4000);
+  });
+  // the first time the finale settles, the three constellations light up in turn with a hint
+  var hinted = false, hintEl = document.getElementById('orbHint');
+  function finaleHint(){
+    if (hinted || reduce) return; hinted = true; hinting = true;
+    hintEl.textContent = matchMedia('(hover: hover)').matches ? 'Hover the orbits' : 'Tap the orbits';
+    hintEl.classList.add('on');
+    ['oneweb', 'galileo', 'geo', null].forEach(function(k, i){
+      setTimeout(function(){
+        orbSvg.classList.remove('hl-oneweb', 'hl-galileo', 'hl-geo'); if (k) orbSvg.classList.add('hl-' + k);
+        if (!k){ hinting = false; setTimeout(function(){ hintEl.classList.remove('on'); }, 2500); }
+      }, 400 + i * 1100);
+    });
+  }
+  document.addEventListener('click', function(e){
+    var a = e.target.closest && e.target.closest('a[href^="#"]'); if (!a) return;
+    var id = a.getAttribute('href').slice(1), k = chapters.map(function(c){ return c.id; }).indexOf(id);
+    if (k >= 0){ e.preventDefault(); goTo(k); }
+  });
+  addEventListener('resize', layout);
+  addEventListener('load', layout);
+  layout(); requestAnimationFrame(render);
+})();
+</script>
+</body>
+</html>
