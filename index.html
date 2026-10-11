@@ -1021,7 +1021,7 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
     if (wx !== Dx || wy !== Dy){ win.style.transform = 'translate3d(' + wx.toFixed(1) + 'px,' + wy.toFixed(1) + 'px,0)'; Dx = wx; Dy = wy; }
     if (m !== mNow){ win.style.borderRadius = ((desk ? 18 : 14) * (1 - m)).toFixed(1) + 'px'; win.classList.toggle('full', m > .5); mNow = m; dirty = true; }
     if (f !== lastF || gNow !== lastG || dirty){
-      var b = Math.floor(f), tw = thru ? f - b : ss(f - b), rise = RISE[b + 1] && !reduce;   // no stop at each frame when flying through
+      var b = Math.floor(f), tw = thru ? f - b : ss(f - b), rise = (RISE[b + 1] || (!desk && b === 0)) && !reduce;   // phones: the pad falls away too (no frame shrink there)
       layers.forEach(function(l, i){
         if (i < b || i > b + 1 || (i === b + 1 && tw <= 0)){ if (l.style.visibility !== 'hidden'){ l.style.visibility = 'hidden'; l.style.opacity = 0; } return; }
         var c = (!desk && CAM[i].m) || CAM[i], u = reduce ? .5 : camU(i);
