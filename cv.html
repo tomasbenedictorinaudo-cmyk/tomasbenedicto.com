@@ -635,13 +635,13 @@ footer{padding:36px 0 48px;color:var(--muted);font-size:14px;display:flex;justif
   addEventListener('scroll',function(){nav.classList.toggle('scrolled',scrollY>8)},{passive:true});
   // duplicate marquee content for seamless loop
   var tr=document.getElementById('track');tr.insertAdjacentHTML('beforeend',tr.innerHTML.replace('<span>','<span aria-hidden="true">'));
-  // altitude gauge (as in the story): one tick per section at its altitude; the rocket climbs, opens its fairing, then flies as OneSat
+  // altitude gauge (as in the story): one tick per menu section (About, Experience, Education, Contact) at its altitude; the rocket climbs, opens its fairing, then flies as OneSat
   (function(){
     var rail=document.getElementById('gRail'),fill=document.getElementById('gFill'),ship=document.getElementById('gShip'),
         val=document.getElementById('gAlt'),nameEl=document.getElementById('gName'),pts=[],ticks=[];
     var stops=[{el:null,name:'T-0 · Launch pad',km:0}];
-    document.querySelectorAll('section[id]').forEach(function(sec){var a=sec.querySelector('.sec-alt'),h=sec.querySelector('.sec-head h2'),n=sec.querySelector('.sec-num');
-      if(a)stops.push({el:sec,name:n.textContent+' · '+h.textContent.split(' &')[0],km:parseFloat(a.textContent.replace(/,/g,''))})});
+    document.querySelectorAll('.nav-links a[href^="#"]').forEach(function(l){var sec=document.querySelector(l.getAttribute('href')),a=sec&&sec.querySelector('.sec-alt');   // the stops are the menu's sections
+      if(a)stops.push({el:sec,name:l.textContent,km:parseFloat(a.textContent.replace(/,/g,''))})});
     var L=stops.length-1;
     stops.forEach(function(st,i){var b=document.createElement('button');b.type='button';b.className='tick';b.style.top=(100-i/L*100)+'%';
       b.setAttribute('aria-label','Go to '+st.name);b.innerHTML='<span>'+st.name+'</span>';
@@ -657,7 +657,7 @@ footer{padding:36px 0 48px;color:var(--muted);font-size:14px;display:flex;justif
       val.textContent=fmt(pos>=L?stops[L].km:km);nameEl.textContent=stops[Math.min(L,Math.floor(pos+.3))].name;
       var pct=pos/L*100;fill.style.height=pct+'%';ship.style.top=(100-pct)+'%';
       ship.style.setProperty('--thrust',pos<1.8?Math.min(1,pos*3):0);
-      ship.classList.toggle('fair',pos>=1.7);ship.classList.toggle('sep',pos>=2.3);ship.classList.toggle('dep',pos>=L-1.5);
+      ship.classList.toggle('fair',pos>=1.7);ship.classList.toggle('sep',pos>=2.3);ship.classList.toggle('dep',pos>=L-.6);
       ticks.forEach(function(b,k){b.classList.toggle('on',k<=pos+.01)});
     }
     measure();upd();addEventListener('scroll',upd,{passive:true});addEventListener('resize',function(){measure();upd()});addEventListener('load',function(){measure();upd()});

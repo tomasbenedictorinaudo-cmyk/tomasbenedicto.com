@@ -332,13 +332,13 @@ figcaption b{color:var(--ink-2);font-weight:500}
 .venn{margin:10px 0 0}
 .venn svg{display:block;width:100%;max-width:368px;height:auto;margin:0 auto;overflow:visible}
 .venn .vc{fill:var(--vc);fill-opacity:.13;stroke:var(--vc);stroke-opacity:.65;stroke-width:1.5;mix-blend-mode:screen;cursor:pointer;outline:none;
-  opacity:0;transform:scale(.85);transform-box:fill-box;transform-origin:center;transition:opacity .7s,transform .9s cubic-bezier(.3,.7,.2,1),fill-opacity .25s,stroke-opacity .25s}
+  opacity:0;transform:scale(.85);transform-box:fill-box;transform-origin:center;transition:opacity .4s,transform .55s cubic-bezier(.3,.7,.2,1),fill-opacity .25s,stroke-opacity .25s}
 .venn.flown .vc{opacity:1;transform:none}
 .venn .vc:hover,.venn .vc.on,.venn .vc:focus-visible{fill-opacity:.28;stroke-opacity:1}
 .venn.pick .vc:not(.on){fill-opacity:.06;stroke-opacity:.3}
 .venn .vn{font:600 15px "Space Grotesk",sans-serif;fill:var(--ink);pointer-events:none}
 .venn .vp{font:500 11.5px Inter,sans-serif;fill:var(--muted);pointer-events:none}
-.venn .vt{opacity:0;transition:opacity .5s .6s}.venn.flown .vt{opacity:1}
+.venn .vt{opacity:0;transition:opacity .35s .25s}.venn.flown .vt{opacity:1}
 .venn .core{cursor:pointer;outline:none}
 .venn .coreMe{filter:drop-shadow(0 6px 10px rgba(0,0,0,.6))}
 .venn .coreT{font:600 10.5px "JetBrains Mono",monospace;letter-spacing:.06em;text-transform:uppercase;fill:var(--ink)}
@@ -626,7 +626,7 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
       <div><b>Tomas Benedicto</b><span>Head of Payload Architects · Airbus Defence and Space</span><small class="fluent">Fluent in Spanish, French and English · professional Dutch</small></div>
     </div>
     <h2>Let's build the next one together.</h2>
-    <p class="pitch">LEO, MEO, GEO: three orbits so far, with an employer that keeps trusting me with bigger challenges. What drives me is the complete system, from the first requirement to the service in orbit, with space left clear for those who follow.</p>
+    <p class="pitch">LEO, MEO, GEO: three orbits so far, with an employer that keeps trusting me with bigger challenges. What drives me is the complete system, from the first requirement to the service in orbit and a safe deorbit that keeps space usable.</p>
     <p class="pitch">I'm always happy to talk with people building ambitious space systems. Let's connect!</p>
     <div class="cta hero-cta">
       <a class="btn primary same" href="cv.html"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg>CV</a>
@@ -980,6 +980,7 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
   // altitude per frame; labels and captions per chapter
   var alts = [0, 1, 115, 35786, 35786];   // km, per frame: pad, liftoff, fairing, GEO, mission view
   var names = chapters.map(function(c){ return c.dataset.label; });
+  var vennK = chapters.map(function(c){ return c.id; }).indexOf('c5');
   var rail = document.getElementById('rail'), fill = document.getElementById('railFill'), ship = document.getElementById('ship');
   var altVal = document.getElementById('altVal'), altName = document.getElementById('altName');
   var miniVal = document.getElementById('miniVal'), miniName = document.getElementById('miniName'), progFill = document.getElementById('progFill');
@@ -1005,12 +1006,12 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
     var pct = gNow / (NC - 1) * 100;
     fill.style.height = pct + '%'; ship.style.top = (100 - pct) + '%'; progFill.style.width = pct + '%';
     ticks.forEach(function(b, k){ b.classList.toggle('on', k <= gNow + .01); });
+    if (vennStart && gNow > vennK - .6) vennStart();   // the Venn draws itself while its step is still arriving
     var cur = Math.min(NC - 1, Math.floor(gNow + .3));
     if (cur !== curIdx){
       curIdx = cur; altName.textContent = names[cur]; miniName.textContent = names[cur];
       chapters.forEach(function(c, k){ c.classList.toggle('on', k === cur); });
       if (chapters[cur].id === 'c2' && sunStart) sunStart();
-      if (chapters[cur].id === 'c5' && vennStart) vennStart();
       avatarImgs.forEach(function(img){ img.classList.toggle('on', img.dataset.ch === chapters[cur].id); });
     }
   }
@@ -1319,7 +1320,7 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
     function el(tag, a, txt, parent){ var e = document.createElementNS(NS, tag); for (var k in a) e.setAttribute(k, a[k]); if (txt) e.innerHTML = txt; (parent || svg).appendChild(e); return e; }
     var circles = SETS.map(function(S, i){
       var c = el('circle', {cx: S.c[0], cy: S.c[1], r: R0, 'class': 'vc', tabindex: 0, role: 'button', 'aria-label': S.name + ': ' + S.meta});
-      c.style.setProperty('--vc', S.col); c.style.transitionDelay = (i * 150) + 'ms';
+      c.style.setProperty('--vc', S.col); c.style.transitionDelay = (i * 70) + 'ms';
       function on(){ pick(i); }
       c.addEventListener('mouseenter', on); c.addEventListener('focus', on); c.addEventListener('click', on);
       return c;
