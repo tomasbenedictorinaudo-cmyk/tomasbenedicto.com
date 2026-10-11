@@ -1,0 +1,36 @@
+<!doctype html><html><head><meta charset="utf-8">
+<!-- Source of assets/og/card.jpg (the link-preview card). Render at 1200x630, scale 2, then downsample:
+     chrome --headless --force-device-scale-factor=2 --window-size=1200,630 --screenshot=card.png tools/share-card.html -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0}
+html,body{width:1200px;height:630px;overflow:hidden;background:#0b1220}
+.card{position:relative;width:1200px;height:630px;overflow:hidden;color:#eef2fa;font-family:Inter,sans-serif}
+.bg{position:absolute;inset:0;background:url(../assets/story/0.webp) no-repeat;background-size:1080px auto;background-position:330px 52%}
+.shade{position:absolute;inset:0;background:
+  linear-gradient(90deg,#0b1220 0%,rgba(11,18,32,.97) 34%,rgba(11,18,32,.72) 47%,rgba(11,18,32,.15) 62%,rgba(11,18,32,0) 72%),
+  linear-gradient(0deg,rgba(11,18,32,.55) 0%,rgba(11,18,32,0) 30%)}
+.in{position:absolute;left:72px;top:64px;bottom:60px;width:560px;display:flex;flex-direction:column}
+.who{display:flex;align-items:center;gap:18px}
+.me{width:86px;height:86px;border-radius:50%;object-fit:cover;border:3px solid rgba(255,255,255,.9);box-shadow:0 0 0 7px rgba(255,181,71,.28),0 12px 30px rgba(0,0,0,.45)}
+.role b{display:block;font:600 22px "Space Grotesk",sans-serif}
+.role span{font-size:17px;color:#c9d2e3}
+h1{font:700 74px/1.02 "Space Grotesk",sans-serif;letter-spacing:-.02em;margin-top:34px}
+.claim{font:600 30px/1.22 "Space Grotesk",sans-serif;color:#ffb547;margin-top:18px;letter-spacing:-.01em}
+.story{font-size:20px;line-height:1.5;color:#c9d2e3;margin-top:20px;max-width:520px}
+.url{margin-top:auto;display:inline-flex;align-self:flex-start;align-items:center;gap:12px;padding:12px 20px 12px 16px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.22);font:500 19px "JetBrains Mono",monospace;letter-spacing:.02em}
+.url i{display:grid;place-items:center;width:30px;height:30px;border-radius:8px;background:#000;border:1px solid rgba(255,255,255,.25)}
+.url svg{width:26px;height:26px}
+.alt{position:absolute;right:56px;top:56px;text-align:right;font:500 13px "JetBrains Mono",monospace;letter-spacing:.14em;text-transform:uppercase;color:rgba(238,242,250,.8);text-shadow:0 1px 8px rgba(0,0,0,.5)}
+.alt b{display:block;font:600 22px "Space Grotesk",sans-serif;letter-spacing:0;text-transform:none;color:#fff;margin-top:4px}
+</style></head><body><div class="card">
+<div class="bg"></div><div class="shade"></div>
+<div class="alt">T-0 · Launch pad<b>0 m → 35,786 km</b></div>
+<div class="in">
+  <div class="who"><img class="me" src="../assets/headshot.jpg"><div class="role"><b>Head of Payload Architects</b><span>Airbus Defence and Space</span></div></div>
+  <h1>Tomas Benedicto</h1>
+  <p class="claim">Aerospace engineer.<br>10 years building satellites.</p>
+  <p class="story">My career, told as a launch: from the pad to orbit.</p>
+  <div class="url"><i><svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="20.5" fill="none" stroke="#fff" stroke-width="1.7"/><circle cx="32" cy="32" r="7" fill="#fff"/><circle cx="45.18" cy="16.30" r="3.4" fill="#fff" stroke="#000" stroke-width="1.6"/><circle cx="49.75" cy="21.75" r="3.4" fill="#fff" stroke="#000" stroke-width="1.6"/></svg></i>tomasbenedicto.com</div>
+</div>
+</div></body></html>
