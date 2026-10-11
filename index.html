@@ -55,6 +55,8 @@ h1,h2,h3{font-family:"Space Grotesk",Inter,sans-serif;letter-spacing:-.02em;marg
 .brand-mark{width:30px;height:30px;border-radius:9px;background:var(--ink);color:#0b1220;display:grid;place-items:center;font-size:12px}
 .dock{display:flex;gap:8px;transition:opacity .35s,visibility .35s}
 .top.atpad .dock{opacity:0;visibility:hidden}
+.brand .full{transition:opacity .35s}
+.top.onpad .brand .full{opacity:0}
 .dock a{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--line);background:rgba(10,16,32,.35);color:var(--ink-2);transition:background .2s,color .2s,border-color .2s}
 .dock a:hover,.dock a:focus-visible{background:rgba(255,255,255,.14);color:var(--ink);border-color:rgba(255,255,255,.35)}
 .dock svg{width:15px;height:15px}
@@ -489,7 +491,7 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
 <body class="no-js">
 <script>document.body.classList.remove('no-js')</script>
 
-<header class="top atpad">
+<header class="top atpad onpad">
   <a href="#top" class="brand"><span class="brand-mark">TB</span><span class="full">Tomas Benedicto</span></a>
   <nav class="dock" aria-label="Contact">
     <a href="cv.html" aria-label="CV" title="CV"><b>CV</b></a>
@@ -1109,7 +1111,8 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
       drawAscent(f); altimeter(f); sky(f); lastF = f; lastG = gNow; dirty = false;
     }
     topBar.classList.toggle('onhero', m > .35);
-    topBar.classList.toggle('atpad', gNow < .5 || gNow > NC - 1.5);   // the landing and the finale have their own big buttons: no contact icons up there
+    topBar.classList.toggle('atpad', gNow < .5 || gNow > NC - 1.5);
+    topBar.classList.toggle('onpad', gNow < .5);   // the landing shows the name in big: the logo stands alone   // the landing and the finale have their own big buttons: no contact icons up there
     panels(sy);
     avatarBox.classList.toggle('off', m > .02);
     // the gauge rocket: no flame on the pad, idle flame once lit, longer flame while you scroll
