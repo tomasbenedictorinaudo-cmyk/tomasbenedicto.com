@@ -9,17 +9,17 @@
 <meta property="og:site_name" content="Tomas Benedicto">
 <meta property="og:url" content="https://tomasbenedicto.com/cv.html">
 <meta property="og:title" content="Tomas Benedicto · CV">
-<meta property="og:description" content="Head of Payload Architects at Airbus Defence and Space. 10 years building satellites: OneSat, Galileo G2, OneWeb.">
-<meta property="og:image" content="https://tomasbenedicto.com/assets/og/card.jpg">
+<meta property="og:description" content="Aerospace engineer at Airbus Defence and Space. 10 years building satellites: OneSat, Galileo, OneWeb.">
+<meta property="og:image" content="https://tomasbenedicto.com/assets/og/card.jpg?v=2">
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Tomas Benedicto, Head of Payload Architects at Airbus Defence and Space, beside a rocket on its launch pad at golden hour">
+<meta property="og:image:alt" content="Tomas Benedicto, aerospace engineer at Airbus Defence and Space, beside a rocket on its launch pad at golden hour">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Tomas Benedicto · CV">
-<meta name="twitter:description" content="Head of Payload Architects at Airbus Defence and Space. 10 years building satellites: OneSat, Galileo G2, OneWeb.">
-<meta name="twitter:image" content="https://tomasbenedicto.com/assets/og/card.jpg">
-<meta name="twitter:image:alt" content="Tomas Benedicto, Head of Payload Architects at Airbus Defence and Space, beside a rocket on its launch pad at golden hour">
+<meta name="twitter:description" content="Aerospace engineer at Airbus Defence and Space. 10 years building satellites: OneSat, Galileo, OneWeb.">
+<meta name="twitter:image" content="https://tomasbenedicto.com/assets/og/card.jpg?v=2">
+<meta name="twitter:image:alt" content="Tomas Benedicto, aerospace engineer at Airbus Defence and Space, beside a rocket on its launch pad at golden hour">
 <meta name="description" content="Tomas Benedicto · Satellite Systems Engineer and Head of Payload Architects at Airbus Defence and Space, Toulouse.">
 <link rel="icon" type="image/svg+xml" href="assets/icons/icon.svg?v=orbit3">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png?v=orbit3">
@@ -38,13 +38,13 @@
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
     --bg:#070b14; --bg-2:#0c1220; --surface:#0f1626; --ink:#eef2fa; --ink-2:#c9d2e3; --muted:#8994ab;
-    --line:#1d2638; --accent:#6f97ff; --accent-2:#9db8ff; --accent-soft:#131d36; --warm:#ffb547;
+    --line:#1d2638; --accent:#ffb547; --accent-2:#ffd27a; --accent-soft:#2a2112; --warm:#ffb547;
     --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 40px rgba(0,0,0,.35);
   }
 }
 :root[data-theme="dark"]{
   --bg:#070b14; --bg-2:#0c1220; --surface:#0f1626; --ink:#eef2fa; --ink-2:#c9d2e3; --muted:#8994ab;
-  --line:#1d2638; --accent:#6f97ff; --accent-2:#9db8ff; --accent-soft:#131d36; --warm:#ffb547;
+  --line:#1d2638; --accent:#ffb547; --accent-2:#ffd27a; --accent-soft:#2a2112; --warm:#ffb547;
   --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 40px rgba(0,0,0,.35);
 }
 *{box-sizing:border-box}
@@ -71,7 +71,7 @@ header.nav.scrolled{border-bottom-color:var(--line)}
 @media (max-width:820px){.nav-links a:not(.keep){display:none}}
 
 /* hero */
-.hero{position:relative;padding:72px 0 48px}
+.hero{position:relative;isolation:isolate;padding:72px 0 48px}
 .hero::before{content:"";position:absolute;top:-64px;bottom:0;left:50%;width:100vw;transform:translateX(-50%);background:
   radial-gradient(min(640px,90vw) 420px at 75% 25%,color-mix(in srgb,var(--accent) 16%,transparent),transparent 70%);
   pointer-events:none;z-index:-1}
@@ -80,7 +80,7 @@ header.nav.scrolled{border-bottom-color:var(--line)}
 .pulse{width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 0 rgba(34,197,94,.5);animation:pulse 2.4s infinite}
 @keyframes pulse{70%{box-shadow:0 0 0 8px rgba(34,197,94,0)}100%{box-shadow:0 0 0 0 rgba(34,197,94,0)}}
 .hero h1{font-size:clamp(42px,6.4vw,76px);margin:22px 0 18px;font-weight:700}
-.hero h1 .grad{background:linear-gradient(100deg,var(--accent) 10%,var(--accent-2) 55%,var(--warm) 110%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero h1 .grad{background:linear-gradient(100deg,var(--warm) 10%,#ffd27a 60%,var(--warm) 110%);-webkit-background-clip:text;background-clip:text;color:transparent}
 .lede{font-size:clamp(17px,1.9vw,20px);color:var(--ink-2);max-width:580px;margin:0 0 30px}
 .cta{display:flex;flex-wrap:wrap;gap:12px}
 .btn{display:inline-flex;align-items:center;gap:9px;padding:13px 20px;border-radius:12px;font-weight:600;font-size:15px;border:1px solid var(--line);background:var(--surface);color:var(--ink);transition:transform .2s,box-shadow .2s,background .2s;cursor:pointer}
@@ -93,14 +93,14 @@ header.nav.scrolled{border-bottom-color:var(--line)}
 
 /* orbit portrait */
 .orbit{position:relative;width:min(420px,100%);aspect-ratio:1;margin-left:auto}
-.orbit .ring{position:absolute;border:1px dashed color-mix(in srgb,var(--muted) 45%,transparent);border-radius:50%;inset:0}
-.orbit .ring.r2{inset:9%;border-style:solid;border-color:var(--line)}
+.orbit .ring{position:absolute;border:1px solid color-mix(in srgb,var(--warm) 45%,transparent);border-radius:50%;inset:0}
+.orbit .ring.r2{inset:9%;border-color:color-mix(in srgb,var(--ink) 18%,transparent)}
 .orbit .spin{position:absolute;inset:0;animation:spin 28s linear infinite}
 .orbit .spin.s2{inset:9%;animation-duration:18s;animation-direction:reverse}
-.orbit .sat{position:absolute;top:-7px;left:50%;width:14px;height:14px;margin-left:-7px;border-radius:4px;background:var(--warm);box-shadow:0 0 0 5px color-mix(in srgb,var(--warm) 22%,transparent),0 0 24px var(--warm)}
-.orbit .sat::before,.orbit .sat::after{content:"";position:absolute;top:4px;width:12px;height:6px;background:var(--accent);border-radius:1px}
+.orbit .sat{position:absolute;top:-4px;left:50%;width:8px;height:8px;margin-left:-4px;border-radius:50%;background:var(--warm);box-shadow:0 0 12px var(--warm)}
+.orbit .sat::before,.orbit .sat::after{display:none}
 .orbit .sat::before{right:16px}.orbit .sat::after{left:16px}
-.orbit .spin.s2 .sat{top:auto;bottom:-5px;width:10px;height:10px;margin-left:-5px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 5px color-mix(in srgb,var(--accent) 22%,transparent),0 0 20px var(--accent)}
+.orbit .spin.s2 .sat{top:auto;bottom:-3px;width:6px;height:6px;margin-left:-3px;background:var(--ink);box-shadow:0 0 10px var(--ink)}
 .orbit .spin.s2 .sat::before,.orbit .spin.s2 .sat::after{display:none}
 .orbit .photo{position:absolute;inset:19%;border-radius:50%;overflow:hidden;box-shadow:0 20px 60px rgba(11,18,32,.25);border:4px solid var(--surface)}
 .orbit .photo img{width:100%;height:100%;object-fit:cover}
@@ -129,12 +129,14 @@ header.nav.scrolled{border-bottom-color:var(--line)}
 .track{display:flex;gap:44px;width:max-content;animation:marq 40s linear infinite}
 .track span{font-family:"Space Grotesk";font-weight:600;font-size:22px;color:var(--ink-2);opacity:.75;white-space:nowrap}
 .track span i{font-style:normal;color:var(--accent);margin-right:44px}
+.track span em{font:500 15px Inter,sans-serif;font-style:normal;color:var(--muted);margin-left:6px}
 @keyframes marq{to{transform:translateX(-50%)}}
 
 /* sections */
 section{padding:96px 0 0}
 .sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:36px;flex-wrap:wrap}
 .sec-num{font-size:13px;color:var(--accent)}
+.sec-alt{margin-left:auto;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 .sec-head h2{font-size:clamp(30px,4vw,44px)}
 .sec-sub{color:var(--muted);max-width:620px;margin:-20px 0 36px;font-size:17px}
 
@@ -244,6 +246,7 @@ footer{padding:36px 0 48px;color:var(--muted);font-size:14px;display:flex;justif
   .track span{font:500 8.4pt Inter,sans-serif;white-space:normal;opacity:1;color:var(--ink-2)}
   .track span + span{display:none}
   .track span i{margin:0 5px;font-size:7pt}
+  .track span em{font:inherit;color:var(--muted);margin-left:2px}
   section{padding-top:7px}
   .sec-head{margin-bottom:5px;gap:6px}
   .sec-head h2{font-size:11.5pt}
@@ -283,22 +286,77 @@ footer{padding:36px 0 48px;color:var(--muted);font-size:14px;display:flex;justif
   .bar i{transition:none !important}
   .lang small{font-size:7.4pt}
 }
+/* the story's altitude gauge, in the left margin: the rocket climbs as you read, 0 m at the top, GEO at Contact */
+.gauge{position:fixed;z-index:40;left:calc((100vw - var(--maxw)) / 4);top:calc(32px + 50vh);transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:52px}
+.gauge .read{text-align:center;width:150px}
+.gauge .read span{font:500 10.5px "JetBrains Mono",monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);min-height:2.6em;display:flex;align-items:flex-end;justify-content:center}
+.gauge .read b{display:block;font:600 19px "Space Grotesk",sans-serif;white-space:nowrap;margin-top:2px;color:var(--ink)}
+.gauge .rail{position:relative;width:2px;height:min(52vh,460px);background:color-mix(in srgb,var(--ink) 16%,transparent);border-radius:2px}
+.gauge .fill{position:absolute;left:0;right:0;bottom:0;height:0;background:linear-gradient(0deg,var(--warm),#8fb0ff);border-radius:2px}
+.gauge .tick{position:absolute;left:50%;width:22px;height:22px;margin:-11px 0 0 -11px;border-radius:50%;display:grid;place-items:center;cursor:pointer;background:none;border:0;padding:0}
+.gauge .tick::before{content:"";width:7px;height:7px;border-radius:50%;background:color-mix(in srgb,var(--ink) 30%,transparent);transition:background .2s,transform .2s}
+.gauge .tick.on::before{background:var(--ink)}
+.gauge .tick:hover::before{transform:scale(1.6);background:var(--warm)}
+.gauge .tick span{position:absolute;left:26px;white-space:nowrap;font:500 11.5px "JetBrains Mono",monospace;color:var(--ink);opacity:0;transform:translateX(-6px);transition:.2s;pointer-events:none;background:var(--surface);border:1px solid var(--line);padding:3px 8px;border-radius:6px}
+.gauge .tick:hover span,.gauge .tick:focus-visible span{opacity:1;transform:none}
+.ship{position:absolute;left:50%;width:0;height:0;z-index:2;pointer-events:none}
+.ship .rk{position:absolute;left:-11px;top:-81px;width:22px;height:180px;transform:scale(.36);transform-origin:11px 81px;transition:opacity .5s}
+.ship .rb{position:absolute;left:0;top:0;width:22px;height:180px;z-index:1;transition:opacity .4s;max-width:none}
+.ship .rfr{position:absolute;left:-10.3px;top:26.9px;width:44.7px;height:150.1px;z-index:1;opacity:0;transition:opacity .4s;max-width:none}
+.ship.fair .rb{opacity:0}.ship.fair .rfr{opacity:1}
+.ship .fw{position:absolute;left:-5.5px;top:174px;width:30px;height:61px;transform-origin:17.1px 0;transform:scale(calc(.75 + var(--thrust,0) * .25),var(--thrust,0));filter:drop-shadow(0 0 5px rgba(255,170,60,.9))}
+.ship .rf{display:block;width:30px;height:61px;max-width:none;transform-origin:17.1px 0;animation:flick .09s linear infinite alternate}
+@keyframes flick{0%{transform:scale(1,1);opacity:.92}35%{transform:scale(.9,1.14);opacity:1}70%{transform:scale(1.06,.9);opacity:.85}100%{transform:scale(.95,1.07);opacity:1}}
+.ship .stw,.ship .sat{position:absolute;left:0;top:0;transform:translate(-50%,-50%);opacity:0;transition:opacity .5s;max-width:none}
+.ship .stw{height:22px;filter:drop-shadow(0 0 4px rgba(255,214,120,.55)) brightness(1.15)}
+.ship .sat{height:89px;transform:translate(-50%,-50%) rotate(30deg);filter:drop-shadow(0 0 4px rgba(255,214,120,.35))}
+.ship.sep .rk{opacity:0}.ship.sep .stw{opacity:1}
+.ship.dep .stw{opacity:0}.ship.dep .sat{opacity:1}
+/* narrower windows: no room in the margin, a thin climbing line on the left edge */
+@media (max-width:1359px){
+  .gauge{left:8px;top:76px;bottom:24px;transform:none;gap:0}
+  .gauge .read,.gauge .tick,.gauge .ship{display:none}
+  .gauge .rail{height:100%}
+}
+@media (prefers-reduced-motion:reduce){.ship .rf{animation:none}}
+/* shared imagery: the launch pad under the hero, the Earth behind Contact */
+.hero::after{content:"";position:absolute;left:50%;bottom:-40px;width:100vw;height:340px;transform:translateX(-50%);z-index:-1;pointer-events:none;
+  background:url(assets/story/0.webp) center 62%/cover no-repeat;opacity:.22;
+  -webkit-mask-image:linear-gradient(0deg,transparent 0%,#000 45%,transparent 100%);mask-image:linear-gradient(0deg,transparent 0%,#000 45%,transparent 100%)}
+.contact::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  background:url(assets/story/9.webp) 45% 50%/auto 125% no-repeat;left:52%;opacity:.45;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 40%);mask-image:linear-gradient(90deg,transparent 0%,#000 40%)}
+@media (max-width:700px){.contact::before{left:30%;opacity:.14}.contact .btn.mail{font-size:13.5px;padding-left:14px;padding-right:14px;max-width:100%}}
+:root[data-theme="light"] .hero::after{opacity:.1}
+@view-transition{navigation:auto}
+@media print{.gauge,.sec-alt{display:none !important}.hero::after,.contact::before{display:none}}
+/* keyboard focus and skip link */
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:10px}
+.skip{position:absolute;left:12px;top:-60px;z-index:100;padding:10px 14px;border-radius:10px;background:var(--surface);color:var(--ink);border:1px solid var(--line);font-weight:600}
+.skip:focus{top:12px}
+.contact .focus{font-size:13px;letter-spacing:.04em;color:var(--muted);margin-top:4px}
+@media print{.skip{display:none}}
 </style>
 </head>
 <body>
-<script>document.documentElement.classList.add('js');try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<a class="skip" href="#about">Skip to content</a>
+<nav class="gauge" aria-label="Altitude: jump to a section">
+  <div class="read" aria-hidden="true"><span id="gName">T-0 · Launch pad</span><b class="mono" id="gAlt">0 m</b></div>
+  <div class="rail" id="gRail"><div class="fill" id="gFill"></div><div class="ship" id="gShip" aria-hidden="true"><div class="rk"><img class="rb" src="assets/story/rocket-body.webp" alt=""><img class="rfr" src="assets/story/rocket-fairing.webp" alt=""><div class="fw"><img class="rf" src="assets/story/rocket-flame.webp" alt=""></div></div><img class="stw" src="assets/story/onesat-stowed-sm.webp" alt=""><img class="sat" src="assets/story/onesat.webp" alt=""></div></div>
+</nav>
+<script>document.documentElement.classList.add('js');var t=null;try{t=localStorage.getItem('theme')}catch(e){}document.documentElement.dataset.theme=t||'dark';</script>
 
 <header class="nav" id="nav">
   <div class="wrap nav-inner">
     <a href="index.html" class="brand keep" title="Back to the launch"><span class="brand-mark">TB</span><span>Tomas Benedicto</span></a>
-    <nav class="nav-links">
-      <a href="index.html">🚀 Take the ride</a>
+    <nav class="nav-links" aria-label="Sections">
+      <a href="index.html">Launch story</a>
       <a href="#about">About</a>
       <a href="#experience">Experience</a>
       <a href="#education">Education</a>
       <a href="#contact">Contact</a>
       <button class="icon-btn" id="theme" aria-label="Toggle dark mode" title="Toggle theme">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
       </button>
     </nav>
   </div>
@@ -309,25 +367,26 @@ footer{padding:36px 0 48px;color:var(--muted);font-size:14px;display:flex;justif
     <!-- print-only header: name and contact for the PDF -->
     <div class="print-head" aria-hidden="true">
       <img src="assets/headshot.jpg" alt="">
-      <div><b>Tomas Benedicto</b><span>Head of Payload Architects · Airbus Defence and Space · Toulouse, France</span><span>linkedin.com/in/tomasbenedictorinaudo · English, Spanish, French, Dutch · PMP®</span></div>
+      <div><b>Tomas Benedicto</b><span>Head of Payload Architects · Airbus Defence and Space · Toulouse, France</span><span><span class="pmail">tomasbenedictorinaudo at gmail.com</span> · linkedin.com/in/tomasbenedictorinaudo · PMP®</span></div>
     </div>
     <!-- HERO -->
     <div class="hero">
       <div class="hero-grid">
         <div>
           <span class="eyebrow reveal"><span class="pulse"></span>Head of Payload Architects · Airbus Defence and Space</span>
-          <h1 class="reveal">I architect satellites<br><span class="grad">end to end.</span></h1>
-          <p class="lede reveal">Aerospace engineer with 10 years in industry, from mechanical design to programme leadership. Today I lead Airbus's <strong>payload architects and mission managers</strong>: we support bids and design the next generation of telecom payloads, across all orbits.</p>
+          <h1 class="reveal">I architect space systems<br><span class="grad">end to end.</span></h1>
+          <p class="lede reveal">Aerospace engineer with 10 years in industry. I develop systems that span the space, ground and user segments, from flight hardware to concepts of operations. Today I lead Airbus's <strong>payload architects and mission managers</strong>: we support bids and design the next generation of telecom payloads, across all orbits.</p>
           <div class="cta reveal">
             <a class="btn primary" href="https://www.linkedin.com/in/tomasbenedictorinaudo" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>Connect on LinkedIn</a>
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>Connect on LinkedIn</a>
             <a class="btn" href="assets/Tomas-Benedicto-CV.pdf" download>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0-4-4m4 4 4-4M5 21h14"/></svg>Download CV (PDF)</a>
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0-4-4m4 4 4-4M5 21h14"/></svg>Download CV (PDF)</a>
+            <a class="btn mail" href="#contact"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>Email</a>
           </div>
           <div class="meta-row reveal">
-            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.1-7-11a7 7 0 1 1 14 0c0 4.9-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Toulouse, France</span>
-            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>EN · ES · FR · NL</span>
-            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 2 3 6.5 7 .8-5.2 4.8 1.4 7L12 17.6 5.8 21l1.4-7L2 9.3l7-.8z"/></svg>PMP® certified</span>
+            <span><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.1-7-11a7 7 0 1 1 14 0c0 4.9-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Toulouse, France</span>
+            <span><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>EN · ES · FR · NL</span>
+            <span><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 2 3 6.5 7 .8-5.2 4.8 1.4 7L12 17.6 5.8 21l1.4-7L2 9.3l7-.8z"/></svg>PMP® certified</span>
           </div>
         </div>
         <div class="orbit reveal" aria-hidden="true">
@@ -340,68 +399,69 @@ footer{padding:36px 0 48px;color:var(--muted);font-size:14px;display:flex;justif
 
       <div class="stats reveal">
         <div class="stat"><b data-count="10">10</b><span>years in the space industry</span></div>
-        <div class="stat"><b data-count="10" data-suffix="+">10+</b><span>satellite programmes contributed to</span></div>
-        <div class="stat"><b data-count="8" data-suffix="+">8+</b><span>global operators worked with</span></div>
+        <div class="stat"><b data-count="10" data-suffix="+">10+</b><span>space programmes and products</span></div>
+        <div class="stat"><b data-count="8" data-suffix="+">8+</b><span>global operator customers</span></div>
         <div class="stat"><b data-count="4">4</b><span>working languages</span></div>
       </div>
 
       <div class="programmes reveal">
         <div class="label">Programmes I've worked on</div>
-        <div class="marquee"><div class="track" id="track">
-          <span>OneSat<i>✦</i>Galileo G2<i>✦</i>Galileo<i>✦</i>Galileo Thruster Pointing Assembly (TPA)<i>✦</i>Deployable Thruster Module Assembly (DTMA)<i>✦</i>OneWeb<i>✦</i>Eutelsat 172B<i>✦</i>SES-14<i>✦</i>Syracuse IV<i>✦</i>KMilSat<i>✦</i></span>
+        <div class="marquee" role="region" aria-label="Programmes and products"><div class="track" id="track">
+          <span>OneSat <em>flexible GEO telecom satellite (more than 8 global operators)</em><i>✦</i>OneWeb <em>telecom constellation</em><i>✦</i>Galileo Second Generation<i>✦</i>Eurostar NEO <em>high-powered GEO telecom satellite</em><i>✦</i>AstroBus-S <em>Earth observation</em><i>✦</i></span>
         </div></div>
       </div>
     </div>
 
     <!-- ABOUT -->
     <section id="about">
-      <div class="sec-head reveal"><span class="sec-num mono">01</span><h2>What I bring</h2></div>
+      <div class="sec-head reveal"><span class="sec-num mono">01</span><h2>What I bring</h2><span class="sec-alt mono">1 km</span></div>
       <p class="sec-sub reveal">Three things set me apart: I've worked at every level of engineering, on every major satellite subsystem, and I now lead a team that delivers.</p>
       <div class="pillars">
         <article class="card reveal">
-          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(-30 12 12)"/><circle cx="19.5" cy="7.5" r="1.3" fill="currentColor"/></svg></div>
+          <div class="ico"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(-30 12 12)"/><circle cx="19.5" cy="7.5" r="1.3" fill="currentColor"/></svg></div>
           <h3>Every level</h3>
           <p>Analyst, designer, tester, architect, chief engineer, project manager, and now Head of Payload Architects. I know what each role needs because I've done it, and I take ownership from the first calculation to the final decision.</p>
         </article>
         <article class="card reveal">
-          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 10 5-10 5L2 7z"/><path d="m2 12 10 5 10-5"/><path d="m2 17 10 5 10-5"/></svg></div>
+          <div class="ico"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 10 5-10 5L2 7z"/><path d="m2 12 10 5 10-5"/><path d="m2 17 10 5 10-5"/></svg></div>
           <h3>Every subsystem</h3>
           <p>Mechanical structures, electric propulsion, RF and digital telecom payloads. I see how a decision in one subsystem lands in the others, so I can design the system end to end.</p>
         </article>
         <article class="card reveal">
-          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <div class="ico"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
           <h3>Leadership &amp; delivery</h3>
-          <p>From Center of Competence board member to head of a team of 10+. I set the roadmap, cost and plan the work, manage subcontracting and empower people to deliver on time, on cost and on quality, with 8+ global operators and key suppliers.</p>
+          <p>From Center of Competence board member to head of a team of 10+. I set the roadmap, cost and plan the work, manage subcontracting and empower people to deliver on time, on cost and on quality. I build trusted customer relations with 8+ global operators and key suppliers.</p>
         </article>
       </div>
     </section>
 
     <!-- EXPERIENCE -->
     <section id="experience">
-      <div class="sec-head reveal"><span class="sec-num mono">02</span><h2>Experience</h2></div>
+      <div class="sec-head reveal"><span class="sec-num mono">02</span><h2>Experience</h2><span class="sec-alt mono">115 km</span></div>
       <div class="timeline">
         <div class="role current reveal"><div class="card">
           <div class="role-top">
-            <div><h3>Head of Payload Architects</h3><div class="org">Airbus Defence and Space · Telecom satellite payloads</div></div>
+            <div><h3>Head of Payload Architects</h3><div class="org">Airbus Defence and Space · Telecom satellite payloads · promoted Aug 2026</div></div>
             <div class="when mono"><span class="now">Current</span><br>Aug 2026 – Present<br>Toulouse, FR</div>
           </div>
           <ul>
-            <li>Leading the team shaping the future of Airbus telecommunications satellite payloads: building technical excellence, developing people, and delivering competitive solutions that create lasting value for commercial and institutional customers.</li>
+            <li>Leading the payload architects and mission managers shaping the future of Airbus telecommunications satellite payloads: building technical excellence, developing people, and delivering competitive solutions that create lasting value for commercial and institutional customers.</li>
+            <li>Supporting bids and designing next-generation payloads across all orbits; costing and planning the team's work and managing its subcontracting, with 8+ global operator customers and key suppliers.</li>
           </ul>
           <div class="tags"><span class="tag">Engineering leadership</span><span class="tag">Satellite communications</span><span class="tag">People development</span></div>
         </div></div>
-        <div class="role current reveal"><div class="card">
+        <div class="role reveal"><div class="card">
           <div class="role-top">
             <div><h3>Telecom Payload Systems Lead</h3><div class="org">Airbus Defence and Space · OneSat</div></div>
-            <div class="when mono"><span class="now">Current</span><br>Dec 2023 – Present<br>Toulouse, FR</div>
+            <div class="when mono">Dec 2023 – Jul 2026<br>Toulouse, FR</div>
           </div>
           <ul>
-            <li>Technical lead defining the concept of operations of a flexible digital telecommunications satellite system, leading a team of 10+ payload architects.</li>
+            <li>Technical lead defining the concept of operations of a flexible digital telecommunications system spanning the space, ground and user segments, leading a team of 10+ payload architects.</li>
             <li>Project manager for the payload, running its industrial contracts, schedule and risk.</li>
-            <li>Chief engineer of the OneSat Payload Configuration Manager, spanning space segment, ground segment and in-orbit operations.</li>
-            <li>Industrial contracts with global operators (Viasat, SES, Thaicom, JSAT, Optus, SingTel, Eutelsat, Yahsat) and suppliers (GMV, Kratos, TESAT, MDA) under tight cost, schedule and technical constraints.</li>
+            <li>Chief engineer and technical authority of the OneSat Payload Configuration Manager, spanning space segment, ground segment and in-orbit operations.</li>
+            <li>Customer relations and industrial contracts with 8+ global operators and several key suppliers, under tight cost, schedule and technical constraints.</li>
           </ul>
-          <div class="tags"><span class="tag">Flexible digital payload</span><span class="tag">Space + ground segment</span><span class="tag">Contract management</span><span class="tag">Team leadership</span></div>
+          <div class="tags"><span class="tag">Flexible digital payload</span><span class="tag">Space, ground + user segment</span><span class="tag">Customer relations</span><span class="tag">Contract management</span><span class="tag">Team leadership</span></div>
         </div></div>
         <div class="role reveal"><div class="card">
           <div class="role-top">
@@ -411,6 +471,7 @@ footer{padding:36px 0 48px;color:var(--muted);font-size:14px;display:flex;justif
           <ul>
             <li>Propulsion lead engineer for ESA's next-generation Galileo navigation satellites (Jun 2021 – May 2024): architecture of the electric propulsion subsystem and its mechanisms, verification and validation, and in-flight operations planning, reporting to the satellite chief engineer.</li>
             <li>Project manager (Jun 2021 – Jun 2024): led the end-to-end development of a new plasma propulsion assembly for an innovative European satellite constellation.</li>
+            <li>Designed a propulsion mechanism from scratch to satellite assembly in three years.</li>
             <li>Worked across propulsion, electrical, thermal and avionics engineering; flowed system requirements down to equipment and controlled compliance, deviations and waivers.</li>
             <li>Managed suppliers and chaired critical design reviews and non-conformance boards with international stakeholders; delivered on time, on cost and on quality.</li>
           </ul>
@@ -422,7 +483,7 @@ footer{padding:36px 0 48px;color:var(--muted);font-size:14px;display:flex;justif
             <div class="when mono">Oct 2017 – Jun 2021<br>Toulouse, FR · Stevenage, UK</div>
           </div>
           <ul>
-            <li>Designed, justified and tested satellite platforms and thermo-mechanical products for telecom satellites in LEO and GEO and for Earth observation satellites: OneWeb, OneSat, Eutelsat 172B, SES-14, Syracuse IV and KMilSat.</li>
+            <li>Designed, justified and tested satellite platforms and thermo-mechanical products for telecom satellites in LEO and GEO and for Earth observation satellites, OneWeb and OneSat among them.</li>
             <li>Optimised the design of OneSat's novel structure and of the interfaces between satellites on the launcher and with the launcher itself.</li>
             <li>Co-authored Airbus's international, ECSS-aligned industry standard for modelling and optimising space structures.</li>
           </ul>
@@ -453,7 +514,7 @@ footer{padding:36px 0 48px;color:var(--muted);font-size:14px;display:flex;justif
 
     <!-- HIGHLIGHTS -->
     <section id="leadership">
-      <div class="sec-head reveal"><span class="sec-num mono">03</span><h2>Leadership &amp; R&amp;D</h2></div>
+      <div class="sec-head reveal"><span class="sec-num mono">03</span><h2>Leadership &amp; R&amp;D</h2><span class="sec-alt mono">1,200 km</span></div>
       <div class="hl-grid">
         <article class="card hl reveal">
           <span class="yr mono">2022 – 2024 · Airbus DS</span>
@@ -475,13 +536,13 @@ footer{padding:36px 0 48px;color:var(--muted);font-size:14px;display:flex;justif
 
     <!-- EDUCATION -->
     <section id="education">
-      <div class="sec-head reveal"><span class="sec-num mono">04</span><h2>Education &amp; certifications</h2></div>
+      <div class="sec-head reveal"><span class="sec-num mono">04</span><h2>Education &amp; certifications</h2><span class="sec-alt mono">8,000 km</span></div>
       <div class="edu-grid">
         <article class="card edu reveal"><div>
           <h3>M.Sc. Aerospace Mechanics &amp; Avionics</h3>
           <div class="school">ISAE-SUPAERO · Toulouse</div>
           <div class="yr mono">2015 – 2017</div>
-          <span class="award">Award of Excellence 2017</span>
+          <span class="award">Exceptional Academic Achievement Award 2017</span>
           <p class="sec-sub" style="margin:0;font-size:15px">Specialised in aerospace structures. Research on the failure modes of high-strength fibre composites using infrared techniques. Master students' representative on the university board and student representative of the Royal Aeronautical Society's Toulouse branch.</p>
         </div></article>
         <article class="card edu reveal"><div>
@@ -489,6 +550,7 @@ footer{padding:36px 0 48px;color:var(--muted);font-size:14px;display:flex;justif
           <div class="school">TU Delft · Delft</div>
           <div class="yr mono">2012 – 2015</div>
           <span class="award">Awarded with Distinction</span>
+          <p class="sec-sub" style="margin:0;font-size:15px">A broad foundation in aerospace engineering: aerodynamics, flight mechanics, structures and materials, propulsion and spaceflight, closed by a multidisciplinary team design project.</p>
         </div></article>
         <article class="card edu reveal"><div>
           <h3>Systems Engineering &amp; Excellence</h3>
@@ -512,7 +574,7 @@ footer{padding:36px 0 48px;color:var(--muted);font-size:14px;display:flex;justif
 
     <!-- SKILLS -->
     <section id="skills">
-      <div class="sec-head reveal"><span class="sec-num mono">05</span><h2>Toolkit</h2></div>
+      <div class="sec-head reveal"><span class="sec-num mono">05</span><h2>Toolkit</h2><span class="sec-alt mono">23,222 km</span></div>
       <div class="skills">
         <div class="card reveal">
           <h4>Technical</h4>
@@ -521,7 +583,7 @@ footer{padding:36px 0 48px;color:var(--muted);font-size:14px;display:flex;justif
           </div>
           <h4>Leadership</h4>
           <div class="chips">
-            <span class="chip">Project management</span><span class="chip">Contract leadership</span><span class="chip">Negotiation</span><span class="chip">Facilitation</span><span class="chip">Strategic thinking</span><span class="chip">Clear communication</span>
+            <span class="chip">Project management</span><span class="chip">Contract leadership</span><span class="chip">Customer relations</span><span class="chip">Negotiation</span><span class="chip">Facilitation</span><span class="chip">Strategic thinking</span><span class="chip">Clear communication</span>
           </div>
         </div>
         <div class="card reveal">
@@ -532,19 +594,21 @@ footer{padding:36px 0 48px;color:var(--muted);font-size:14px;display:flex;justif
           <div class="lang"><span>Dutch</span><div class="bar"><i data-w="75"></i></div><small>Professional</small></div>
           <div class="lang"><span>German</span><div class="bar"><i data-w="25"></i></div><small>Elementary</small></div>
           <h4>Off duty</h4>
-          <div class="interests"><span class="chip">⚽ Football</span><span class="chip">🏄 Windsurfing</span><span class="chip">🎹 Piano</span></div>
+          <div class="interests"><span class="chip">Football</span><span class="chip">Windsurfing</span><span class="chip">Piano</span></div>
         </div>
       </div>
     </section>
 
     <!-- CONTACT -->
     <section id="contact">
-    <div class="sec-head reveal"><span class="sec-num mono">06</span><h2>Contact</h2></div>
+    <div class="sec-head reveal"><span class="sec-num mono">06</span><h2>Contact</h2><span class="sec-alt mono">35,786 km</span></div>
     <div class="contact reveal">
       <p class="contact-big">Let's build the next generation of space systems.</p>
-      <p>I'm always happy to talk about satellite architecture, telecom payloads, systems engineering or a new challenge.</p>
+      <p>I'm always happy to talk about satellite architecture, telecom payloads, systems engineering or a good challenge.</p>
+      <p class="focus mono">Based in Toulouse, open to mobility · system-level leadership · engineering management</p>
       <div class="cta">
-        <a class="btn primary" href="https://www.linkedin.com/in/tomasbenedictorinaudo" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>Connect on LinkedIn</a>
+        <a class="btn primary" href="https://www.linkedin.com/in/tomasbenedictorinaudo" target="_blank" rel="noopener"><svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>Connect on LinkedIn</a>
+        <a class="btn mail" href="#contact"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><span class="addr">Email</span></a>
       </div>
     </div>
     </section>
@@ -570,11 +634,44 @@ footer{padding:36px 0 48px;color:var(--muted);font-size:14px;display:flex;justif
   var nav=document.getElementById('nav');
   addEventListener('scroll',function(){nav.classList.toggle('scrolled',scrollY>8)},{passive:true});
   // duplicate marquee content for seamless loop
-  var tr=document.getElementById('track');tr.innerHTML+=tr.innerHTML;
+  var tr=document.getElementById('track');tr.insertAdjacentHTML('beforeend',tr.innerHTML.replace('<span>','<span aria-hidden="true">'));
+  // altitude gauge (as in the story): one tick per section at its altitude; the rocket climbs, opens its fairing, then flies as OneSat
+  (function(){
+    var rail=document.getElementById('gRail'),fill=document.getElementById('gFill'),ship=document.getElementById('gShip'),
+        val=document.getElementById('gAlt'),nameEl=document.getElementById('gName'),pts=[],ticks=[];
+    var stops=[{el:null,name:'T-0 · Launch pad',km:0}];
+    document.querySelectorAll('section[id]').forEach(function(sec){var a=sec.querySelector('.sec-alt'),h=sec.querySelector('.sec-head h2'),n=sec.querySelector('.sec-num');
+      if(a)stops.push({el:sec,name:n.textContent+' · '+h.textContent.split(' &')[0],km:parseFloat(a.textContent.replace(/,/g,''))})});
+    var L=stops.length-1;
+    stops.forEach(function(st,i){var b=document.createElement('button');b.type='button';b.className='tick';b.style.top=(100-i/L*100)+'%';
+      b.setAttribute('aria-label','Go to '+st.name);b.innerHTML='<span>'+st.name+'</span>';
+      b.onclick=function(){scrollTo({top:st.el?st.el.offsetTop-80:0,behavior:'smooth'})};rail.appendChild(b);ticks.push(b)});
+    function measure(){var max=document.documentElement.scrollHeight-innerHeight;
+      pts=stops.map(function(st){return st.el?Math.min(max,st.el.offsetTop-innerHeight*.35):0})}
+    function fmt(km){return km<1?Math.round(km*1000)+' m':(km<100?String(Math.round(km*10)/10):Math.round(km).toLocaleString('en-US'))+' km'}
+    function upd(){
+      var y=scrollY,pos=L;                                          // pos: 0 at the pad … L at Contact, fractional in between
+      for(var k=1;k<=L;k++){if(y<pts[k]){pos=k-1+Math.max(0,(y-pts[k-1])/Math.max(1,pts[k]-pts[k-1]));break}}
+      var i=Math.min(L-1,Math.floor(pos)),t=pos-i,
+          km=Math.expm1(Math.log1p(stops[i].km)+(Math.log1p(stops[i+1].km)-Math.log1p(stops[i].km))*t);
+      val.textContent=fmt(pos>=L?stops[L].km:km);nameEl.textContent=stops[Math.min(L,Math.floor(pos+.3))].name;
+      var pct=pos/L*100;fill.style.height=pct+'%';ship.style.top=(100-pct)+'%';
+      ship.style.setProperty('--thrust',pos<1.8?Math.min(1,pos*3):0);
+      ship.classList.toggle('fair',pos>=1.7);ship.classList.toggle('sep',pos>=2.3);ship.classList.toggle('dep',pos>=L-1.5);
+      ticks.forEach(function(b,k){b.classList.toggle('on',k<=pos+.01)});
+    }
+    measure();upd();addEventListener('scroll',upd,{passive:true});addEventListener('resize',function(){measure();upd()});addEventListener('load',function(){measure();upd()});
+  })();
+  // back to the story: it lands on the step it was left on
+  addEventListener('pagehide',function(){try{sessionStorage.setItem('fromCv','1')}catch(e){}});
+  // email: assembled here so the address is not sitting in the page for scrapers
+  var MAIL=['tomasbenedictorinaudo','gmail.com'].join('@');
+  document.querySelectorAll('a.mail').forEach(function(a){a.href='mailto:'+MAIL});
+  document.querySelectorAll('.addr,.pmail').forEach(function(e){e.textContent=MAIL});
   // reveal + counters + bars
   function count(el){
-    var to=+el.dataset.count,suf=el.dataset.suffix||'',t0=null;
-    function step(t){t0=t0||t;var p=Math.min((t-t0)/1100,1);el.textContent=Math.round(to*(1-Math.pow(1-p,3)))+suf;if(p<1)requestAnimationFrame(step)}
+    var to=+el.dataset.count,pre=el.dataset.prefix||'',suf=el.dataset.suffix||'',t0=null;
+    function step(t){t0=t0||t;var p=Math.min((t-t0)/1100,1);el.textContent=pre+Math.round(to*(1-Math.pow(1-p,3)))+suf;if(p<1)requestAnimationFrame(step)}
     requestAnimationFrame(step);
   }
   addEventListener('beforeprint',function(){document.querySelectorAll('.reveal').forEach(function(e){e.classList.add('in')});document.querySelectorAll('.bar i').forEach(function(b){b.style.width=b.dataset.w+'%'})});

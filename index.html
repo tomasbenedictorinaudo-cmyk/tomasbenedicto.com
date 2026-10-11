@@ -9,18 +9,18 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Tomas Benedicto">
 <meta property="og:url" content="https://tomasbenedicto.com/">
-<meta property="og:title" content="Tomas Benedicto · Head of Payload Architects">
+<meta property="og:title" content="Tomas Benedicto · Aerospace engineer">
 <meta property="og:description" content="Aerospace engineer, 10 years building satellites at Airbus. My career, told as a launch: from the pad to orbit.">
-<meta property="og:image" content="https://tomasbenedicto.com/assets/og/card.jpg">
+<meta property="og:image" content="https://tomasbenedicto.com/assets/og/card.jpg?v=2">
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Tomas Benedicto, Head of Payload Architects at Airbus Defence and Space, beside a rocket on its launch pad at golden hour">
+<meta property="og:image:alt" content="Tomas Benedicto, aerospace engineer at Airbus Defence and Space, beside a rocket on its launch pad at golden hour">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Tomas Benedicto · Head of Payload Architects">
+<meta name="twitter:title" content="Tomas Benedicto · Aerospace engineer">
 <meta name="twitter:description" content="Aerospace engineer, 10 years building satellites at Airbus. My career, told as a launch: from the pad to orbit.">
-<meta name="twitter:image" content="https://tomasbenedicto.com/assets/og/card.jpg">
-<meta name="twitter:image:alt" content="Tomas Benedicto, Head of Payload Architects at Airbus Defence and Space, beside a rocket on its launch pad at golden hour">
+<meta name="twitter:image" content="https://tomasbenedicto.com/assets/og/card.jpg?v=2">
+<meta name="twitter:image:alt" content="Tomas Benedicto, aerospace engineer at Airbus Defence and Space, beside a rocket on its launch pad at golden hour">
 <meta name="theme-color" content="#1c2742">
 <link rel="icon" type="image/svg+xml" href="assets/icons/icon.svg?v=orbit3">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png?v=orbit3">
@@ -47,11 +47,18 @@ a{color:inherit;text-decoration:none}
 h1,h2,h3{font-family:"Space Grotesk",Inter,sans-serif;letter-spacing:-.02em;margin:0;line-height:1.08}
 .mono{font-family:"JetBrains Mono",ui-monospace,monospace}
 
+@view-transition{navigation:auto}
 /* ---------- top bar ---------- */
 .top{position:fixed;top:0;left:0;right:0;z-index:40;height:var(--topH);display:flex;align-items:center;justify-content:space-between;padding:0 32px;
   background:linear-gradient(180deg,var(--sky) 55%,transparent)}
 .brand{display:flex;align-items:center;gap:10px;font-family:"Space Grotesk";font-weight:700;font-size:16px}
 .brand-mark{width:30px;height:30px;border-radius:9px;background:var(--ink);color:#0b1220;display:grid;place-items:center;font-size:12px}
+.dock{display:flex;gap:8px;transition:opacity .35s,visibility .35s}
+.top.atpad .dock{opacity:0;visibility:hidden}
+.dock a{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--line);background:rgba(10,16,32,.35);color:var(--ink-2);transition:background .2s,color .2s,border-color .2s}
+.dock a:hover,.dock a:focus-visible{background:rgba(255,255,255,.14);color:var(--ink);border-color:rgba(255,255,255,.35)}
+.dock svg{width:15px;height:15px}
+.dock b{font:700 11px "Space Grotesk",sans-serif;letter-spacing:.02em}
 .pill{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;border:1px solid var(--line);background:var(--chip);font-size:14px;font-weight:500;transition:background .2s}
 .pill:hover{background:rgba(255,255,255,.12)}
 .pill svg{width:16px;height:16px}
@@ -142,6 +149,7 @@ h1,h2,h3{font-family:"Space Grotesk",Inter,sans-serif;letter-spacing:-.02em;marg
   .finale .cta{margin-top:20px;justify-content:flex-start}   /* aligned with the Earth on the left third */
   .finale .cta .btn.accent{flex:0 1 auto;width:auto;padding:13px 26px}
   .finale .cta .btn.accent .wide-only{display:inline}
+  .finale .cta .btn.mail{flex:0 1 auto;width:auto;padding:13px 22px}
   .orb-hint{top:calc(var(--topH) + 10px);bottom:auto;right:calc(16px + env(safe-area-inset-right))}
   /* the words arrive one after another once the Earth has settled */
   .finale .fin-in > *{opacity:0;transform:translateY(14px);transition:opacity .45s ease,transform .55s cubic-bezier(.2,.8,.2,1)}
@@ -270,7 +278,8 @@ figcaption b{color:var(--ink-2);font-weight:500}
 .btn.icon svg{width:18px;height:18px}
 .btn.accent{background:var(--warm);border-color:var(--warm);color:#0b1220}
 .btn.accent:hover{background:#ffc56b}
-.btn.same{width:220px;justify-content:center}   /* finale: CV and LinkedIn share one width */
+.btn.same{width:150px;justify-content:center}   /* finale: CV, LinkedIn and Email share one width */
+.finale .wide-only{display:none}
 .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:16px}
 .stat{background:var(--chip);border:1px solid var(--line);border-radius:14px;padding:12px 14px}
 .stat b{display:block;font:700 28px "Space Grotesk",sans-serif;line-height:1}
@@ -480,8 +489,13 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
 <body class="no-js">
 <script>document.body.classList.remove('no-js')</script>
 
-<header class="top">
+<header class="top atpad">
   <a href="#top" class="brand"><span class="brand-mark">TB</span><span class="full">Tomas Benedicto</span></a>
+  <nav class="dock" aria-label="Contact">
+    <a href="cv.html" aria-label="CV" title="CV"><b>CV</b></a>
+    <a class="mail" href="cv.html#contact" aria-label="Email" title="Email"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></a>
+    <a href="https://www.linkedin.com/in/tomasbenedictorinaudo" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn"><svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg></a>
+  </nav>
 </header>
 
 <section class="hero-spacer" id="top" data-alt="0" data-label="T-0 · Launch pad" data-fig="Launch pad · golden hour"></section>
@@ -495,8 +509,9 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
     <p class="claim">Aerospace engineer.<br>10 years building satellites.</p>
     <p class="pitch">From structural analyst to Head of Payload Architects.<br>From mechanical to propulsion to RF and digital payload.<br>So I can own a system end to end: the engineering, the contracts and the people.</p>
     <div class="cta hero-cta">
-      <a class="btn primary" href="cv.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg>CV</a>
-      <a class="btn icon" href="https://www.linkedin.com/in/tomasbenedictorinaudo" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg></a>
+      <a class="btn primary" href="cv.html"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg>CV</a>
+      <a class="btn icon" href="https://www.linkedin.com/in/tomasbenedictorinaudo" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn"><svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg></a>
+      <a class="btn icon mail" href="cv.html#contact" aria-label="Email" title="Email"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></a>
     </div>
   </div>
   <a class="launch" href="#c1"><span>Scroll to launch</span><i>↓</i></a>
@@ -552,7 +567,7 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
       <div class="cred-main">
       <div class="creds">
         <article class="cred"><img class="logo" src="assets/logos/tudelft.svg" alt="TU Delft"><b>B.Sc. Aerospace Engineering</b><small>2012 – 2015</small><span class="award">Distinction</span></article>
-        <article class="cred"><img class="logo" style="height:38px" src="assets/logos/isae.png" alt="ISAE-SUPAERO"><b>M.Sc. Aerospace Mechanics &amp; Avionics</b><small>2015 – 2017 · structures</small><span class="awards"><span class="award">Award of Excellence</span><span class="award plain">Student representative</span></span></article>
+        <article class="cred"><img class="logo" style="height:38px" src="assets/logos/isae.png" alt="ISAE-SUPAERO"><b>M.Sc. Aerospace Mechanics &amp; Avionics</b><small>2015 – 2017 · structures</small><span class="awards"><span class="award">Excellence Award</span><span class="award plain">Student representative</span></span></article>
       </div>
       <div class="sub">Professional credentials</div>
       <div class="creds three">
@@ -582,7 +597,7 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
 
   <section class="ch" id="c5" data-fig="On station · multibeam coverage" data-alt="35786" data-label="On station">
     <div class="txt">
-      <div class="kicker">On station · Aug 2026 → today</div>
+      <div class="kicker">On station · promoted Aug 2026</div>
       <h2>Head of Payload Architects</h2>
       <p class="m-line">Leading 10+ payload architects and mission managers.</p>
       <p>Leading 10+ payload architects and mission managers: we support bids and design Airbus's next telecom payloads, across all orbits.</p>
@@ -609,11 +624,12 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
       <div><b>Tomas Benedicto</b><span>Head of Payload Architects · Airbus Defence and Space</span><small class="fluent">Fluent in Spanish, French and English · professional Dutch</small></div>
     </div>
     <h2>Let's build the next one together.</h2>
-    <p class="pitch">LEO, MEO, GEO: three orbits so far. Next, I want to take responsibility for a complete system, from the first requirement to the service in orbit, and space left clear for those who follow.</p>
-    <p class="pitch">If you're building ambitious space systems, I'd like to hear from you.</p>
+    <p class="pitch">LEO, MEO, GEO: three orbits so far, with an employer that keeps trusting me with bigger challenges. What drives me is the complete system, from the first requirement to the service in orbit, with space left clear for those who follow.</p>
+    <p class="pitch">I'm always happy to talk with people building ambitious space systems. Let's connect!</p>
     <div class="cta hero-cta">
-      <a class="btn primary same" href="cv.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg>CV</a>
-      <a class="btn accent same" href="https://www.linkedin.com/in/tomasbenedictorinaudo" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg><span><span class="wide-only">Connect on </span>LinkedIn</span></a>
+      <a class="btn primary same" href="cv.html"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg>CV</a>
+      <a class="btn accent same" href="https://www.linkedin.com/in/tomasbenedictorinaudo" target="_blank" rel="noopener"><svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg><span><span class="wide-only">Connect on </span>LinkedIn</span></a>
+      <a class="btn same mail" href="cv.html#contact"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><span>Email</span></a>
     </div>
   </div>
   <footer><span>© <span id="yr">2026</span> Tomas Benedicto</span></footer>
@@ -645,6 +661,9 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
     vY = Math.max(0, Math.min(REST.length ? REST[REST.length - 1].b : 0, y));   // the track ends at the finale
   }
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // email links: the address is assembled here so it is not sitting in the page for scrapers
+  var MAIL = ['tomasbenedictorinaudo', 'gmail.com'].join('@');
+  document.querySelectorAll('a.mail').forEach(function(a){ a.href = 'mailto:' + MAIL; });
   document.getElementById('yr').textContent = new Date().getFullYear();
 
   var win = document.getElementById('win'), visual = document.getElementById('visual'), frameEl = document.getElementById('frame');
@@ -1090,6 +1109,7 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
       drawAscent(f); altimeter(f); sky(f); lastF = f; lastG = gNow; dirty = false;
     }
     topBar.classList.toggle('onhero', m > .35);
+    topBar.classList.toggle('atpad', gNow < .5 || gNow > NC - 1.5);   // the landing and the finale have their own big buttons: no contact icons up there
     panels(sy);
     avatarBox.classList.toggle('off', m > .02);
     // the gauge rocket: no flame on the pad, idle flame once lit, longer flame while you scroll
@@ -1114,9 +1134,9 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
       ['Analyst', ''],
       ['Designer', ''],
       ['Tester', ''],
-      ['Architect', 'Architected the electric propulsion of Galileo Second Generation; now define the operations concept of a flexible digital telecom payload with a team of 10+ architects.'],
+      ['Architect', 'Architected the electric propulsion of Galileo Second Generation, then the operations concept of a flexible digital telecom system spanning the space, ground and user segments.'],
       ['Chief engineer', ''],
-      ['Project manager', 'Took a new plasma propulsion assembly from development to delivery; now run the payload\'s contracts with more than eight global operators and key suppliers.'],
+      ['Project manager', 'Took a new plasma propulsion assembly from development to delivery, then ran the payload\'s customer relations and industrial contracts with more than eight global operators and key suppliers.'],
       ['Head of', '']
     ];
     // colours of the finale's orbits: OneWeb (mechanical), Galileo (propulsion), OneSat (payload); level entries from the CV
@@ -1127,21 +1147,21 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
        doms: ['Structures', 'Materials', 'Thermo-mechanical', 'AIT', 'Launcher interfaces'],
        lvls: [[0, '2015 · 2017 – 2021', 'Optimised spacecraft structures to ECSS standards, after verifying the Ariane 5 to satellite interface at ESA ESTEC.'],
               [1, '2017 – 2021', 'Optimised the design of OneSat\'s novel structure and of its interfaces with the other satellites on the launcher and with the launcher itself.'],
-              [2, '2017 – 2021', 'Justified and tested satellite platforms and thermo-mechanical products for OneWeb, OneSat, Eutelsat 172B, SES-14, Syracuse IV and KMilSat.']]},
+              [2, '2017 – 2021', 'Justified and tested satellite platforms and thermo-mechanical products for OneWeb, OneSat, large GEO telecom satellites and Earth observation satellites.']]},
       {name: 'Propulsion', col: '#ffd27a', yrs: 3, when: '2021–24', big: 'Propulsion',
        meta: '2021 – 2024 · architect, project manager',
-       text: 'Architected the electric propulsion and mechanisms of Galileo Second Generation, took part in the launch and early orbit operations (LEOP) of Eurostar Neo satellites, and managed the development of a new plasma propulsion assembly for a European constellation.',
+       text: 'Architected the electric propulsion and mechanisms of Galileo Second Generation, took part in the launch and early orbit operations (LEOP) of large GEO telecom satellites, designed a propulsion mechanism from scratch to satellite assembly in three years, and managed the development of a new plasma propulsion assembly for a European constellation.',
        doms: ['Electric propulsion', 'Mechanisms', 'Electrical', 'Thermal', 'Avionics'],
        lvls: [[3, 'Jun 2021 – May 2024', 'Architected Galileo Second Generation\'s electric propulsion and mechanisms as propulsion lead engineer, through verification, validation and in-flight operations planning.'],
               [5, 'Jun 2021 – Jun 2024', 'Led the end-to-end development of a new plasma propulsion assembly; managed suppliers and chaired critical design reviews and non-conformance boards.']]},
       {name: 'Payload', col: '#f2f5fb', yrs: 3, when: '2023 →', big: 'Payload',
        meta: 'Dec 2023 → today · architect, chief engineer, project manager, head of',
-       text: 'Define, engineer and deliver OneSat\'s flexible digital payload across the space segment, the ground segment and in-orbit operations, and lead the team of payload architects.',
+       text: 'Engineered OneSat\'s flexible digital payload across the space, ground and user segments, from hardware to operations; promoted in Aug 2026 to lead the payload architects.',
        doms: ['RF', 'Digital processing', 'Ground segment', 'Operations'],
-       lvls: [[3, 'Dec 2023 → today', 'Define the concept of operations of a flexible digital telecom satellite system, leading a team of 10+ payload architects.'],
-              [4, 'Dec 2023 → today', 'Own technical authority for OneSat\'s Payload Configuration Manager, across the space segment, the ground segment and in-orbit operations.'],
-              [5, 'Dec 2023 → today', 'Run the payload\'s industrial contracts with more than eight global operators and key suppliers, owning schedule and risk.'],
-              [6, 'Aug 2026 → today', 'Lead the team shaping the future of Airbus telecom satellite payloads: building technical excellence and developing people.']]}
+       lvls: [[3, 'Dec 2023 – Jul 2026', 'Defined the concept of operations of a flexible digital telecom system across the space, ground and user segments, leading a team of 10+ payload architects.'],
+              [4, 'Dec 2023 – Jul 2026', 'Owned technical authority for OneSat\'s Payload Configuration Manager, across the space segment, the ground segment and in-orbit operations.'],
+              [5, 'Dec 2023 – Jul 2026', 'Ran the payload\'s industrial contracts with more than eight global operators and key suppliers, owning schedule and risk.'],
+              [6, 'Promoted Aug 2026', 'Lead the team shaping the future of Airbus telecom satellite payloads: building technical excellence and developing people.']]}
     ];
     // beyond the day job: [subsystem, title, where, detail, short label, domain, corner, row]
     var EXTRAS = [
@@ -1263,9 +1283,15 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
     });
     svg.addEventListener('mouseleave', function(){ pick(null); });
     pick(null);
+    // once, after the entrance: light up the current subsystem for a moment, to show the ring answers a hover (skipped once the visitor has touched it)
+    var touched = false, demoed = false;
+    [svg, key].forEach(function(e){ e.addEventListener('pointerover', function(){ touched = true; }); e.addEventListener('focusin', function(){ touched = true; }); });
     sunStart = function(){
       fig.classList.add('flown');
       setTimeout(function(){ segs.forEach(function(o){ o.e.style.transitionDelay = '0ms'; }); }, 2200);   // after the entrance, hover reacts at once
+      if (demoed || reduce) return; demoed = true;
+      setTimeout(function(){ if (touched) return; pick(2);
+        setTimeout(function(){ if (!touched) pick(null); }, 3200); }, 2600);
     };
   })();
 
@@ -1281,7 +1307,7 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
        text: 'Shaping and innovating next-generation flexible payloads for evolving market needs, bridging operations with hardware across the ground, space and user segments.'},
       {name: 'Contracts', proof: ['Forecast &amp; own', 'cost and planning'], col: '#ffb547', c: [270, 112], t: [305, 81],
        meta: '8+ global operators · key suppliers',
-       text: 'Drawing up the costing and planning of my team\'s future activities, managing its subcontracting, and accountable for delivering on cost, on time and on quality.'},
+       text: 'Building trusted relations with our operator customers and key suppliers; drawing up the costing and planning of my team\'s future activities, managing its subcontracting, and accountable for delivering on cost, on time and on quality.'},
       {name: 'People', proof: ['Define the roadmap', 'empower the team', 'build performance'], col: '#7ee0b5', c: [210, 206], t: [210, 233],
        meta: 'Payload architects · payload mission managers',
        text: 'Defining the team roadmap, empowering each member to take ownership, and accountable for building the team\'s performance and technical excellence.'}
@@ -1393,7 +1419,7 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
   // constant rate so it stops exactly on the step. Keep scrolling fast and it carries on through the next steps
   // instead of stopping; slow input and the trackpad's leftover momentum never skip a step.
   var RAMP = 180, BRAKE = 380;                        // spin-up ms, braking distance px
-  var anim = null, mv = null, hush = false, hushT = null, wIn = [];
+  var anim = null, mv = null, hush = false, hushT = null, wIn = [], wT = 0, wAbs = 0;
   function cruiseFor(rate){ return Math.max(1.3, Math.min(5, .9 + rate * .9)); }   // input rate px/ms -> cruise px/ms
   function inputRate(dirn){                           // wheel input over the last 120 ms in that direction, px/ms
     var now = performance.now(), sum = 0;
@@ -1484,7 +1510,10 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
     var dy = e.deltaY * (e.deltaMode === 1 ? 16 : e.deltaMode === 2 ? H : 1);
     if (!dy) return;
     var dirn = dy > 0 ? 1 : -1;
-    wIn.push([performance.now(), dy]);
+    var now = performance.now(), fresh = now - wT > 90 || Math.abs(dy) > Math.max(14, wAbs * 1.8);   // a pause, or a jump in force: a new swipe, not the old one's momentum
+    wT = now; wAbs = Math.abs(dy);
+    wIn.push([now, dy]);
+    if (hush && !mv && fresh){ hush = false; clearTimeout(hushT); }
     if (mv){                                         // the wheel is spinning: more input in its direction speeds it up
       e.preventDefault();
       if (mv.dir === dirn){ mv.wheel = true; mv.cruise = Math.max(mv.cruise, cruiseFor(inputRate(dirn))); }
@@ -1502,7 +1531,7 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
   addEventListener('touchstart', function(e){
     if (sheetOpen || e.touches.length > 1){ tMode = ''; return; }
     cancelAnimationFrame(coastF); tLast = e.touches[0].clientY; tVel = 0; tTime = performance.now(); pull = 0;
-    tMode = mv || hush ? '' : 'read';                  // a swipe while moving, or just after landing, is ignored: one step at a time
+    tMode = mv ? '' : 'read';                          // a swipe while moving is ignored (one step at a time); once landed, a new swipe goes at once
   }, {passive: true});
   addEventListener('touchmove', function(e){
     if (e.touches.length > 1){ e.preventDefault(); return; }   // no pinch-zoom: it would break the fixed scenes
@@ -1656,7 +1685,15 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
   });
   ['gesturestart', 'gesturechange'].forEach(function(t){ document.addEventListener(t, function(e){ e.preventDefault(); }); });   // iOS pinch
   addEventListener('load', layout);
-  layout(); requestAnimationFrame(render);
+  layout();
+  // back from the CV: land on the step you left it from (remembered for this tab only)
+  try {
+    var back = sessionStorage.getItem('fromCv'), was = +sessionStorage.getItem('rideStep');
+    sessionStorage.removeItem('fromCv');
+    if (back && was > 0 && REST[was]){ setY(REST[was].a); sy = pageY(); }
+  } catch (e) {}
+  addEventListener('pagehide', function(){ try { sessionStorage.setItem('rideStep', String(Math.round(gNow))); } catch (e) {} });
+  requestAnimationFrame(render);
 })();
 </script>
 </body>
