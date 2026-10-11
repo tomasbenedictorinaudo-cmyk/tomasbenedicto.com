@@ -1452,14 +1452,16 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
     var m = mv; if (!m) return;
     var dt = Math.min(40, now - m.last); m.last = now;
     var rem = (m.target - m.y) * m.dir;
-    var A = m.cruise * m.cruise / (2 * BRAKE);        // constant braking that stops in BRAKE px from cruise speed
-    var want = Math.min(m.cruise, Math.sqrt(2 * A * Math.max(0, rem)));
-    m.v = want > m.v ? Math.min(want, m.v + m.cruise / RAMP * dt) : want;
+    var c = m.cruise * (inAscent(m.y) ? .5 : 1);       // the liftoff video plays at half speed
+    var A = c * c / (2 * BRAKE);                      // constant braking that stops in BRAKE px from cruise speed
+    var want = Math.min(c, Math.sqrt(2 * A * Math.max(0, rem)));
+    m.v = want > m.v ? Math.min(want, m.v + c / RAMP * dt) : want;
     m.y += m.dir * m.v * dt;
     if ((m.target - m.y) * m.dir <= .5){ setY(m.target); anim = null; mv = null; hushFor(450); return; }   // settle before the next step
     setY(m.y);
     anim = requestAnimationFrame(tick);
   }
+  function inAscent(y){ return HOLD.length > 2 && y >= HOLD[1].b - 1 && y <= HOLD[2].a + 1; }   // the stretch where the liftoff video plays
   function stepAt(y){ for (var k = 0; k < REST.length; k++) if (y >= REST[k].a - 2 && y <= REST[k].b + 2) return k; return -1; }
   function launch(dirn, rate){                        // on to the next step in that direction
     var y = pageY(), k = stepAt(y), n;
