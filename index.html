@@ -664,7 +664,8 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
     // Safari restores the last scroll position on reload/back; a restored offset leaves the page sitting under the
     // status bar (the brand mark clipped). The real page must stay at the very top.
     if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-    var pinTop = function(){ if (window.scrollY || document.documentElement.scrollTop) window.scrollTo(0, 0); };
+    var pinTop = function(){ if (zoomed()) return;   // pinch-zoomed: Safari pans the view by scrolling; leave it be
+      if (window.scrollY || document.documentElement.scrollTop) window.scrollTo(0, 0); };
     pinTop(); addEventListener('pageshow', pinTop); addEventListener('load', pinTop); addEventListener('scroll', pinTop, {passive: true});
   }
   function zoomed(){ return !!(window.visualViewport && visualViewport.scale > 1.01); }   // a phone pinch-zoomed in
@@ -1602,6 +1603,7 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
   // anything else that leaves the page between steps (dragging the scrollbar): finish the move in that direction
   var idle = null, dir = 1, prevY = pageY();
   addEventListener('scroll', function(){
+    if (zoomed()) return;
     var d = pageY() - prevY; if (d) dir = d > 0 ? 1 : -1; prevY = pageY();
     clearTimeout(idle); idle = setTimeout(function(){ if (!mv && !tMode && stepAt(pageY()) < 0) launch(dir, 1); }, 160);
   }, {passive: true});
@@ -1713,7 +1715,7 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
     placeHint(); zHint.classList.add('on'); clearTimeout(zT); zT = setTimeout(function(){ zHint.classList.remove('on'); }, 2600);
   }
   if (window.visualViewport){
-    visualViewport.addEventListener('resize', function(){ if (zoomed()){ placeHint(); } else { zHint.classList.remove('on'); clearTimeout(zT); } });
+    visualViewport.addEventListener('resize', function(){ if (zoomed()){ placeHint(); } else { zHint.classList.remove('on'); clearTimeout(zT); if (VSCROLL && window.scrollY) window.scrollTo(0, 0); } });   // back at 100%: re-pin the page
     visualViewport.addEventListener('scroll', placeHint);
   }
   addEventListener('load', layout);
