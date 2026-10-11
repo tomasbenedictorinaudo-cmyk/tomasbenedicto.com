@@ -119,12 +119,14 @@ h1,h2,h3{font-family:"Space Grotesk",Inter,sans-serif;letter-spacing:-.02em;marg
 .finale footer{position:absolute;left:32px;right:32px;bottom:14px;z-index:2;padding:0}
 @media (max-width:899px){
   .finale{align-items:stretch;justify-content:flex-end;padding:var(--topH) 16px calc(16px + env(safe-area-inset-bottom));flex-direction:column}
-  .finale::before{background:linear-gradient(0deg,rgba(4,6,12,.97) 0%,rgba(4,6,12,.9) 38%,rgba(4,6,12,.5) 50%,rgba(4,6,12,0) 60%)}
-  .finale .me{width:52px;height:52px}
-  .finale .who{margin-bottom:12px}
-  .finale h2{font-size:30px;margin-bottom:10px}
-  .finale .pitch{font-size:14.5px;line-height:1.55}
-  .finale .cta{margin-top:14px}
+  .finale::before{background:linear-gradient(0deg,rgba(4,6,12,.9) 0%,rgba(4,6,12,.55) 18%,rgba(4,6,12,0) 32%)}
+  .finale{padding-bottom:calc(30px + env(safe-area-inset-bottom))}
+  .finale .who,.finale .pitch,.finale .cta .btn.primary,.finale footer{display:none}   /* phones: the scene and the title talk */
+  .finale h2{font-size:32px;margin-bottom:0;text-align:center;text-shadow:0 2px 20px rgba(0,0,0,.6)}
+  .finale .fin-in{text-align:center}
+  .finale .cta{margin-top:20px;justify-content:center}
+  .finale .cta .btn.accent{flex:0 1 auto;width:auto;padding:13px 26px}
+  .finale .cta .btn.accent .wide-only{display:inline}
   .orb-hint{top:calc(var(--topH) + 10px);bottom:auto;right:16px}
   /* the words arrive one after another once the Earth has settled */
   .finale .fin-in > *{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .8s cubic-bezier(.2,.8,.2,1)}
@@ -397,18 +399,14 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
     background:linear-gradient(0deg,rgba(4,6,12,.94) 0%,rgba(4,6,12,.78) 34%,rgba(4,6,12,0) 100%)}
   .reader{z-index:5}
   .reader .txt > :not(.kicker):not(h2):not(.m-line):not(.info){display:none}
-  .reader .txt{position:relative;padding-right:58px}
+  .reader .txt{position:relative;padding-right:40px}
   .reader .txt h2{font-size:28px;line-height:1.12;margin:0;text-shadow:0 2px 14px rgba(0,0,0,.6)}
   .reader .kicker{margin-bottom:8px;text-shadow:0 1px 8px rgba(0,0,0,.7)}
   .m-line{display:block;margin:8px 0 0;font-size:15.5px;line-height:1.45;color:var(--ink-2);text-shadow:0 1px 10px rgba(0,0,0,.7)}
-  .info{display:inline-flex;position:absolute;right:0;bottom:2px;align-items:center;gap:8px;height:44px;min-width:44px;padding:0 13px;border-radius:999px;
-    border:1px solid rgba(255,255,255,.35);background:rgba(11,18,32,.55);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
-    color:var(--ink);font:600 14px Inter,sans-serif;cursor:pointer;justify-content:center}
-  .info b{font:700 italic 17px Georgia,serif;line-height:1}
-  .info span{font-size:13px}
-  .info.seen{padding:0}.info.seen span{display:none}
-  .info.pulse{animation:infop 1.8s ease-out 2}
-  @keyframes infop{0%{box-shadow:0 0 0 0 rgba(255,255,255,.45)}100%{box-shadow:0 0 0 14px rgba(255,255,255,0)}}
+  /* the "i": small and quiet; the 44px tap area is invisible around a 28px mark */
+  .info{display:grid;place-items:center;position:absolute;right:-8px;bottom:-6px;width:44px;height:44px;padding:0;border:0;background:none;cursor:pointer;color:var(--ink)}
+  .info::before{content:"";position:absolute;width:28px;height:28px;border-radius:50%;border:1px solid rgba(255,255,255,.4);background:rgba(11,18,32,.35)}
+  .info b{position:relative;font:italic 600 14px Georgia,serif;line-height:1;opacity:.9}
   /* the altitude gauge: a slim rail on the right edge */
   .spine{opacity:0;display:flex;position:fixed;right:8px;top:17%;height:50%;width:46px;padding:0;gap:8px;z-index:6;pointer-events:none;justify-content:flex-start;
     filter:drop-shadow(0 0 6px rgba(0,0,0,.75));transition:opacity .3s}
@@ -932,7 +930,6 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
     if (cur !== curIdx){
       curIdx = cur; altName.textContent = names[cur]; miniName.textContent = names[cur];
       chapters.forEach(function(c, k){ c.classList.toggle('on', k === cur); });
-      if (!desk) pulseInfo(chapters[cur]);
       if (chapters[cur].id === 'c2' && sunStart) sunStart();
       if (chapters[cur].id === 'c5' && vennStart) vennStart();
       avatarImgs.forEach(function(img){ img.classList.toggle('on', img.dataset.ch === chapters[cur].id); });
@@ -1006,8 +1003,8 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
           if (i){                                   // finale: zoom out so the whole GEO ring stays in view
             if (desk) z = lerp(z, Math.min(1, Dw * .97 / (1590 * base[i])), m);
             else {                                    // phones: the Earth in the upper third, pulling back as the finale arrives
-              var sF = Math.max(.88, .72 * Dh / 489);  // tall enough that the Earth (image y 452 of 941) can sit at 30% of the screen
-              z = lerp(z, sF / base[i] * lerp(2, 1, ss(f - (N - 2))), m); ay = lerp(ay, .3, m);
+              var sF = Math.max(.88, .6 * Dh / 489);   // tall enough that the Earth (image y 452 of 941) can sit at 40% of the screen
+              z = lerp(z, sF / base[i] * lerp(2, 1, ss(f - (N - 2))), m); ay = lerp(ay, .4, m);
             }   // phones: pull back from the Earth as it arrives
           }
         }
@@ -1377,14 +1374,10 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
   [].forEach.call(document.querySelectorAll('.ch'), function(ch){
     var b = document.createElement('button'); b.type = 'button'; b.className = 'info' + (infoSeen ? ' seen' : '');
     b.setAttribute('aria-label', 'Details: ' + ch.querySelector('h2').textContent);
-    b.innerHTML = '<b>i</b><span>Details</span>';
+    b.innerHTML = '<b>i</b>';
     b.addEventListener('click', function(){ openSheet(ch); });
     ch.querySelector('.txt').appendChild(b); infos.push(b);
   });
-  function pulseInfo(ch){
-    var b = ch && ch.querySelector && ch.querySelector('.info'); if (!b || infoSeen) return;
-    b.classList.remove('pulse'); void b.offsetWidth; b.classList.add('pulse');
-  }
   function openSheet(ch){
     if (sheetOpen) return;
     var t = ch.querySelector('.txt'); if (!t) return;
