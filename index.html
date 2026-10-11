@@ -984,7 +984,7 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
   // altitude per frame; labels and captions per chapter
   var alts = [0, 1, 115, 35786, 35786];   // km, per frame: pad, liftoff, fairing, GEO, mission view
   var names = chapters.map(function(c){ return c.dataset.label; });
-  var vennK = chapters.map(function(c){ return c.id; }).indexOf('c5');
+  var vennK = chapters.map(function(c){ return c.id; }).indexOf('c5'), sunFired = false;
   var rail = document.getElementById('rail'), fill = document.getElementById('railFill'), ship = document.getElementById('ship');
   var altVal = document.getElementById('altVal'), altName = document.getElementById('altName');
   var miniVal = document.getElementById('miniVal'), miniName = document.getElementById('miniName'), progFill = document.getElementById('progFill');
@@ -1010,12 +1010,12 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
     var pct = gNow / (NC - 1) * 100;
     fill.style.height = pct + '%'; ship.style.top = (100 - pct) + '%'; progFill.style.width = pct + '%';
     ticks.forEach(function(b, k){ b.classList.toggle('on', k <= gNow + .01); });
-    if (vennStart && gNow > vennK - .6) vennStart();   // the Venn draws itself while its step is still arriving
+    if (vennStart && gNow > vennK - .6) vennStart();
+    if (sunStart && !sunFired && gNow > 1.3){ sunFired = true; sunStart(); }   // the ring draws during the liftoff video, done as it ends   // the Venn draws itself while its step is still arriving
     var cur = Math.min(NC - 1, Math.floor(gNow + .3));
     if (cur !== curIdx){
       curIdx = cur; altName.textContent = names[cur]; miniName.textContent = names[cur];
       chapters.forEach(function(c, k){ c.classList.toggle('on', k === cur); });
-      if (chapters[cur].id === 'c2' && sunStart) sunStart();
       avatarImgs.forEach(function(img){ img.classList.toggle('on', img.dataset.ch === chapters[cur].id); });
     }
   }
@@ -1452,7 +1452,7 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
     var m = mv; if (!m) return;
     var dt = Math.min(40, now - m.last); m.last = now;
     var rem = (m.target - m.y) * m.dir;
-    var c = m.cruise * (inAscent(m.y) ? .5 : 1);       // the liftoff video plays at half speed
+    var c = inAscent(m.y) ? 1.3 * VSPEED : m.cruise;  // the liftoff video plays at one pace, however hard the swipe, timed to the ring's drawing
     var A = c * c / (2 * BRAKE);                      // constant braking that stops in BRAKE px from cruise speed
     var want = Math.min(c, Math.sqrt(2 * A * Math.max(0, rem)));
     m.v = want > m.v ? Math.min(want, m.v + c / RAMP * dt) : want;
@@ -1461,6 +1461,7 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
     setY(m.y);
     anim = requestAnimationFrame(tick);
   }
+  var VSPEED = .37;   // about 1.9 s from the ring's start to landing: the ring finishes drawing as the video ends
   function inAscent(y){ return HOLD.length > 2 && y >= HOLD[1].b - 1 && y <= HOLD[2].a + 1; }   // the stretch where the liftoff video plays
   function stepAt(y){ for (var k = 0; k < REST.length; k++) if (y >= REST[k].a - 2 && y <= REST[k].b + 2) return k; return -1; }
   function launch(dirn, rate){                        // on to the next step in that direction
