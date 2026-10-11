@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
 <title>Tomas Benedicto</title>
 <meta name="description" content="Tomas Benedicto · Head of Payload Architects at Airbus Defence and Space. A career told as a launch, from the pad to geostationary orbit.">
 <meta name="theme-color" content="#1c2742">
@@ -25,8 +25,8 @@
   --topH:60px;
 }
 *{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%;overflow-x:clip}
-body{margin:0;background:var(--sky);color:var(--ink);font:16px/1.6 Inter,system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:clip}
+html{overflow-anchor:none;-webkit-text-size-adjust:100%;overflow-x:clip}
+body{margin:0;touch-action:pan-y;background:var(--sky);color:var(--ink);font:16px/1.6 Inter,system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:clip}
 body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:var(--stars,0);
   background-image:radial-gradient(1px 1px at 12% 18%,#fff8,transparent),radial-gradient(1px 1px at 72% 32%,#fff6,transparent),radial-gradient(1.5px 1.5px at 38% 74%,#fff7,transparent),radial-gradient(1px 1px at 88% 82%,#fff5,transparent),radial-gradient(1px 1px at 56% 8%,#fff6,transparent),radial-gradient(1px 1px at 22% 52%,#fff4,transparent);background-size:420px 420px}
 a{color:inherit;text-decoration:none}
@@ -62,7 +62,7 @@ h1,h2,h3{font-family:"Space Grotesk",Inter,sans-serif;letter-spacing:-.02em;marg
 .launch{white-space:nowrap}
 .launch i{font-style:normal;font-size:18px;animation:bob 1.6s ease-in-out infinite}
 .top.onhero{background:transparent}
-@media (max-width:899px){
+@media (max-width:899px),(max-height:500px){
   .hero{align-items:flex-end;padding:var(--topH) 16px 76px}
   .hero::before{background:linear-gradient(0deg,var(--sky) 0%,rgba(10,16,32,.88) 30%,rgba(10,16,32,.55) 58%,rgba(10,16,32,0) 78%)}
   .me{width:60px;height:60px}
@@ -81,9 +81,10 @@ h1,h2,h3{font-family:"Space Grotesk",Inter,sans-serif;letter-spacing:-.02em;marg
 }
 @media (max-height:700px) and (max-width:899px){.pitch{display:none}}
 /* ---------- phones: a cinematic landing ---------- */
-@media (max-width:899px){
+@media (max-width:899px),(max-height:500px){
   .hero .pitch{display:none}
-  .hero{padding-bottom:86px}
+  .hero{padding-bottom:calc(86px + env(safe-area-inset-bottom))}
+  .hero .launch{bottom:calc(22px + env(safe-area-inset-bottom))}
   .hero::before{background:linear-gradient(0deg,rgba(6,10,22,.96) 0%,rgba(10,16,32,.82) 26%,rgba(10,16,32,.35) 46%,rgba(10,16,32,0) 60%)}
   .hero h1{font-size:40px}
   /* the pad: opens close on the rocket and pulls back out of the dark, then keeps breathing */
@@ -101,7 +102,7 @@ h1,h2,h3{font-family:"Space Grotesk",Inter,sans-serif;letter-spacing:-.02em;marg
   .launch::after{content:"↑";display:block;font-size:19px;color:var(--warm);animation:rise 1.8s ease-in-out infinite}
   @keyframes rise{0%{transform:translateY(6px);opacity:.2}50%{opacity:1}100%{transform:translateY(-8px);opacity:0}}
 }
-@media (max-width:899px) and (prefers-reduced-motion:reduce){
+@media (max-width:899px) and (prefers-reduced-motion:reduce),(max-height:500px) and (prefers-reduced-motion:reduce){
   .layer:first-child img,.hero-in > *,.hero .launch,.launch::after{animation:none}
 }
 
@@ -117,22 +118,21 @@ h1,h2,h3{font-family:"Space Grotesk",Inter,sans-serif;letter-spacing:-.02em;marg
 .finale h2{font-size:clamp(34px,3.6vw,52px);margin:0 0 14px}
 .finale .pitch + .pitch{margin-top:10px}
 .finale footer{position:absolute;left:32px;right:32px;bottom:14px;z-index:2;padding:0}
-@media (max-width:899px){
-  .finale{align-items:stretch;justify-content:flex-end;padding:var(--topH) 16px calc(16px + env(safe-area-inset-bottom));flex-direction:column}
+@media (max-width:899px),(max-height:500px){
+  .finale{align-items:stretch;justify-content:flex-end;padding:var(--topH) calc(16px + env(safe-area-inset-right)) calc(16px + env(safe-area-inset-bottom)) calc(16px + env(safe-area-inset-left));flex-direction:column}
   .finale::before{background:linear-gradient(0deg,rgba(4,6,12,.9) 0%,rgba(4,6,12,.55) 18%,rgba(4,6,12,0) 32%)}
   .finale{padding-bottom:calc(30px + env(safe-area-inset-bottom))}
   .finale .who,.finale .pitch,.finale .cta .btn.primary,.finale footer{display:none}   /* phones: the scene and the title talk */
-  .finale h2{font-size:32px;margin-bottom:0;text-align:center;text-shadow:0 2px 20px rgba(0,0,0,.6)}
-  .finale .fin-in{text-align:center}
-  .finale .cta{margin-top:20px;justify-content:center}
+  .finale h2{font-size:32px;margin-bottom:0;text-align:left;text-shadow:0 2px 20px rgba(0,0,0,.6)}
+  .finale .fin-in{text-align:left}
+  .finale .cta{margin-top:20px;justify-content:flex-start}   /* aligned with the Earth on the left third */
   .finale .cta .btn.accent{flex:0 1 auto;width:auto;padding:13px 26px}
   .finale .cta .btn.accent .wide-only{display:inline}
-  .orb-hint{top:calc(var(--topH) + 10px);bottom:auto;right:16px}
+  .orb-hint{top:calc(var(--topH) + 10px);bottom:auto;right:calc(16px + env(safe-area-inset-right))}
   /* the words arrive one after another once the Earth has settled */
-  .finale .fin-in > *{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .8s cubic-bezier(.2,.8,.2,1)}
+  .finale .fin-in > *{opacity:0;transform:translateY(14px);transition:opacity .45s ease,transform .55s cubic-bezier(.2,.8,.2,1)}
   .finale.lit .fin-in > *{opacity:1;transform:none}
-  .finale.lit .fin-in > :nth-child(2){transition-delay:.12s}.finale.lit .fin-in > :nth-child(3){transition-delay:.24s}
-  .finale.lit .fin-in > :nth-child(4){transition-delay:.36s}.finale.lit .fin-in > :nth-child(5){transition-delay:.48s}
+  .finale.lit .fin-in > .cta{transition-delay:.1s}   /* title, then the button: no pause on the way in */
   .finale .offduty{display:none}
   .finale footer{position:relative;left:auto;right:auto;bottom:auto;margin-top:22px;width:100%}
 }
@@ -283,7 +283,7 @@ figcaption b{color:var(--ink-2);font-weight:500}
 .sun.pick .cbig{font-size:17px}
 .sun .csm{font:500 10.5px "JetBrains Mono",monospace;fill:var(--muted);letter-spacing:.06em;text-transform:uppercase}
 .tip-box{margin-top:12px;min-height:6.2em}
-@media (min-width:900px){.tip-box{min-height:140px}.sun .tip-box{min-height:148px}}   /* room for the longest description, so the panel never jumps on hover */
+@media (min-width:900px) and (min-height:501px){.tip-box{min-height:140px}.sun .tip-box{min-height:148px}}   /* room for the longest description, so the panel never jumps on hover */
 .sun-tip{border-left:2px solid var(--sc,var(--warm));padding-left:12px;transition:border-color .25s}   /* the bar is only as tall as the text */
 .track{position:relative;display:grid;grid-template-columns:repeat(7,1fr);margin-top:6px}
 .track::before{content:"";position:absolute;left:7%;right:7%;top:8px;height:2px;border-radius:2px;background:linear-gradient(90deg,#7fe3ff,#ffd27a 55%,#f2f5fb)}
@@ -337,7 +337,7 @@ figcaption b{color:var(--ink-2);font-weight:500}
 /* the graduate stands beside the credentials, balancing the illustration on the left */
 .cred-wrap{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:14px;align-items:end}
 .side-me{height:300px;width:auto;filter:drop-shadow(0 12px 22px rgba(0,0,0,.55));margin-right:-6px}
-@media (min-width:900px){
+@media (min-width:900px) and (min-height:501px){
   /* beside the graduate, credentials read as a compact list */
   .cred-wrap .creds,.cred-wrap .creds.three{grid-template-columns:1fr;gap:5px}
   .cred-wrap .cred{display:grid;grid-template-columns:60px 1fr;column-gap:12px;row-gap:1px;padding:8px 12px;align-items:center}
@@ -359,9 +359,9 @@ figcaption b{color:var(--ink-2);font-weight:500}
 footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;flex-wrap:wrap;justify-content:space-between}
 
 /* ---------- phone: frame pinned on top, text underneath ---------- */
-@media (max-width:899px){
-  :root{--topH:56px}
-  .top{padding:0 16px;background:var(--sky)}
+@media (max-width:899px),(max-height:500px){
+  :root{--topH:calc(56px + env(safe-area-inset-top))}
+  .top{padding:env(safe-area-inset-top) calc(16px + env(safe-area-inset-right)) 0 calc(16px + env(safe-area-inset-left));background:var(--sky)}
   .brand .full{display:none}
   .pill.hide-sm{display:none}
   .shell{display:block;padding:0}
@@ -390,7 +390,7 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
 }
 /* ---------- phones: full-screen scenes, a heading on the image, details in a sheet ---------- */
 .m-line,.info,.mscrim,.sheet,.sheet-bg{display:none}
-@media (max-width:899px){
+@media (max-width:899px),(max-height:500px){
   .top{background:linear-gradient(rgba(4,6,12,.6),rgba(4,6,12,0))}
   .visual{position:static;height:0;padding:0;margin:0;background:none;box-shadow:none}
   .visual figcaption,.visual .prog{display:none}
@@ -408,7 +408,7 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
   .info::before{content:"";position:absolute;width:28px;height:28px;border-radius:50%;border:1px solid rgba(255,255,255,.4);background:rgba(11,18,32,.35)}
   .info b{position:relative;font:italic 600 14px Georgia,serif;line-height:1;opacity:.9}
   /* the altitude gauge: a slim rail on the right edge */
-  .spine{opacity:0;display:flex;position:fixed;right:8px;top:17%;height:50%;width:46px;padding:0;gap:8px;z-index:6;pointer-events:none;justify-content:flex-start;
+  .spine{opacity:0;display:flex;position:fixed;right:calc(8px + env(safe-area-inset-right));top:17%;height:50%;width:46px;padding:0;gap:8px;z-index:6;pointer-events:none;justify-content:flex-start;
     filter:drop-shadow(0 0 6px rgba(0,0,0,.75));transition:opacity .3s}
   .spine .read span{display:none}
   .spine .read b{font-size:12.5px}
@@ -429,6 +429,33 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
   .sheet .mini-me{margin-top:40px}
   body.sheet-open .sheet{transform:none;visibility:visible}
   body.sheet-open .sheet-bg{opacity:1;visibility:visible}
+}
+/* ---------- phones turned sideways: use the width ---------- */
+@media (max-height:500px) and (orientation:landscape){
+  /* landing: words on the left, the rocket on the right (as on desktop) */
+  .hero,.hero-spacer{min-height:0}
+  .hero{align-items:center;padding:var(--topH) 24px 40px calc(24px + env(safe-area-inset-left))}
+  .hero::before{background:linear-gradient(90deg,rgba(6,10,22,.92) 0%,rgba(10,16,32,.7) 34%,rgba(10,16,32,0) 58%)}
+  .hero-in > *{max-width:46%}
+  .hero .who{margin-bottom:8px}.hero .me{width:44px;height:44px}
+  .hero h1{font-size:30px;margin-bottom:6px}
+  .claim{font-size:17px;margin-bottom:4px}
+  .hero .cta{margin-top:10px}
+  .hero .launch{left:auto;right:calc(24px + env(safe-area-inset-right));bottom:calc(14px + env(safe-area-inset-bottom));margin:0;color:var(--ink);text-shadow:0 1px 10px rgba(0,0,0,.85)}
+  /* steps: the heading stays bottom-left, the image keeps the rest of the width */
+  .reader .txt{max-width:56%}
+  .mscrim{height:70%;background:linear-gradient(0deg,rgba(4,6,12,.92) 0%,rgba(4,6,12,.6) 30%,rgba(4,6,12,0) 100%)}
+  .reader .txt h2{font-size:24px}
+  .spine{top:14%;height:46%}
+  .sheet{height:92vh;height:92svh;left:12%;right:12%}
+  /* finale: the whole scene, the title low and centred */
+  .finale .fin-in > *{margin-left:auto;margin-right:auto}
+  .finale .fin-in,.finale h2{text-align:center}
+  .finale .cta{justify-content:center}
+  .finale h2{font-size:24px}
+  .finale .cta{margin-top:12px}
+  .finale{padding-bottom:calc(14px + env(safe-area-inset-bottom))}
+  .finale::before{background:linear-gradient(0deg,rgba(4,6,12,.85) 0%,rgba(4,6,12,0) 34%)}
 }
 @media (prefers-reduced-motion:reduce){
   .txt{transition:none;opacity:1;transform:none}
@@ -640,7 +667,7 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
     return Math.max(1 - ss(sy / hero.offsetHeight), ss((H * .9 - fin) / (H * .9)));
   }
   function layout(){
-    W = innerWidth; H = innerHeight; desk = W >= 900;
+    W = innerWidth; H = innerHeight; desk = W >= 900 && H > 500;   // landscape phones use the phone layout
     sizeFrame(desk ? frameAR(lastF < 0 ? 0 : lastF) : 1.5);
     if (!desk){
       var vb = visual.getBoundingClientRect();
@@ -1004,8 +1031,12 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
           if (i){                                   // finale: zoom out so the whole GEO ring stays in view
             if (desk) z = lerp(z, Math.min(1, Dw * .97 / (1590 * base[i])), m);
             else {                                    // phones: the Earth in the upper third, pulling back as the finale arrives
-              var sF = (Dw - 24) / 690;                 // the Earth's left limb (x 721) to the near OneSat (x ~1400) across the screen width
-              z = lerp(z, sF / base[i] * lerp(2, 1, ss(f - (N - 2))), m); ay = lerp(ay, .4, m);
+              var land = Dw > Dh;                        // landscape: the whole GEO ring; portrait: the Earth and the near OneSat
+              var ins = safeInsets(), safeW = Dw - ins[0] - ins[1];
+              var sF = land ? safeW * .92 / 1590 : (safeW - 24) / 690;   // portrait: the Earth's left limb (x 721) to the OneSat (x ~1400)
+              ax += (ins[0] - ins[1]) / 2 / Dw * m;     // centred in the safe area
+              z = lerp(z, sF / base[i] * lerp(2, 1, ss(f - (N - 2))), m); ay = lerp(ay, land ? .36 : .4, m);
+              if (land){ fx = lerp(fx, .495, m); fy = lerp(fy, .48, m); }
             }   // phones: pull back from the Earth as it arrives
           }
         }
@@ -1262,18 +1293,23 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
   var reader = document.getElementById('reader'), story = document.querySelector('.story');
   var heroLayer = document.getElementById('heroLayer'), finLayer = document.getElementById('finLayer'), PANEL = [], RH = 0;
   var mscrim = document.getElementById('mscrim'), spineEl = document.querySelector('.spine');
+  var probe = document.createElement('div');        // reads the safe-area insets (notch side in landscape)
+  probe.style.cssText = 'position:fixed;left:0;top:0;width:0;height:0;visibility:hidden;pointer-events:none;padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-right);padding-bottom:env(safe-area-inset-bottom)';
+  document.body.appendChild(probe);
+  function safeInsets(){ var c = getComputedStyle(probe); return [parseFloat(c.paddingLeft) || 0, parseFloat(c.paddingRight) || 0, parseFloat(c.paddingBottom) || 0]; }
   function rests(){
     var topH = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--topH')) || 60;
     var sr = story.getBoundingClientRect(), rTop = desk ? topH : 0;
     RH = H - rTop;
     reader.style.top = rTop + 'px'; reader.style.height = RH + 'px';
-    reader.style.left = (desk ? sr.left : 16) + 'px'; reader.style.width = (desk ? sr.width : W - 32) + 'px';
+    var inset = safeInsets();                       // phones: keep the text clear of notches and rounded corners
+    reader.style.left = (desk ? sr.left : 16 + inset[0]) + 'px'; reader.style.width = (desk ? sr.width : W - 32 - inset[0] - inset[1]) + 'px';
     // the first step follows the landing closely: liftoff fades in while the frame is still shrinking into place
     var G = Math.round(H * .9), avail = RH - 48, y = hero.offsetHeight + Math.round(H * .25), out = [{a: 0, b: 0}];
     PANEL = [null];
     chapters.slice(1, NC - 1).forEach(function(c, j){
       var h = c.offsetHeight, read = Math.max(0, h - avail);
-      PANEL.push({el: c, restY: desk ? (read ? 24 : (RH - h) / 2) : RH - h - 30, read: desk ? read : 0});   // phones: the heading sits low on the image
+      PANEL.push({el: c, restY: desk ? (read ? 24 : (RH - h) / 2) : RH - h - 30 - inset[2], read: desk ? read : 0});   // phones: the heading sits low on the image, above the home bar
       out.push({a: y, b: y + read});
       y += read + Math.round(G * Math.max(1, .8 * (FR[j + 2] - FR[j + 1])));   // flying through several frames takes a longer gap
     });
@@ -1306,12 +1342,13 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
     heroLayer.style.visibility = hm > .005 ? 'visible' : 'hidden';
     heroLayer.style.opacity = ease(hm * 1.2).toFixed(3); heroLayer.style.transform = 'translate3d(0,' + (H * .22 * (1 - hm)).toFixed(1) + 'px,0)';
     heroLayer.style.pointerEvents = hm > .5 ? 'auto' : 'none';
-    var F = REST[NC - 1], fm = ease((y - (F.a - H * .9)) / (H * .9)), inner = Math.max(0, Math.min(F.b - F.a, y - F.a));
+    var fSpan = H * (desk ? .9 : 1.4);              // phones: the finale words start while the Earth is still pulling back
+    var F = REST[NC - 1], fm = ease((y - (F.a - fSpan)) / fSpan), inner = Math.max(0, Math.min(F.b - F.a, y - F.a));
     finLayer.style.visibility = fm > .005 ? 'visible' : 'hidden';
     finLayer.style.opacity = ease((fm - .3) / .7).toFixed(3); finLayer.style.transform = 'translate3d(0,' + (-H * .22 * (1 - fm) - inner).toFixed(1) + 'px,0)';
     finLayer.style.pointerEvents = fm > .5 ? 'auto' : 'none';
     if (fm > .98 && typeof finaleHint === 'function') finaleHint();
-    finLayer.classList.toggle('lit', fm > .9);
+    finLayer.classList.toggle('lit', fm > .55);       // phones: the words come in while the Earth is still arriving
     if (fm < .9 && tipKey) showTip(null);
     if (!desk){                                    // phones: scrim and gauge only on the steps; the gauge leaves early for the finale
       mscrim.style.opacity = (1 - Math.max(hm, fm)).toFixed(3);
@@ -1323,7 +1360,7 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
   // takes over like a wheel: it spins up smoothly, cruises at a speed set by how fast you scrolled, then brakes at a
   // constant rate so it stops exactly on the step. Keep scrolling fast and it carries on through the next steps
   // instead of stopping; slow input and the trackpad's leftover momentum never skip a step.
-  var RAMP = 180, BRAKE = 380, FAST = 2.4;            // spin-up ms, braking distance px, "still scrolling fast" px/ms
+  var RAMP = 180, BRAKE = 380;                        // spin-up ms, braking distance px
   var anim = null, mv = null, hush = false, hushT = null, wIn = [];
   function cruiseFor(rate){ return Math.max(1.3, Math.min(5, .9 + rate * .9)); }   // input rate px/ms -> cruise px/ms
   function inputRate(dirn){                           // wheel input over the last 120 ms in that direction, px/ms
@@ -1333,7 +1370,7 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
     return sum / 120;
   }
   function stopGlide(){ if (anim){ cancelAnimationFrame(anim); anim = null; } mv = null; }
-  function hushFor(){ hush = true; clearTimeout(hushT); hushT = setTimeout(function(){ hush = false; }, 160); }
+  function hushFor(ms){ hush = true; clearTimeout(hushT); hushT = setTimeout(function(){ hush = false; }, ms || 160); }
   function go(target, rate, k){
     var y = scrollY, d = target - y;
     if (Math.abs(d) < 1) return;
@@ -1344,23 +1381,15 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
     mv = {target: target, k: k, dir: dirn, v: 0, cruise: cruiseFor(rate), y: y, last: performance.now(), ext: 0};
     anim = requestAnimationFrame(tick);
   }
-  function extend(rate){                              // still scrolling fast: carry on to the step after
-    var m = mv, now = performance.now();
-    if (!m || m.k == null || now - m.ext < 90) return;
-    var t = REST[m.k + m.dir]; if (!t) return;
-    m.k += m.dir; m.target = m.dir > 0 ? t.a : t.b; m.cruise = Math.max(m.cruise, cruiseFor(rate)); m.ext = now;
-  }
   function tick(now){
     var m = mv; if (!m) return;
     var dt = Math.min(40, now - m.last); m.last = now;
     var rem = (m.target - m.y) * m.dir;
-    // decide to carry on before braking would begin (braking distance at the current speed, plus a margin)
-    if (m.wheel && rem < BRAKE * (m.v * m.v) / (m.cruise * m.cruise) + 260 && inputRate(m.dir) >= FAST){ extend(inputRate(m.dir)); rem = (m.target - m.y) * m.dir; }
     var A = m.cruise * m.cruise / (2 * BRAKE);        // constant braking that stops in BRAKE px from cruise speed
     var want = Math.min(m.cruise, Math.sqrt(2 * A * Math.max(0, rem)));
     m.v = want > m.v ? Math.min(want, m.v + m.cruise / RAMP * dt) : want;
     m.y += m.dir * m.v * dt;
-    if ((m.target - m.y) * m.dir <= .5){ scrollTo(0, m.target); anim = null; mv = null; hushFor(); return; }
+    if ((m.target - m.y) * m.dir <= .5){ scrollTo(0, m.target); anim = null; mv = null; hushFor(450); return; }   // settle before the next step
     scrollTo(0, m.y);
     anim = requestAnimationFrame(tick);
   }
@@ -1429,12 +1458,7 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
       if (mv.dir === dirn){ mv.wheel = true; mv.cruise = Math.max(mv.cruise, cruiseFor(inputRate(dirn))); }
       return;
     }
-    if (hush){
-      e.preventDefault(); hushFor();
-      if (inputRate(dirn) >= FAST) launch(dirn, inputRate(dirn));    // fast scrolling carries straight on
-      if (mv) mv.wheel = true;
-      return;
-    }
+    if (hush){ e.preventDefault(); hushFor(); return; }   // one step per gesture: the rest of a flick (and its momentum) is absorbed
     var y = scrollY, k = stepAt(y);
     if (k < 0){ e.preventDefault(); launch(dirn, inputRate(dirn)); if (mv) mv.wheel = true; return; }
     var r = REST[k], edge = dirn > 0 ? r.b : r.a;
@@ -1446,20 +1470,17 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
   addEventListener('touchstart', function(e){
     if (sheetOpen || e.touches.length > 1){ tMode = ''; return; }
     cancelAnimationFrame(coastF); tLast = e.touches[0].clientY; tVel = 0; tTime = performance.now(); pull = 0;
-    tMode = mv ? 'chain' : 'read';
+    tMode = mv || hush ? '' : 'read';                  // a swipe while moving, or just after landing, is ignored: one step at a time
   }, {passive: true});
   addEventListener('touchmove', function(e){
+    if (e.touches.length > 1){ e.preventDefault(); return; }   // no pinch-zoom: it would break the fixed scenes
     if (sheetOpen){ if (!sheet.contains(e.target)) e.preventDefault(); return; }
-    if (!tMode || e.touches.length > 1) return;
+    e.preventDefault();                                // the page never scrolls natively: only the ride moves it
+    if (!tMode) return;
     var cy = e.touches[0].clientY, dy = tLast - cy, now = performance.now();
     tVel = tVel * .6 + .4 * dy / Math.max(8, now - tTime); tTime = now; tLast = cy;
     e.preventDefault();
     if (!dy) return;
-    if (tMode === 'chain'){                            // swiping again while moving: carry on to the next step
-      pull += dy * (mv ? mv.dir : 0);
-      if (mv && pull > 40){ extend(Math.abs(tVel)); pull = -1e9; }
-      return;
-    }
     if (tMode !== 'read') return;
     var y = scrollY, k = stepAt(y);
     if (k < 0){ tMode = 'done'; launch(dy > 0 ? 1 : -1, Math.abs(tVel)); return; }
@@ -1488,7 +1509,7 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
     var dirn = {ArrowDown: 1, PageDown: 1, ArrowUp: -1, PageUp: -1}[e.key] || (e.key === ' ' ? (e.shiftKey ? -1 : 1) : 0);
     if (!dirn) return;
     e.preventDefault();
-    if (mv){ if (mv.dir === dirn && e.repeat) extend(3); return; }
+    if (mv || e.repeat) return;                       // holding the key does not run through several steps
     var y = scrollY, k = stepAt(y);
     if (k >= 0){
       var r = REST[k], edge = dirn > 0 ? r.b : r.a;
@@ -1593,7 +1614,15 @@ footer{padding:0 0 40px;color:var(--muted);font-size:13px;display:flex;gap:16px;
     var id = a.getAttribute('href').slice(1), k = chapters.map(function(c){ return c.id; }).indexOf(id);
     if (k >= 0){ e.preventDefault(); goTo(k); }
   });
-  addEventListener('resize', layout);
+  // Resizes: a pinch-zoom (visual viewport only) is ignored; a real one (rotation, browser zoom, window size) re-lays
+  // the track and puts you back on the step you were reading, instead of leaving you mid-transition.
+  addEventListener('resize', function(){
+    if (window.visualViewport && visualViewport.scale > 1.01) return;
+    var k = Math.round(gNow); if (Math.abs(gNow - k) > .02 || mv) k = -1;   // the step being read (the ride's own record: the browser may already have shifted scrollY)
+    layout();
+    if (k >= 0 && REST[k]){ scrollTo(0, REST[k].a); sy = scrollY; }
+  });
+  ['gesturestart', 'gesturechange'].forEach(function(t){ document.addEventListener(t, function(e){ e.preventDefault(); }); });   // iOS pinch
   addEventListener('load', layout);
   layout(); requestAnimationFrame(render);
 })();
