@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="theme-color" content="#070b14">
+<meta name="color-scheme" content="dark light">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy · Tomas Benedicto</title>
+<link rel="canonical" href="https://tomasbenedicto.com/privacy.html">
+<meta name="description" content="How tomasbenedicto.com measures its audience: no cookies, no personal data, no tracking across sites.">
+<link rel="icon" type="image/svg+xml" href="assets/icons/icon.svg?v=orbit3">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png?v=orbit3">
+<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png?v=orbit3">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>var t=null;try{t=localStorage.getItem('cvTheme')}catch(e){}document.documentElement.dataset.theme=t||'dark';</script>
+<script defer src="analytics/t.js" data-api="https://site-analytics.YOUR-SUBDOMAIN.workers.dev"></script>
+<style>
+:root{
+  color-scheme:light;
+  --bg:#f7f8fb; --surface:#ffffff; --ink:#0b1220; --ink-2:#2a3447; --muted:#5d6880; --line:#e2e6ef; --accent:#2f5bea; --accent-soft:#e8eeff;
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#070b14; --surface:#0f1626; --ink:#eef2fa; --ink-2:#c9d2e3; --muted:#8994ab; --line:#1d2638; --accent:#ffb547; --accent-soft:#2a2112;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 Inter,system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+.wrap{max-width:760px;margin:0 auto;padding:32px 24px 56px}
+@media (max-width:600px){.wrap{padding:24px 16px 48px}}
+.top{display:flex;align-items:center;gap:10px;font-family:"Space Grotesk",Inter,sans-serif;font-weight:700;color:var(--ink);text-decoration:none;margin-bottom:40px}
+.brand-mark{width:30px;height:30px;border-radius:9px;background:var(--ink);color:var(--bg);display:grid;place-items:center;font-size:13px}
+h1,h2{font-family:"Space Grotesk",Inter,sans-serif;letter-spacing:-.02em;line-height:1.15}
+h1{font-size:36px;margin:0 0 8px}
+h2{font-size:20px;margin:36px 0 8px}
+p,li{color:var(--ink-2)}
+.lead{font-size:18px;color:var(--ink-2)}
+ul{padding-left:20px}
+li{margin:4px 0}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin-top:12px}
+.box p{margin:0 0 12px}
+button{font:inherit;font-weight:600;font-size:15px;padding:10px 18px;border-radius:999px;border:1px solid var(--line);background:var(--accent-soft);color:var(--ink);cursor:pointer}
+.muted{color:var(--muted);font-size:14px}
+footer{margin-top:48px;color:var(--muted);font-size:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="top" href="index.html"><span class="brand-mark">TB</span><span>Tomas Benedicto</span></a>
+  <h1>Privacy</h1>
+  <p class="lead">This site counts its visits to learn which pages people read. It does so without cookies, without storing anything on your device, and without collecting anything that identifies you.</p>
+
+  <h2>What is measured</h2>
+  <p>For each page you open, the site sends:</p>
+  <ul>
+    <li>the address of the page (without anything after a <code>?</code> or <code>#</code>);</li>
+    <li>the name of the website that linked to it, if any (for example linkedin.com), never the full link;</li>
+    <li>the width of your screen, kept only as "mobile", "tablet" or "desktop";</li>
+    <li>how long the page was open and in use (time while the tab is hidden or idle is not counted).</li>
+  </ul>
+  <p>The server adds your country, from your IP address. It does not record the IP address itself, your city, or your browser.</p>
+
+  <h2>How visitors are counted without identifying you</h2>
+  <p>To count unique visitors, the server combines your IP address and browser version with a random value that changes every day, and keeps only a scrambled code (a hash) of the result. The random value is deleted the next day. After that, nobody, including me, can recalculate the code or link it to you, and your visits on different days cannot be connected. The IP address is never stored.</p>
+
+  <h2>What is not done</h2>
+  <ul>
+    <li>No cookies, no local storage, no fingerprinting, no advertising or third-party trackers.</li>
+    <li>No tracking across other websites and no profiles of individual visitors.</li>
+    <li>The data is never sold or shared. Only aggregated figures are viewed, on a dashboard that only I can access.</li>
+  </ul>
+
+  <h2>Where the data is kept, and for how long</h2>
+  <p>The figures are processed and stored on Cloudflare (a Cloudflare Worker and a D1 database in the European Union), acting as a processor on my behalf. Raw visit records are deleted after 25 months.</p>
+
+  <h2>Legal basis</h2>
+  <p>Audience measurement is based on my legitimate interest in understanding how the site is used (Article 6(1)(f) of the GDPR). Because nothing is stored on or read from your device, no consent banner is needed, in line with the CNIL's guidance on audience measurement.</p>
+
+  <h2>Your choices</h2>
+  <p>If your browser sends <b>Global Privacy Control</b> or <b>Do Not Track</b>, nothing is recorded. You can also turn the measurement off for this browser here. That choice is the only thing the site saves on your device, and only because you ask for it.</p>
+  <div class="box">
+    <p id="status">Checking…</p>
+    <button type="button" id="toggle" hidden></button>
+  </div>
+  <p>Because the data cannot be linked to you, I cannot find or show "your" records, but you can still contact me about it through the details on the <a href="cv.html#contact">contact section</a>. You may also complain to the CNIL (<a href="https://www.cnil.fr" rel="noopener">cnil.fr</a>) or your own data-protection authority.</p>
+
+  <p class="muted">Controller: Tomas Benedicto, Toulouse, France. Last updated November 2026.</p>
+  <footer><a href="index.html">← Back to the site</a></footer>
+</div>
+<script>
+(function () {
+  var st = document.getElementById('status'), b = document.getElementById('toggle'), KEY = 'analytics-optout';
+  var signal = navigator.globalPrivacyControl || navigator.doNotTrack === '1' || window.doNotTrack === '1';
+  function get() { try { return localStorage.getItem(KEY) === '1'; } catch (e) { return null; } }
+  function show() {
+    var out = get();
+    if (signal) { st.textContent = 'Your browser asks sites not to track you, so your visits are not counted.'; b.hidden = true; return; }
+    if (out === null) { st.textContent = 'Your browser blocks site storage, so the opt-out cannot be saved here. Turning on Global Privacy Control in your browser has the same effect.'; b.hidden = true; return; }
+    st.textContent = out ? 'Measurement is off: visits from this browser are not counted.' : 'Measurement is on: visits from this browser are counted anonymously.';
+    b.textContent = out ? 'Turn measurement back on' : 'Turn measurement off';
+    b.hidden = false;
+  }
+  b.addEventListener('click', function () {
+    try { if (get()) localStorage.removeItem(KEY); else localStorage.setItem(KEY, '1'); } catch (e) {}
+    show();
+  });
+  show();
+})();
+</script>
+</body>
+</html>

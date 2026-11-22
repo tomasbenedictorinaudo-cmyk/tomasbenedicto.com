@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Site analytics</title>
+<style>
+:root{
+  color-scheme:light;
+  --bg:#f7f8fb; --surface:#ffffff; --ink:#0b1220; --ink-2:#2a3447; --muted:#5d6880; --line:#e3e7ef; --grid:#eceff5;
+  --accent:#2f6fe0; --accent-fill:rgba(47,111,224,.12); --bar:rgba(47,111,224,.14); --chip:#eef1f7;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#070b14; --surface:#0f1626; --ink:#eef2fa; --ink-2:#c9d2e3; --muted:#8994ab; --line:#1f2a3f; --grid:#1a2335;
+    --accent:#8fb0ff; --accent-fill:rgba(143,176,255,.14); --bar:rgba(143,176,255,.16); --chip:#162036;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#070b14; --surface:#0f1626; --ink:#eef2fa; --ink-2:#c9d2e3; --muted:#8994ab; --line:#1f2a3f; --grid:#1a2335;
+  --accent:#8fb0ff; --accent-fill:rgba(143,176,255,.14); --bar:rgba(143,176,255,.16); --chip:#162036;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 Inter,system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1120px;margin:0 auto;padding:24px 16px 48px}
+header{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;margin-bottom:20px}
+h1{font-size:20px;margin:0;letter-spacing:-.01em}
+h1 small{display:block;font-size:13px;font-weight:400;color:var(--muted);letter-spacing:0}
+.ranges{display:flex;flex-wrap:wrap;gap:4px;background:var(--chip);padding:3px;border-radius:10px}
+.ranges button{border:0;background:none;color:var(--ink-2);font:inherit;font-size:13px;padding:6px 11px;border-radius:8px;cursor:pointer}
+.ranges button[aria-pressed="true"]{background:var(--surface);color:var(--ink);font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,.12)}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:12px}
+@media (max-width:760px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.kpi{text-align:left;font:inherit;color:inherit;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;cursor:pointer}
+.kpi[aria-pressed="true"]{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
+.kpi span{display:block;color:var(--muted);font-size:13px}
+.kpi b{display:block;font-size:26px;font-weight:600;letter-spacing:-.02em;margin-top:2px;font-variant-numeric:tabular-nums}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;min-width:0}
+.card h2{font-size:14px;margin:0 0 10px;display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.card h2 small{font-weight:400;color:var(--muted);font-size:12px}
+.link{border:0;background:none;color:var(--accent);font:inherit;font-size:12px;cursor:pointer;padding:0}
+#chart{position:relative;height:260px}
+#chart svg{display:block;width:100%;height:100%;overflow:visible}
+.tip{position:absolute;pointer-events:none;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:6px 10px;font-size:12px;white-space:nowrap;box-shadow:0 4px 14px rgba(0,0,0,.18);opacity:0;transition:opacity .1s}
+.tip b{display:block;font-size:14px;color:var(--ink)}
+.tip span{color:var(--muted)}
+.axis{fill:var(--muted);font-size:11px;font-variant-numeric:tabular-nums}
+.grid2{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:12px;margin-top:12px}
+@media (max-width:860px){.grid2{grid-template-columns:minmax(0,1fr)}}
+.stack{display:grid;gap:12px;align-content:start}
+table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+th{font-weight:500;color:var(--muted);font-size:12px;text-align:right;padding:4px 6px;border-bottom:1px solid var(--line)}
+th:first-child,td:first-child{text-align:left}
+td{padding:5px 6px;text-align:right;border-bottom:1px solid var(--grid)}
+tr:last-child td{border-bottom:0}
+td.name{position:relative;max-width:0;width:55%}
+td.name div{position:relative;z-index:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+td.name i{position:absolute;left:0;top:3px;bottom:3px;background:var(--bar);border-radius:0 4px 4px 0}
+.empty{color:var(--muted);padding:12px 0}
+.note{color:var(--muted);font-size:12px;margin-top:16px}
+.err{background:var(--surface);border:1px solid var(--line);border-left:3px solid #c77700;border-radius:8px;padding:12px 14px;margin-bottom:12px}
+.scroll{overflow-x:auto}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Site analytics <small>tomasbenedicto.com · days in UTC</small></h1>
+    <div class="ranges" role="group" aria-label="Period" id="ranges">
+      <button type="button" data-days="1">Today</button>
+      <button type="button" data-days="7">7 days</button>
+      <button type="button" data-days="30">30 days</button>
+      <button type="button" data-days="90">90 days</button>
+      <button type="button" data-days="365">12 months</button>
+      <button type="button" data-days="all">All</button>
+    </div>
+  </header>
+  <div id="err" class="err" hidden></div>
+  <div class="kpis" role="group" aria-label="Metric shown in the chart">
+    <button type="button" class="kpi" data-m="visitors"><span>Unique visitors</span><b id="k-visitors">–</b></button>
+    <button type="button" class="kpi" data-m="views"><span>Page views</span><b id="k-views">–</b></button>
+    <button type="button" class="kpi" data-m="time"><span>Avg. time on page</span><b id="k-time">–</b></button>
+    <button type="button" class="kpi" data-m="ppv"><span>Pages per visit</span><b id="k-ppv">–</b></button>
+  </div>
+  <section class="card">
+    <h2><span id="chartTitle">Unique visitors per day</span><button type="button" class="link" id="asTable">Show as table</button></h2>
+    <div id="chart"><svg id="svg" role="img" aria-labelledby="chartTitle"></svg><div class="tip" id="tip"></div></div>
+    <div id="chartTable" class="scroll" hidden></div>
+  </section>
+  <div class="grid2">
+    <section class="card"><h2>Most visited pages <small>visitors · views · avg. time</small></h2><div id="pages"></div></section>
+    <div class="stack">
+      <section class="card"><h2>Where visitors come from <small>visitors</small></h2><div id="refs"></div></section>
+      <section class="card"><h2>Countries <small>visitors</small></h2><div id="countries"></div></section>
+      <section class="card"><h2>Devices <small>visitors</small></h2><div id="devices"></div></section>
+    </div>
+  </div>
+  <p class="note">A visitor is counted once per day: the site keeps no cookies, so the same person on two days counts twice, and "unique visitors" over a period is the sum of each day's. Time on page counts only while the page is visible and in use. Visitors with Do Not Track or Global Privacy Control, or who opted out, are not counted.</p>
+</div>
+<script>
+(function () {
+  'use strict';
+  var DAY = 86400000, METRICS = {
+    visitors: { title: 'Unique visitors per day', fmt: int },
+    views: { title: 'Page views per day', fmt: int },
+    time: { title: 'Average time on page per day', fmt: dur },
+    ppv: { title: 'Pages per visit per day', fmt: dec }
+  };
+  var state = { days: 30, metric: 'visitors', table: false, data: null, rows: [] };
+  try { var saved = JSON.parse(localStorage.getItem('dash') || '{}'); if (saved.days) state.days = saved.days; if (METRICS[saved.metric]) state.metric = saved.metric; } catch (e) {}
+
+  var $ = function (id) { return document.getElementById(id); };
+  function int(v) { return v == null ? '–' : Math.round(v).toLocaleString('en-GB'); }
+  function dec(v) { return v == null ? '–' : v.toFixed(2); }
+  function dur(ms) {
+    if (ms == null) return '–';
+    var s = Math.round(ms / 1000);
+    if (s < 60) return s + 's';
+    var m = Math.floor(s / 60); s %= 60;
+    if (m < 60) return m + 'm ' + (s < 10 ? '0' : '') + s + 's';
+    return Math.floor(m / 60) + 'h ' + (m % 60) + 'm';
+  }
+  function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return '&#' + c.charCodeAt(0) + ';'; }); }
+  var iso = function (ms) { return new Date(ms).toISOString().slice(0, 10); };
+  var label = function (day, withYear) {
+    var d = new Date(day + 'T00:00:00Z');
+    return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: withYear ? 'numeric' : undefined, timeZone: 'UTC' });
+  };
+  var regions = (function () { try { return new Intl.DisplayNames(['en'], { type: 'region' }); } catch (e) { return null; } })();
+
+  function save() { try { localStorage.setItem('dash', JSON.stringify({ days: state.days, metric: state.metric })); } catch (e) {} }
+
+  function load() {
+    var to = iso(Date.now()), from;
+    if (state.days === 'all') from = (state.data && state.data.firstDay) || '2000-01-01';
+    else from = iso(Date.now() - (state.days - 1) * DAY);
+    [].forEach.call(document.querySelectorAll('#ranges button'), function (b) { b.setAttribute('aria-pressed', String(b.dataset.days === String(state.days))); });
+    // From the origin, not the page's URL: a URL opened as https://user:pass@… would carry the credentials into the request, which browsers refuse.
+    fetch(location.origin + '/api/stats?from=' + from + '&to=' + to, { credentials: 'same-origin' })
+      .then(function (r) { if (!r.ok) throw new Error('The server answered ' + r.status); return r.json(); })
+      .then(function (d) {
+        $('err').hidden = true;
+        if (state.days === 'all' && d.firstDay && d.firstDay > from) d.from = d.firstDay;
+        state.data = d; render();
+      })
+      .catch(function (e) { $('err').hidden = false; $('err').textContent = 'Could not load the statistics. ' + e.message; });
+  }
+
+  // One row per day of the period, days without views included.
+  function daily(d) {
+    var by = {}, rows = [];
+    d.series.forEach(function (r) { by[r.day] = r; });
+    var start = Date.parse(d.from + 'T00:00:00Z'), end = Date.parse(d.to + 'T00:00:00Z');
+    for (var t = start; t <= end; t += DAY) {
+      var r = by[iso(t)] || { views: 0, visitors: 0, engagedMs: 0, engagedViews: 0 };
+      rows.push({
+        day: iso(t), views: r.views, visitors: r.visitors,
+        time: r.engagedViews ? r.engagedMs / r.engagedViews : null,
+        ppv: r.visitors ? r.views / r.visitors : null
+      });
+    }
+    return rows;
+  }
+
+  function render() {
+    var d = state.data, rows = state.rows = daily(d);
+    var v = 0, w = 0, ems = 0, ev = 0;
+    d.series.forEach(function (r) { v += r.visitors; w += r.views; ems += r.engagedMs; ev += r.engagedViews; });
+    $('k-visitors').textContent = int(v);
+    $('k-views').textContent = int(w);
+    $('k-time').textContent = ev ? dur(ems / ev) : '–';
+    $('k-ppv').textContent = v ? dec(w / v) : '–';
+    [].forEach.call(document.querySelectorAll('.kpi'), function (b) { b.setAttribute('aria-pressed', String(b.dataset.m === state.metric)); });
+    $('chartTitle').textContent = METRICS[state.metric].title;
+    drawChart(); drawChartTable();
+
+    table('pages', d.pages, 'Page', function (r) { return r.path; }, [
+      ['Visitors', function (r) { return int(r.visitors); }],
+      ['Views', function (r) { return int(r.views); }],
+      ['Avg. time', function (r) { return r.engagedViews ? dur(r.engagedMs / r.engagedViews) : '–'; }]
+    ], 'views');
+    table('refs', d.refs, 'Source', function (r) { return r.ref || 'Direct or unknown'; }, [['Visitors', function (r) { return int(r.visitors); }]], 'visitors');
+    table('countries', d.countries, 'Country', function (r) { return r.country ? ((regions && regions.of(r.country)) || r.country) : 'Unknown'; }, [['Visitors', function (r) { return int(r.visitors); }]], 'visitors');
+    table('devices', d.devices, 'Device', function (r) { return r.device ? r.device[0].toUpperCase() + r.device.slice(1) : 'Unknown'; }, [['Visitors', function (r) { return int(r.visitors); }]], 'visitors');
+  }
+
+  function table(id, rows, head, name, cols, share) {
+    var el = $(id);
+    if (!rows.length) { el.innerHTML = '<div class="empty">No data for this period.</div>'; return; }
+    var max = Math.max.apply(null, rows.map(function (r) { return r[share]; })) || 1;
+    var h = '<table><thead><tr><th>' + head + '</th>' + cols.map(function (c) { return '<th>' + c[0] + '</th>'; }).join('') + '</tr></thead><tbody>';
+    rows.forEach(function (r) {
+      var n = esc(name(r));
+      h += '<tr><td class="name" title="' + n + '"><i style="width:' + (100 * r[share] / max).toFixed(1) + '%"></i><div>' + n + '</div></td>' +
+        cols.map(function (c) { return '<td>' + c[1](r) + '</td>'; }).join('') + '</tr>';
+    });
+    el.innerHTML = h + '</tbody></table>';
+  }
+
+  function drawChartTable() {
+    var m = METRICS[state.metric];
+    $('chartTable').hidden = !state.table; $('chart').hidden = state.table;
+    $('asTable').textContent = state.table ? 'Show as chart' : 'Show as table';
+    if (!state.table) return;
+    var h = '<table><thead><tr><th>Day</th><th>Visitors</th><th>Views</th><th>Avg. time</th><th>Pages per visit</th></tr></thead><tbody>';
+    state.rows.slice().reverse().forEach(function (r) {
+      h += '<tr><td>' + label(r.day, true) + '</td><td>' + int(r.visitors) + '</td><td>' + int(r.views) + '</td><td>' + dur(r.time) + '</td><td>' + dec(r.ppv) + '</td></tr>';
+    });
+    $('chartTable').innerHTML = h + '</tbody></table>';
+    void m;
+  }
+
+  // Gridlines at a round step, at most five above zero: 1-2-5 steps for counts, clock-friendly ones for time.
+  function scale(max, key) {
+    var steps = [];
+    if (key === 'time') steps = [5, 10, 15, 30, 60, 120, 300, 600, 900, 1800, 3600, 7200].map(function (x) { return x * 1000; });
+    else for (var e = key === 'ppv' ? -1 : 0; e < 9; e++) [1, 2, 5].forEach(function (f) { steps.push(f * Math.pow(10, e)); });
+    for (var i = 0; i < steps.length; i++) {
+      var n = Math.max(1, Math.ceil(max / steps[i] - 1e-9));
+      if (n <= 5) return { step: steps[i], n: n };
+    }
+    return { step: steps[steps.length - 1], n: Math.max(1, Math.ceil(max / steps[steps.length - 1])) };
+  }
+
+  function drawChart() {
+    if (state.table) return;
+    var svg = $('svg'), box = $('chart'), W = box.clientWidth, H = box.clientHeight;
+    var m = METRICS[state.metric], key = state.metric, rows = state.rows;
+    var L = 44, R = 8, T = 10, B = 26, iw = W - L - R, ih = H - T - B;
+    var vals = rows.map(function (r) { return r[key]; });
+    var sc = scale(Math.max.apply(null, vals.map(function (x) { return x || 0; })), key), top = sc.step * sc.n;
+    var n = rows.length, x = function (i) { return L + (n === 1 ? iw / 2 : (i * iw) / (n - 1)); };
+    var y = function (v) { return T + ih - (v / top) * ih; };
+    var s = '';
+    for (var g = 0; g <= sc.n; g++) {
+      var gv = sc.step * g, gy = y(gv);
+      s += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + gy + '" y2="' + gy + '" stroke="var(--grid)" stroke-width="1"/>';
+      s += '<text class="axis" x="' + (L - 8) + '" y="' + (gy + 4) + '" text-anchor="end">' + (key === 'time' ? dur(gv) : key === 'ppv' ? gv.toFixed(1) : int(gv)) + '</text>';
+    }
+    var ticks = Math.max(1, Math.min(n, Math.floor(iw / 80))), step = Math.max(1, Math.ceil(n / ticks)), longR = n > 120;
+    for (var i = 0; i < n; i += step) s += '<text class="axis" x="' + x(i) + '" y="' + (H - 6) + '" text-anchor="' + (i === 0 && n > 1 ? 'start' : 'middle') + '">' + label(rows[i].day, longR) + '</text>';
+    // The line breaks where a day has no value (time on page with no views); the area is drawn under each run.
+    var runs = [], cur = [];
+    rows.forEach(function (r, i) { if (r[key] == null) { if (cur.length) runs.push(cur); cur = []; } else cur.push(i); });
+    if (cur.length) runs.push(cur);
+    runs.forEach(function (run) {
+      var line = run.map(function (i, k) { return (k ? 'L' : 'M') + x(i).toFixed(1) + ' ' + y(vals[i]).toFixed(1); }).join('');
+      if (run.length > 1) s += '<path d="' + line + 'L' + x(run[run.length - 1]).toFixed(1) + ' ' + y(0) + 'L' + x(run[0]).toFixed(1) + ' ' + y(0) + 'Z" fill="var(--accent-fill)"/>';
+      s += '<path d="' + line + '" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>';
+      if (run.length === 1) s += '<circle cx="' + x(run[0]) + '" cy="' + y(vals[run[0]]) + '" r="3" fill="var(--accent)"/>';
+    });
+    s += '<line id="xh" y1="' + T + '" y2="' + (T + ih) + '" stroke="var(--muted)" stroke-width="1" stroke-dasharray="3 3" opacity="0"/>';
+    s += '<circle id="dot" r="4.5" fill="var(--accent)" stroke="var(--surface)" stroke-width="2" opacity="0"/>';
+    s += '<rect id="hit" x="' + L + '" y="0" width="' + iw + '" height="' + H + '" fill="transparent"/>';
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+    svg.innerHTML = s;
+
+    var tip = $('tip'), xh = $('xh'), dot = $('dot');
+    function show(evt) {
+      var rect = svg.getBoundingClientRect(), px = evt.clientX - rect.left;
+      var i = n === 1 ? 0 : Math.max(0, Math.min(n - 1, Math.round(((px - L) / iw) * (n - 1)))), r = rows[i], v = r[key];
+      xh.setAttribute('x1', x(i)); xh.setAttribute('x2', x(i)); xh.setAttribute('opacity', '1');
+      if (v != null) { dot.setAttribute('cx', x(i)); dot.setAttribute('cy', y(v)); dot.setAttribute('opacity', '1'); } else dot.setAttribute('opacity', '0');
+      tip.innerHTML = '<b>' + m.fmt(v) + '</b><span>' + label(r.day, true) + ' · ' + int(r.visitors) + ' visitors, ' + int(r.views) + ' views</span>';
+      tip.style.opacity = '1';
+      var tw = tip.offsetWidth, left = x(i) + 12;
+      if (left + tw > W) left = x(i) - tw - 12;
+      tip.style.left = Math.max(0, left) + 'px'; tip.style.top = '4px';
+    }
+    function hide() { tip.style.opacity = '0'; xh.setAttribute('opacity', '0'); dot.setAttribute('opacity', '0'); }
+    var hit = $('hit');
+    hit.addEventListener('pointermove', show); hit.addEventListener('pointerdown', show); hit.addEventListener('pointerleave', hide);
+  }
+  $('ranges').addEventListener('click', function (e) {
+    var b = e.target.closest('button'); if (!b) return;
+    state.days = b.dataset.days === 'all' ? 'all' : Number(b.dataset.days); save(); load();
+  });
+  [].forEach.call(document.querySelectorAll('.kpi'), function (b) {
+    b.addEventListener('click', function () { state.metric = b.dataset.m; save(); if (state.data) render(); });
+  });
+  $('asTable').addEventListener('click', function () { state.table = !state.table; if (state.data) { drawChartTable(); drawChart(); } });
+  var rt; addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(function () { if (state.data) drawChart(); }, 120); });
+  load();
+})();
+</script>
+</body>
+</html>

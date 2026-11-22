@@ -1,0 +1,26 @@
+# Site analytics for tomasbenedicto.com: a Cloudflare Worker and a D1 database (see README.md).
+name = "site-analytics"
+main = "worker.js"
+compatibility_date = "2025-06-01"
+workers_dev = true
+
+# Request logs would hold IP addresses: keep them off.
+[observability]
+enabled = false
+
+[vars]
+ALLOWED_ORIGINS = "https://tomasbenedicto.com,https://www.tomasbenedicto.com"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "site-analytics"
+database_id = "REPLACE-WITH-THE-ID-FROM-wrangler-d1-create"
+
+# Every day at 03:17 UTC: delete the previous days' salts and the views past the retention.
+[triggers]
+crons = ["17 3 * * *"]
+
+[[rules]]
+type = "Text"
+globs = ["**/*.html"]
+fallthrough = true
